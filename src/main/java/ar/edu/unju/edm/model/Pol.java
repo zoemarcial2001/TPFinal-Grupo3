@@ -39,6 +39,7 @@ public class Pol {
 	@Column
 	private String email;
 	
+	
 	public Pol() {
 		// TODO Auto-generated constructor stub
 	}
