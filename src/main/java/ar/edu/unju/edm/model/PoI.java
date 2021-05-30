@@ -8,13 +8,13 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table (name="POLS")
+@Table (name="POIS")
 @Component
-public class Pol {
+public class PoI {
 
 	@Id
 	@Column
-	private int codigoPol;
+	private int codigoPoI;
 	
 	@Column
 	private String nombre;
@@ -40,16 +40,16 @@ public class Pol {
 	private String email;
 	
 	
-	public Pol() {
+	public PoI() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public int getCodigoPol() {
-		return codigoPol;
+	public int getCodigoPoI() {
+		return codigoPoI;
 	}
-	public void setCodigoPol(int codigoPol) {
-		this.codigoPol = codigoPol;
+	public void setCodigoPoI(int codigoPoI) {
+		this.codigoPoI = codigoPoI;
 	}
 	public String getNombre() {
 		return nombre;
