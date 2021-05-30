@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unju.edm.model.Pol;
+import ar.edu.unju.edm.model.PoI;
 
 
 @Repository
-public interface IPolDAO extends CrudRepository<Pol, Integer>{
+public interface IPoIDAO extends CrudRepository<PoI, Integer>{
 
-	@Query("from Pol p order by p.codigoPol")
-	public List<Pol> obtenerPols();
+	@Query("from PoI p order by p.codigoPoI")
+	public List<PoI> obtenerPoIs();
 }
