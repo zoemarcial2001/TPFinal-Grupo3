@@ -1,12 +1,9 @@
 package ar.edu.unju.edm.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,17 +28,11 @@ public class PoIController{
 	}
 	
 	@PostMapping("/poI/guardar")
-	public String guardarNuevoPoI(@Valid @ModelAttribute("unPoI") PoI nuevoPoI, BindingResult resultado, Model model) {		
-		
-		if(resultado.hasErrors()) {
-			model.addAttribute("unPoI", nuevoPoI);
-			model.addAttribute("poIs", poIService.obtenerTodosPoIs());
-			return "poI";
-		}
-		else {
-			poIService.guardarPoI(nuevoPoI);		
-			return "redirect:/poI/mostrar";
-		}
+	public String guardarNuevoPoI(@ModelAttribute("unPoI") PoI nuevoPoI, Model model) {
+		poIService.guardarPoI(nuevoPoI);
+		System.out.println(poIService.obtenerTodosPoIs());
+		model.addAttribute("poIs", poIService.obtenerTodosPoIs().size());
+		return "redirect:/poI/mostrar";
 	}
 	
 	@GetMapping("/poI/editar/{codigoPoI}")
@@ -78,8 +69,8 @@ public class PoIController{
 	
 	
 	
-	@GetMapping("/pol/eliminarPoI/{codigoPol}")
-	public String eliminarPoI(Model model, @PathVariable(name="codigoPoI") int codigo) {		
+	@GetMapping("/poI/eliminarPoI/{codigo}")
+	public String eliminarPoI(Model model, @PathVariable(name="codigo") int codigo) {		
 		try {			
 			poIService.eliminarPoI(codigo);			
 		}
