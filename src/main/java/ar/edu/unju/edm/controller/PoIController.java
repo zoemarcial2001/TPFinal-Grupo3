@@ -20,10 +20,9 @@ public class PoIController{
 	IPoIService poIService;
 	
 	
-	@GetMapping("/poI/mostrar")
+	@GetMapping("/poI/cargar")
 	public String cargarPoI(Model model) {
 		model.addAttribute("unPoI", poIService.crearPoI());
-		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		return("poI");
 	}
 	
@@ -67,8 +66,6 @@ public class PoIController{
 		return("poI");
 	}
 	
-	
-	
 	@GetMapping("/poI/eliminarPoI/{codigo}")
 	public String eliminarPoI(Model model, @PathVariable(name="codigo") int codigo) {		
 		try {			
@@ -80,6 +77,10 @@ public class PoIController{
 		return "redirect:/poI/mostrar";
 	}
 	
-	
+	@GetMapping("/poI/mostrar")
+	public String mostrarPoI(Model model) {
+		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
+		return("pois");
+	}
 	
 }

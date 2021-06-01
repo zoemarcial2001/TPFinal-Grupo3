@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="header" th:fragment="header">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">PoIs</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/poI/cargar">Agregar</a>
+        <a class="dropdown-item" href="/poI/mostrar">Ver PoIs</a>
+      </div>
+    </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
+  <!-- <div class="container-fluid">
+  <a class="navbar-brand" href="#">EDM</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="dropdown" id="navbarNav">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown">
+        PoI
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/poI/cargar">Agregar</a>
+        <a class="dropdown-item" href="/poI/mostrar">Ver PoIs</a>
+        <a class="dropdown-item" href="http://www.yahoo.com">Yahoo</a>
+      </div>
+    </div>  
+  </div>
+   -->
+</nav>
+</div>
+
+</body>
+</html>

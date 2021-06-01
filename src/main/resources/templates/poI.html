@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title>Poi</title>
+</head>
+<body>
+<div class="form">
+<div th:insert="layouts/header :: header"></div>
+<div class="container">
+ <div class="col-md-7 col-lg-8">
+	<h1>Cargar un PoI</h1>
+	<form th:object="${unPoI}" th:action="@{/poI/guardar}" method="post">
+		<div class="row">
+		    <label for="nombre" class="form-label">codigo</label>
+		    <div class="col">
+		    <input type="number" id="nombre" th:field="*{codigoPoI}">
+		    </div>
+		</div>
+		
+		<div class="row mb-3">
+		    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+		    <div class="col-sm-10">
+		    <input type="text" id="nombre" th:field="*{nombrePoI}">
+		    </div>
+		</div>
+		
+		<div class="row mb-3">
+		    <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+		    <div class="col-sm-10">
+		    <input type="text" id="descripcion" th:field="*{descripcion}">
+		    </div>
+		</div>
+		
+		<div class="row mb-3">
+		    <label for="localidad" class="col-sm-2 col-form-label">Localidad</label>
+		    <div class="col-sm-10">
+		    <input type="text" id="localidad" th:field="*{localidad}">
+		    </div>
+		</div>
+		
+		<div class="row mb-3">
+		    <label for="latitud" class="col-sm-2 col-form-label">Latitud</label>
+		    <div class="col-sm-10">
+		    <input type="number" id="latitud" th:field="*{latitud}">
+		    </div>
+		</div>
+		
+		<div class="row mb-3">
+		    <label for="longitud" class="col-sm-2 col-form-label">Longitud</label>
+		    <div class="col-sm-10">
+		    <input type="number" id="longitud" th:field="*{longitud}">
+		    </div>
+		</div>
+		
+		<div class="row mb-3">
+		    <label for="sitioweb" class="form-label">Sitio Web</label>
+		    <div class="col-sm-10">
+		    <input type="text" id="sitioweb" th:field="*{sitioWeb}">
+		    </div>
+		</div>
+		
+		<div class="col-md-5">
+              <label for="calle" class="form-label">Calle</label>
+              <input type="text" id="calle" th:field="*{calle}">
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required>
+                <option value="">Choose...</option>
+                <option>California</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="zip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            </div>
+		<div class="row mb-3">
+		    <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+		    <div class="col-sm-10">
+		    <input type="file" id="imagen">
+		    </div>
+		</div>
+		
+		<div>
+			<button type="submit" value="Agregar">Agregar</button>
+		</div>
+		
+		</form>
+		</div>
+	
+	<!-- ---------------------------------------------------------------- -->
+<h3>Lista de PoI</h3><br>
+   <div>
+	         <table class="table">
+	         <thead class="tables">
+				    <tr>
+				      <th>Codigo</th>
+				      <th>Nombre</th>
+				      <th>Descripcion</th>
+				      <th>Localidad</th>
+				      <th>Latitud</th>
+				      <th>Longitud</th>
+				      <th>Sitio Web</th>				      
+				    </tr>
+			 </thead>
+					<tr th:each="poI : ${poIs}">
+						<td th:text="${poI.codigoPoI}"></td>
+						<td th:text="${poI.nombrePoI}"></td>
+						<td th:text="${poI.descripcion}"></td>
+						<td th:text="${poI.localidad}"></td>
+						<td th:text="${poI.latitud}"></td>
+						<td th:text="${poI.longitud}"></td>
+						<td th:text="${poI.sitioWeb}"></td>
+						<td><a href="#" th:href="@{'/poI/editar/'+${poI.codigoPoI}}">
+									<i class="fa fa-edit"></i></a>		
+									<a th:onclick="'javascript:confirmarEliminar(\''+${poI.codigoPoI}+'\');'"><i class="fa fa-trash-alt"></i></a>			
+					</tr>
+				</table>
+				</div>
+				<!--Modal Eliminar--> 
+							<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="eliminarModalTitulo">Eliminar</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body"><h6>Desea eliminar este poI?</h6></div>
+										<input type="hidden" id="identificadorPoI" name="codigoPoI"/>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"	data-dismiss="modal">Close</button>
+										    <button type="button" class="btn btn-primary" th:onclick="eliminarPoI()">Eliminar PoI</button>
+										</div>
+									</div>
+								</div>
+							</div>
+	<script type="text/javascript">
+function confirmarEliminar(codigo){
+	$('#modalEliminar').modal('show');
+	$("#identificadorPoI").val(codigo);
+}
+
+function eliminarPoI(){
+	var codigo = $("#identificadorPoI").val();
+    window.location = "eliminarPoI/"+codigo;
+}
+</script>
+	</div>
+</div>
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
