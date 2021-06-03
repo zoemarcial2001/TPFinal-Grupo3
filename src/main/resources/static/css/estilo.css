@@ -1,0 +1,22 @@
+body {
+	background-image: url("/img/s3.jpg");
+}
+
+.form{
+	background: #e6e6e6;
+}
+
+.col:hover{
+     transform: scale(1.1);
+     box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+} 
+
+.for {
+    width: 450px;
+	height: 450px;
+	background: #fed8f4;
+	display: block;
+	margin-top: 5em;
+	padding: 20px 30px;
+	color: #ffffff;
+}

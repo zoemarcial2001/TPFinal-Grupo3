@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+
+<body class="text-center">
+<div class="container-sm">
+<main class="form-signin">
+  <form class="for">
+    
+    <h1 class="h3 mb-3 fw-normal">Iniciar Sesion</h1>
+
+    <div class="form-floating">
+    <label for="floatingInput">Email address</label>
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      
+    </div>
+    <div class="form-floating">
+    <label for="floatingPassword">Password</label>
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+  </form>
+</main>
+
+			 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>	
+</div>
+</body>
+</html>
+
+
+  
