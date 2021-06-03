@@ -54,7 +54,6 @@ public class PoIServiceMySQL implements IPoIService {
 	
 	private void cambiarPoI(PoI desde, PoI hacia) {
 		hacia.setDescripcion(desde.getDescripcion());
-		hacia.setEmail(desde.getEmail());
 		hacia.setEtiqueta(desde.getEtiqueta());
 		hacia.setNombrePoI(desde.getNombrePoI());
 		hacia.setBarrio(desde.getBarrio());
