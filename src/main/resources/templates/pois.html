@@ -11,19 +11,20 @@
 </head>
 <body>
 <div th:insert="layouts/header :: header"></div>
-<div class="album py-5 bg-light">
+<div class="album py-5">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <div th:each="p : ${poIs}">
         <div class="col">
           <div class="card shadow-sm">
-            <img src="/img/portada.png" class="card-img-top" alt="hola">
+           <img th:src="*{'data:;base64,'+p.imagen}" class="card-img-top" alt="hola">
             <div class="card-body">
               <p class="card-text" th:text="${p.nombrePoI}"> </p>
+              <p class="card-text" th:text="${p.codigoPoI}"> </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                  <input type="submit" class="btn btn-sm btn-outline-secondary" th:href="@{'/poI/editar/'+${p.codigoPoI}}" value="Editar">
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>

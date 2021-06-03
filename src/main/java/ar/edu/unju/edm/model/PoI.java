@@ -17,7 +17,7 @@ public class PoI {
 	private int codigoPoI;
 	
 	@Column
-	private String nombre;
+	private String nombrePoI;
 	@Column
 	private String descripcion;
 	@Column
@@ -51,11 +51,11 @@ public class PoI {
 	public void setCodigoPoI(int codigoPoI) {
 		this.codigoPoI = codigoPoI;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNombrePoI() {
+		return nombrePoI;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePoI(String nombrePoI) {
+		this.nombrePoI = nombrePoI;
 	}
 	public String getDescripcion() {
 		return descripcion;

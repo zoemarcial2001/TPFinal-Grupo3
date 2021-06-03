@@ -10,101 +10,77 @@
 <title>Poi</title>
 </head>
 <body>
-<div class="form">
+<div >
 <div th:insert="layouts/header :: header"></div>
 <div class="container">
- <div class="col-md-7 col-lg-8">
-	<h1>Cargar un PoI</h1>
-	<form th:object="${unPoI}" th:action="@{/poI/guardar}" method="post">
-		<div class="row">
-		    <label for="nombre" class="form-label">codigo</label>
-		    <div class="col">
-		    <input type="number" id="nombre" th:field="*{codigoPoI}">
-		    </div>
-		</div>
+	<h1>Añadir un PoI</h1>
+	<div>
+	<form class="form-row" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data">
+	            <div class="form-group col-12 col-md-6">
+					<label class="form-label" for="fname">Nombre</label>
+					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}">
+				</div>
+				
+				<div class="form-group col-12 col-md-6">
+					<label class="form-label" for="lname">Etiqueta</label>
+					<div class="dropdown bootstrap-select" style="width: 100%;">
+						<select class="form-control" data-width="100%" th:field="*{etiqueta}">
+								<option value="">Seleccionar</option>
+								<option value="Cultura">Cultura</option>
+								<option value="Naturaleza">Naturaleza</option>
+					     		<option value="Aventura">Aventura</option>
+					     		<option value="Deportivo">Deportivo</option>
+					     		<option value="Gastronomia">Gastronomia</option>
+						</select>
+					</div>
+					
+				</div>
+				
+				<div class="form-group col-12 col-md-12">
+					<label class="form-label" for="lname">Descripcion</label>
+					<input type="text" id="lname" class="form-control" placeholder="Ingrese una Descripcion" th:field="*{descripcion}">
+				</div>
 		
-		<div class="row mb-3">
-		    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-		    <div class="col-sm-10">
-		    <input type="text" id="nombre" th:field="*{nombrePoI}">
-		    </div>
-		</div>
+				<div class="form-group col-12 col-md-4">
+					<label class="form-label" for="phone">Calle</label>
+					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}">
+				</div>
+								
+				<div class="form-group col-12 col-md-4">
+					<label class="form-label" for="birth">N°</label>
+					<input class="form-control" type="number" placeholder="Ingrese Numero" id="birth" th:field="*{numeroCasa}">
+				</div>
+				
+				<div class="form-group col-12 col-md-4">
+					<label class="form-label" for="birth">Barrio</label>
+					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}">
+				</div>
+					
+				<div class="form-group col-12 col-md-6">
+					<label class="form-label">Localidad</label>
+					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}">
+				</div>
+				
+				<div class="form-group col-12 col-md-6">
+					<label class="form-label" for="fname">Sitio Web</label>
+					<input type="url" id="fname" class="form-control" placeholder="Ingrese Sitio Web" th:field="*{sitioWeb}">
+				</div>
+							
+				<div class="form-group col-12 col-md-6">
+			       <label for="file" class="col-sm-4 col-form-label"> Subir Imagen </label>
+				<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+						<img id="output" style="padding-top: 2px; width: 146px;" />
+	            </div>		
+				
+				<div class="col-12">
+						<input type="submit" class="btn btn-primary" th:value="${editMode}?'Modificar Poi':'Crear PoI'">
+				</div>
+				
+				</form>
+				</div>
+</div>
+	</div>
 		
-		<div class="row mb-3">
-		    <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
-		    <div class="col-sm-10">
-		    <input type="text" id="descripcion" th:field="*{descripcion}">
-		    </div>
-		</div>
-		
-		<div class="row mb-3">
-		    <label for="localidad" class="col-sm-2 col-form-label">Localidad</label>
-		    <div class="col-sm-10">
-		    <input type="text" id="localidad" th:field="*{localidad}">
-		    </div>
-		</div>
-		
-		<div class="row mb-3">
-		    <label for="latitud" class="col-sm-2 col-form-label">Latitud</label>
-		    <div class="col-sm-10">
-		    <input type="number" id="latitud" th:field="*{latitud}">
-		    </div>
-		</div>
-		
-		<div class="row mb-3">
-		    <label for="longitud" class="col-sm-2 col-form-label">Longitud</label>
-		    <div class="col-sm-10">
-		    <input type="number" id="longitud" th:field="*{longitud}">
-		    </div>
-		</div>
-		
-		<div class="row mb-3">
-		    <label for="sitioweb" class="form-label">Sitio Web</label>
-		    <div class="col-sm-10">
-		    <input type="text" id="sitioweb" th:field="*{sitioWeb}">
-		    </div>
-		</div>
-		
-		<div class="col-md-5">
-              <label for="calle" class="form-label">Calle</label>
-              <input type="text" id="calle" th:field="*{calle}">
-              <div class="invalid-feedback">
-                Please select a valid country.
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="state" class="form-label">State</label>
-              <select class="form-select" id="state" required>
-                <option value="">Choose...</option>
-                <option>California</option>
-              </select>
-              <div class="invalid-feedback">
-                Please provide a valid state.
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="zip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
-              <div class="invalid-feedback">
-                Zip code required.
-              </div>
-            </div>
-		<div class="row mb-3">
-		    <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
-		    <div class="col-sm-10">
-		    <input type="file" id="imagen">
-		    </div>
-		</div>
-		
-		<div>
-			<button type="submit" value="Agregar">Agregar</button>
-		</div>
-		
-		</form>
-		</div>
-	
 	<!-- ---------------------------------------------------------------- -->
 <h3>Lista de PoI</h3><br>
    <div>
@@ -113,21 +89,22 @@
 				    <tr>
 				      <th>Codigo</th>
 				      <th>Nombre</th>
-				      <th>Descripcion</th>
+				      <th>Etiqueta</th>
+				      <th>Direccion</th>
 				      <th>Localidad</th>
-				      <th>Latitud</th>
-				      <th>Longitud</th>
+				      <th>Descripcion</th>
 				      <th>Sitio Web</th>				      
 				    </tr>
 			 </thead>
 					<tr th:each="poI : ${poIs}">
 						<td th:text="${poI.codigoPoI}"></td>
 						<td th:text="${poI.nombrePoI}"></td>
+						<td th:text="${poI.etiqueta}"></td>
+						<td th:text="${poI.calle}+ ' N°' +${poI.numeroCasa}+ ' B° ' +${poI.barrio}"></td>
 						<td th:text="${poI.descripcion}"></td>
-						<td th:text="${poI.localidad}"></td>
-						<td th:text="${poI.latitud}"></td>
-						<td th:text="${poI.longitud}"></td>
 						<td th:text="${poI.sitioWeb}"></td>
+						
+						
 						<td><a href="#" th:href="@{'/poI/editar/'+${poI.codigoPoI}}">
 									<i class="fa fa-edit"></i></a>		
 									<a th:onclick="'javascript:confirmarEliminar(\''+${poI.codigoPoI}+'\');'"><i class="fa fa-trash-alt"></i></a>			
@@ -164,8 +141,6 @@ function eliminarPoI(){
     window.location = "eliminarPoI/"+codigo;
 }
 </script>
-	</div>
-</div>
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
 		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
