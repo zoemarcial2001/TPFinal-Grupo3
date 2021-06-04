@@ -1,8 +1,16 @@
 package ar.edu.unju.edm.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -13,11 +21,12 @@ import org.springframework.stereotype.Component;
 public class PoI {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="native") 
 	@Column
 	private int codigoPoI;
 	
 	@Column
-	private String nombre;
+	private String nombrePoI;
 	@Column
 	private String descripcion;
 	@Column
@@ -36,8 +45,16 @@ public class PoI {
 	private int latitud;
 	@Column
 	private int longitud;
-	@Column
-	private String email;
+	@Lob
+	@Column(name = "prod_imagen", columnDefinition = "LONGBLOB")
+	private String imagen;
+	
+	@ManyToOne
+	@JoinColumn(name = "email")
+	private Turista turista;
+	
+	@OneToMany(mappedBy = "poI")
+	private List<Fotografia> fotografias;
 	
 	
 	public PoI() {
@@ -51,12 +68,13 @@ public class PoI {
 	public void setCodigoPoI(int codigoPoI) {
 		this.codigoPoI = codigoPoI;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNombrePoI() {
+		return nombrePoI;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePoI(String nombrePoI) {
+		this.nombrePoI = nombrePoI;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -111,11 +129,35 @@ public class PoI {
 	public void setLongitud(int longitud) {
 		this.longitud = longitud;
 	}
-	public String getEmail() {
-		return email;
+
+
+	public Turista getTurista() {
+		return turista;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+
+	public void setTurista(Turista turista) {
+		this.turista = turista;
+	}
+
+
+	public List<Fotografia> getFotografias() {
+		return fotografias;
+	}
+
+
+	public void setFotografias(List<Fotografia> fotografias) {
+		this.fotografias = fotografias;
+	}
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	
 	

@@ -1,5 +1,8 @@
 package ar.edu.unju.edm.controller;
 
+import java.io.IOException;
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unju.edm.model.PoI;
 import ar.edu.unju.edm.service.IPoIService;
@@ -20,15 +25,18 @@ public class PoIController{
 	IPoIService poIService;
 	
 	
-	@GetMapping("/poI/mostrar")
+	@GetMapping("/poI/cargar")
 	public String cargarPoI(Model model) {
 		model.addAttribute("unPoI", poIService.crearPoI());
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		return("poI");
 	}
 	
-	@PostMapping("/poI/guardar")
-	public String guardarNuevoPoI(@ModelAttribute("unPoI") PoI nuevoPoI, Model model) {
+	@PostMapping(value="/poI/guardar", consumes = "multipart/form-data")
+	public String guardarNuevoPoI(@RequestParam("file") MultipartFile file, @ModelAttribute("unPoI") PoI nuevoPoI, Model model) throws IOException {
+		byte[] content = file.getBytes();
+		String base64 = Base64.getEncoder().encodeToString(content);
+		nuevoPoI.setImagen(base64);
 		poIService.guardarPoI(nuevoPoI);
 		System.out.println(poIService.obtenerTodosPoIs());
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs().size());
@@ -67,8 +75,6 @@ public class PoIController{
 		return("poI");
 	}
 	
-	
-	
 	@GetMapping("/poI/eliminarPoI/{codigo}")
 	public String eliminarPoI(Model model, @PathVariable(name="codigo") int codigo) {		
 		try {			
@@ -80,6 +86,10 @@ public class PoIController{
 		return "redirect:/poI/mostrar";
 	}
 	
-	
-	
+	@GetMapping("/poI/mostrar")
+	public String mostrarPoI(Model model) {
+		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
+		return("pois");
+	}
+
 }
