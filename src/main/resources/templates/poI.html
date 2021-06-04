@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilozoe.css}" />
 <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 
@@ -13,7 +13,7 @@
 <div >
 <div th:insert="layouts/header :: header"></div>
 <div class="container">
-	<h1>Añadir un PoI</h1>
+	<h1>Añadir un Punto de Interes</h1>
 	<div>
 	<form class="form-row" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data">
 	            <div class="form-group col-12 col-md-6">
