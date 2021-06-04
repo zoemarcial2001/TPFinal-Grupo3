@@ -50,8 +50,8 @@ public class PoI {
 	private String imagen;
 	
 	@ManyToOne
-	@JoinColumn(name = "email")
-	private Turista turista;
+	@JoinColumn(name = "emailTurista")
+	private Turista turistaAutor;
 	
 	@OneToMany(mappedBy = "poI")
 	private List<Fotografia> fotografias;
@@ -130,14 +130,13 @@ public class PoI {
 		this.longitud = longitud;
 	}
 
-
-	public Turista getTurista() {
-		return turista;
+	public Turista getTuristaAutor() {
+		return turistaAutor;
 	}
 
 
-	public void setTurista(Turista turista) {
-		this.turista = turista;
+	public void setTuristaAutor(Turista turistaAutor) {
+		this.turistaAutor = turistaAutor;
 	}
 
 
