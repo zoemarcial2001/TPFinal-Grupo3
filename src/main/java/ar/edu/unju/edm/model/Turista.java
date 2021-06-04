@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -17,7 +16,7 @@ public class Turista {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
-	@GenericGenerator(name="native", strategy="native")
+//	@GenericGenerator(name="native", strategy="native")
 	@Column
 	private Integer id;
 	@Column
