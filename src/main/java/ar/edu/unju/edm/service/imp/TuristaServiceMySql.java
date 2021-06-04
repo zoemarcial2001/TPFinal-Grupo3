@@ -49,10 +49,10 @@ public class TuristaServiceMySql implements ITuristaService{
 	}
 
 	@Override
-	public void modificarTurista(Turista unTuristaModificado) throws Exception {
+	public void modificarTurista(Turista turistaModificado) throws Exception {
 	
-		Turista turistaAModificar = turistaDAO.findById(unTuristaModificado.getId()).orElseThrow(()->new Exception("El turista no fue encontrado"));
-		cambiarTurista(unTuristaModificado, turistaAModificar);
+		Turista turistaAModificar = turistaDAO.findById(turistaModificado.getId()).orElseThrow(()->new Exception("El turista no fue encontrado"));
+		cambiarTurista(turistaModificado, turistaAModificar);
 		turistaDAO.save(turistaAModificar);
 		
 	}
@@ -67,8 +67,9 @@ public class TuristaServiceMySql implements ITuristaService{
 	private void cambiarTurista(Turista desde, Turista hacia) {
 		hacia.setEmail(desde.getEmail());
 		hacia.setNombre(desde.getNombre());
+		hacia.setApellido(desde.getApellido());
 		hacia.setPais(desde.getPais());
-		hacia.setEmail(desde.getEmail());
+		hacia.setPassword(desde.getPassword());
 	}
 	
 }
