@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.Turista;
@@ -22,7 +23,9 @@ public class TuristaServiceMySql implements ITuristaService{
 	
 	@Override
 	public void guardarTurista(Turista unTurista) {
-		
+		String pw = unTurista.getPassword();
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		unTurista.setPassword(bCryptPasswordEncoder.encode(pw));
 		turistaDAO.save(unTurista);
 		
 	}
@@ -63,13 +66,14 @@ public class TuristaServiceMySql implements ITuristaService{
 		Turista turistaEliminar = turistaDAO.findById(id).orElseThrow(()->new Exception("El turista no fue encontrado"));
 		turistaDAO.delete(turistaEliminar);
 	}
+	
+	
 
 	private void cambiarTurista(Turista desde, Turista hacia) {
-		hacia.setEmail(desde.getEmail());
 		hacia.setNombre(desde.getNombre());
 		hacia.setApellido(desde.getApellido());
 		hacia.setPais(desde.getPais());
-		hacia.setPassword(desde.getPassword());
 	}
+
 	
 }

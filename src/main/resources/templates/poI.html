@@ -19,6 +19,7 @@
 	            <div class="form-group col-12 col-md-6">
 					<label class="form-label" for="fname">Nombre</label>
 					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}">
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('nombrePoI')}" th:errors="*{nombrePoI}">Name	Error</div>
 				</div>
 				
 				<div class="form-group col-12 col-md-6">

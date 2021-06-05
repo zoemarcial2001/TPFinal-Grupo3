@@ -35,6 +35,8 @@ public class Turista {
 	private int localizacionLongitud;
 	@Column
 	private int puntos;
+	@Column
+	private String tipo="consultor";
 	
 	public Turista() {
 		super();
@@ -112,8 +114,12 @@ public class Turista {
 		this.puntos = puntos;
 	}
 
-	
-	
-	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 }
