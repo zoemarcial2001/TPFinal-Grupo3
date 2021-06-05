@@ -12,6 +12,10 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -25,6 +29,7 @@ public class PoI {
 	@Column
 	private int codigoPoI;
 	
+	@NotBlank(message="debe ingresar un nombre")
 	@Column
 	private String nombrePoI;
 	@Column
@@ -33,21 +38,25 @@ public class PoI {
 	private String etiqueta;
 	@Column
 	private String sitioWeb;
+	@NotBlank(message="debe ingresar una calle")
 	@Column
 	private String calle;
+	@NotNull(message="debe ingresar un numero")
 	@Column
 	private int numeroCasa;
+	@NotBlank(message="debe ingresar un barrio")
 	@Column
 	private String barrio;
+	@NotBlank(message="debe ingresar una localidad")
 	@Column
 	private String localidad;
+	
+	@Min(1000000)
+	@Max(999999999)
 	@Column
 	private int latitud;
 	@Column
 	private int longitud;
-	@Lob
-	@Column(name = "prod_imagen", columnDefinition = "LONGBLOB")
-	private String imagen;
 	
 	@ManyToOne
 	@JoinColumn(name = "emailTurista")
@@ -148,16 +157,5 @@ public class PoI {
 	public void setFotografias(List<Fotografia> fotografias) {
 		this.fotografias = fotografias;
 	}
-
-
-	public String getImagen() {
-		return imagen;
-	}
-
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-	
 	
 }

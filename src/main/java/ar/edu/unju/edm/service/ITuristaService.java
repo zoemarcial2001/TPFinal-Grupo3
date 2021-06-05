@@ -16,5 +16,4 @@ public interface ITuristaService {
 	public Turista encontrarUnTurista(int id)throws Exception;
 	public void modificarTurista(Turista turistaModificado) throws Exception;
 	public void eliminarTurista(int id) throws Exception;
-
 }

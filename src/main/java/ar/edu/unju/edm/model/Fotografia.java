@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,11 +20,12 @@ public class Fotografia {
 	private int idFoto;
 	
 	@ManyToOne
-	@JoinColumn(name = "codigoPoI")
+	@JoinColumn(name = "codigoPoI" )
 	private PoI poI;
 	
-	@Column
-	private String linkFoto;
+	@Lob
+	@Column(name = "imagen", columnDefinition = "LONGBLOB")
+	private String imagen;
 	
 	
 	public Fotografia() {
@@ -46,13 +48,14 @@ public class Fotografia {
 		this.poI = poI;
 	}
 
-	public String getLinkFoto() {
-		return linkFoto;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setLinkFoto(String linkFoto) {
-		this.linkFoto = linkFoto;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
+
 	
 	
 }
