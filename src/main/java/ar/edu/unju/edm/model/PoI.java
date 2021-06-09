@@ -51,8 +51,8 @@ public class PoI {
 	@Column
 	private String localidad;
 	
-	@Min(1000000)
-	@Max(999999999)
+//	@Min(1000000)
+//	@Max(999999999)
 	@Column
 	private int latitud;
 	@Column
