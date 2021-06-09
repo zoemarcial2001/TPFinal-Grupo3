@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilozoe.css}" />
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}" />
+	
+	<meta charset="UTF-8">
 
-<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
-<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
-
-<meta charset="UTF-8">
-<title>Home</title>
+	<title>Home</title>
 </head>
+<body class="body-home">
+	<div class="container">
 
-<body class="text-center">
-<div class="container-sm">
-<main class="form-signin">
+		<div class="row align-items-end">
+				<div class="login-box">
+					<form class="login-form" th:action="@{/login}" method="post">
+					<img class="mb-4" src="https://virtualis.idelr.edu.ar/pluginfile.php/407/course/overviewfiles/icono_turis.png" alt="" width="100" height="100">
+						<div class="app-title">
+							<h1>Iniciar Sesion</h1>
+						</div>
+						<br>
+						   <div class="form-group col-12 col-md-12">
+  							<label for="username" class="form-label">Correo Electronico</label> 
+  							
+      						<input type="text" name="correo" placeholder="Ingresar su Correo" class="form-control">
+        				  </div>
 
-  <form th:action="@{/login}" class="for" method="post">
-    
-    <h1 class="h3 mb-3 fw-normal">Iniciar Sesion</h1>
+						  <div class="form-group col-12 col-md-12">
+       						 <label for="password" class="form-label">Contraseña</label> <br>
+  							 <input type="password" name="password" placeholder="Ingresar Contraseña" class="form-control">
+        				  </div>
+        				  
+						<div class="col-12">
+							<input type="submit" class="btn btn-primary" value="Ingresar">
+						</div>
+						</form>
+						<br>
+						<a href="#">¿Olvidaste tu contraseña?</a><br>
+						<a href="/turista/mostrar">Registrarse</a>					
+					
+				</div>
+			</div>
+		</div>
 
-    <div class="form-floating">
-    <label for="floatingInput">Email address</label>
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="correo">
-      
-    </div>
-    <div class="form-floating">
-    <label for="floatingPassword">Password</label>
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-      
-    </div>
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit" value="Ingresar"></button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-  </form>
-</main>
-
-			 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
-		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
-		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>	
-</div>
 </body>
+
 </html>
-
-
-  
