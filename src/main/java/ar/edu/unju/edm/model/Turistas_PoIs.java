@@ -1,5 +1,7 @@
 package ar.edu.unju.edm.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,6 +38,14 @@ public class Turistas_PoIs {
 	@Column
 	private int valoracion;
 	
+	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fechaComentario;
+/*	
+	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fechaCompra;
+*/
 	
 	public Turistas_PoIs() {
 		// TODO Auto-generated constructor stub
@@ -79,6 +90,16 @@ public class Turistas_PoIs {
 	public void setValoracion(int valoracion) {
 		this.valoracion = valoracion;
 	}
+
+	public LocalDate getFechaComentario() {
+		return fechaComentario;
+	}
+
+	public void setFechaComentario(LocalDate fechaComentario) {
+		this.fechaComentario = fechaComentario;
+	}
+	
+	
 	
 	
 }
