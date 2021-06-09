@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	private AutenticationHandler autenticacion;
 	
 	String[] resources = new String[] {
-			"/include/*","/css/*","/img/*","/js/","/layouts/","/webjars/*", "/static/*"
+			"/include/**","/css/**","/img/**","/js/**","/layouts/**","/webjars/**", "/static/**"
 	};
 	
 	@Override
@@ -37,8 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.usernameParameter("correo")
 				.passwordParameter("password")
 				.and()
-			.logout().permitAll();
-		http.csrf().disable();
+			    .logout().permitAll();
+		        http.csrf().disable(); 
 	}
 	
 	@Bean

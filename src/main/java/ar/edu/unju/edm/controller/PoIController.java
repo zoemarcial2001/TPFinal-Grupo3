@@ -40,7 +40,7 @@ public class PoIController{
 		
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoI", nuevoPoI);
-			model.addAttribute("pois", poIService.obtenerTodosPoIs());
+			model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 			return "poI";
 		}
 		else {
