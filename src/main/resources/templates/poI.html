@@ -16,6 +16,14 @@
 	<h1>Añadir un Punto de Interes</h1>
 	<div>
 	<form class="form-row" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data">
+	           
+	           <div class="row mb-3" style = "display:none;">
+	    <div class="form-group col-12 col-md-6">
+		    <label for="nombre" class="col-sm-2 col-form-label">codigo</label>
+		    <input type="number" class="form-control" id="nombre" th:field="*{codigoPoI}">
+	    </div>
+	</div>
+	           
 	            <div class="form-group col-12 col-md-6">
 					<label class="form-label" for="fname">Nombre</label>
 					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}">

@@ -26,7 +26,7 @@ public class Turistas_PoIs {
 	private PoI poI;
 	
 	@ManyToOne
-	@JoinColumn(name = "emailTurista")
+	@JoinColumn(name = "idTurista")
 	private Turista turista;
 	
 	@Column

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloValoracion.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title>Valoraciones</title>
+</head>
+<body>
+<div th:insert="layouts/header :: header"></div>
+
+
+<div class = "container">
+
+ <form th:object="${unaValoracion}" th:action="@{/valoracion/guardar}" method="post">
+  <p class="clasificacion">
+    <input id="radio1" type="radio" name="estrellas" value="5" th:field="*{valoracion}"><!--
+    --><label for="radio1">★</label><!--
+    --><input id="radio2" type="radio" name="estrellas" value="4" th:field="*{valoracion}"><!--
+    --><label for="radio2">★</label><!--
+    --><input id="radio3" type="radio" name="estrellas" value="3" th:field="*{valoracion}"><!--
+    --><label for="radio3">★</label><!--
+    --><input id="radio4" type="radio" name="estrellas" value="2" th:field="*{valoracion}"><!--
+    --><label for="radio4">★</label><!--
+    --><input id="radio5" type="radio" name="estrellas" value="1" th:field="*{valoracion}"><!--
+    --><label for="radio5">★</label>
+  </p>
+  
+  <div class="form-group row">
+			<label for="comentario" class="col-sm-2 col-form-label">Comentario</label>
+			<div class="col-sm-10">
+				<input type="text" id="comentario" th:field="*{comentario}" class="form-control">
+			</div>
+		</div>
+		
+		
+		<div>
+			<div class="form-group row">
+				<div class="col-sm-6">
+				        <input type="submit" class="btn btn-success "  th:value="${editMode}?'Modificar Valoracion':'Agregar Valoracion'">
+				</div>
+				<!--
+				<div class="col-sm-6">				
+				<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
+				</div>
+				-->
+			</div>
+				
+	   </div>
+		
+  
+</form>
+
+
+</div>
+
+ <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
