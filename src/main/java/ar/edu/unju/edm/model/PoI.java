@@ -50,7 +50,6 @@ public class PoI {
 	@NotBlank(message="debe ingresar una localidad")
 	@Column
 	private String localidad;
-	
 	@Column
 	private int latitud;
 	@Column
