@@ -56,7 +56,7 @@ public class PoI {
 	private int longitud;
 	
 	@ManyToOne
-	@JoinColumn(name = "emailTurista")
+	@JoinColumn(name = "idTurista")
 	private Turista turistaAutor;
 	
 	@OneToMany(mappedBy = "poI")
