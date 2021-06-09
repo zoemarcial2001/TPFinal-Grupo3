@@ -28,7 +28,7 @@ public class TpFinalGrupo3Application implements CommandLineRunner{
 		// TODO Auto-generated method stub
 	//inicializo un cliente para pruebas
 		//	turista.setNombre("karen");
-		//    turista.setApellido("Merlos");
+		//   turista.setApellido("Merlos");
 		
 		//	turista.setEmail("cora@gmail.com");
 		//	turista.setPassword("1234");	
