@@ -18,6 +18,10 @@
         <div class="col">
           <div class="card shadow-sm">
            <!--  <img th:src="*{'data:;base64,'+p.fotografias.get('0').imagen}" class="card-img-top" alt="hola"> -->
+           
+           <div th:each= "f: ${fotografias}">
+           <div style=" backgroundImage: `url(${f.imagen})` "></div>
+           </div>
             <div class="card-body">
               <p class="card-text" th:text="${p.nombrePoI}"> </p>
               <p class="card-text" th:text="${p.codigoPoI}"> </p>
