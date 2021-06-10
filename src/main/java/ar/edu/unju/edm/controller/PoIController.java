@@ -2,6 +2,9 @@ package ar.edu.unju.edm.controller;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -105,7 +108,9 @@ public class PoIController{
 	
 	@GetMapping("/poI/mostrar" )
 	public String mostrarPoI(Model model) {
-		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
+		List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
+		listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
+		model.addAttribute("poIs", listaPoIs); 
 		return("pois");
 	}
 	
