@@ -75,5 +75,11 @@ public class TuristaServiceMySql implements ITuristaService{
 		hacia.setPais(desde.getPais());
 	}
 
+	@Override
+	public Turista buscarUnTurista(String email) throws Exception {
+		// TODO Auto-generated method stub
+		return turistaDAO.findByEmail(email).orElseThrow(() ->new Exception("el turista no existe"));
+	}
+
 	
 }
