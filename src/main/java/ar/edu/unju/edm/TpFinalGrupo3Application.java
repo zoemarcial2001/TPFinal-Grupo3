@@ -34,6 +34,5 @@ public class TpFinalGrupo3Application implements CommandLineRunner{
 			
 			//turista.setPais("Argentina");
 		//	turistaService.guardarTurista(turista);	
-*/
 	}
 }

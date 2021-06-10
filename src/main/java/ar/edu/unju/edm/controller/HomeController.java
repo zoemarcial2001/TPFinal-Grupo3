@@ -11,5 +11,10 @@ public class HomeController {
 	public String cargarHome(Model model){	
 	return "home";
 	}
+	
+	@GetMapping({"/inicio"})
+	public String cargarInicio(Model model){	
+	return "inicio";
+	}
 }
 
