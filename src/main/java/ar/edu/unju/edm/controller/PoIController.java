@@ -10,7 +10,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unju.edm.model.Fotografia;
 import ar.edu.unju.edm.model.PoI;
+import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.service.IPoIService;
+import ar.edu.unju.edm.service.ITuristaService;
 
 @Controller
 public class PoIController{
@@ -33,6 +36,8 @@ public class PoIController{
 	@Qualifier("impsql")
 	IPoIService poIService;
 	
+	@Autowired
+	ITuristaService turistaService;
 	
 	@GetMapping("/poI/cargar")
 	public String cargarPoI(Model model) {
@@ -50,15 +55,31 @@ public class PoIController{
 			return "poI";
 		}
 		else {
-			Fotografia nuevaFotografia = new Fotografia();
-			nuevaFotografia.setPoI(nuevoPoI);
-			byte[] content = file.getBytes();
-			String base64 = Base64.getEncoder().encodeToString(content);
-			nuevaFotografia.setImagen(base64);
-			poIService.guardarPoI(nuevoPoI);
-			System.out.println(poIService.obtenerTodosPoIs());
-			model.addAttribute("poIs", poIService.obtenerTodosPoIs().size());
-			return "redirect:/poI/mostrar";
+			
+			//Fotografia nuevaFotografia = new Fotografia();
+			//nuevaFotografia.setPoI(nuevoPoI);
+			//byte[] content = file.getBytes();
+			//String base64 = Base64.getEncoder().encodeToString(content);
+			//nuevaFotografia.setImagen(base64);
+			Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		    try {
+				Turista turistaEncontrado = turistaService.buscarUnTurista(userDetail.getUsername());
+				if (turistaEncontrado != null) {
+					nuevoPoI.setTuristaAutor(turistaEncontrado);
+					poIService.guardarPoI(nuevoPoI);
+					System.out.println(poIService.obtenerTodosPoIs());
+					model.addAttribute("poIs", poIService.obtenerTodosPoIs().size());
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		    return "redirect:/poI/mostrar";
 			
 		}
 	}

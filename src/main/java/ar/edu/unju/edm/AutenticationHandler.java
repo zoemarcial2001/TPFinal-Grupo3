@@ -37,7 +37,7 @@ public class AutenticationHandler implements AuthenticationSuccessHandler {
 			}
 			
 			if (userConsultor) {
-				redirectStrategy.sendRedirect(request, response, "/turista/mostrar");
+				redirectStrategy.sendRedirect(request, response, "/inicio");
 			} else {
 				if (userRegistrador) {
 					redirectStrategy.sendRedirect(request, response, "/registrador");

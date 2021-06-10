@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ar.edu.unju.edm.model.PoI;
 import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.model.Turistas_PoIs;
 import ar.edu.unju.edm.service.IPoIService;
