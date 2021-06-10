@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import ar.edu.unju.edm.model.Fotografia;
 import ar.edu.unju.edm.model.PoI;
 import ar.edu.unju.edm.service.IPoIService;
 
@@ -36,7 +39,7 @@ public class PoIController{
 	}
 	
 	@PostMapping(value="/poI/guardar", consumes = "multipart/form-data")
-	public String guardarNuevoPoI(@Valid @RequestParam("file") MultipartFile file, @ModelAttribute("unPoI") PoI nuevoPoI, BindingResult resultado, Model model) throws IOException {
+	public String guardarNuevoPoI(@Valid @ModelAttribute("unPoI") PoI nuevoPoI, @RequestParam("file") MultipartFile file, BindingResult resultado, Model model) throws IOException {
 		
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoI", nuevoPoI);
@@ -44,8 +47,11 @@ public class PoIController{
 			return "poI";
 		}
 		else {
+			Fotografia nuevaFotografia = new Fotografia();
+			nuevaFotografia.setPoI(nuevoPoI);
 			byte[] content = file.getBytes();
 			String base64 = Base64.getEncoder().encodeToString(content);
+			nuevaFotografia.setImagen(base64);
 			poIService.guardarPoI(nuevoPoI);
 			System.out.println(poIService.obtenerTodosPoIs());
 			model.addAttribute("poIs", poIService.obtenerTodosPoIs().size());
@@ -97,10 +103,19 @@ public class PoIController{
 		return "redirect:/poI/mostrar";
 	}
 	
-	@GetMapping("/poI/mostrar")
+	@GetMapping("/poI/mostrar" )
 	public String mostrarPoI(Model model) {
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		return("pois");
+	}
+	
+	
+	@GetMapping(value= "/poI/cargarFotografias", consumes = "multipart/form-data" ) 
+		public String guardarFotografia (@RequestParam("file") MultipartFile file, @ModelAttribute("unaFotografia") Fotografia nuevaFotografia, Model model) throws IOException {
+		byte[] content = file.getBytes();
+		String base64 = Base64.getEncoder().encodeToString(content);
+		nuevaFotografia.setImagen(base64);
+		return("fotografias");
 	}
 
 }

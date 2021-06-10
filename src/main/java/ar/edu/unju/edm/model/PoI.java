@@ -1,5 +1,6 @@
 package ar.edu.unju.edm.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -54,6 +56,9 @@ public class PoI {
 	private int latitud;
 	@Column
 	private int longitud;
+	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fechaCarga;
 	
 	@ManyToOne
 	@JoinColumn(name = "idTurista")
