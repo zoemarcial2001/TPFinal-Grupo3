@@ -34,3 +34,10 @@ label:hover ~ label {
 input[type="radio"]:checked ~ label {
   color: orange;
 }
+
+.carta {
+	max-width: 700px;
+	position: relative;
+	top: 20px; 
+    left: 190px;
+}

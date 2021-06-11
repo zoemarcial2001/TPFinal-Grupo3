@@ -15,7 +15,7 @@
 <div class="container">
 	<h1>Añadir un Punto de Interes</h1>
 	<div>
-	<form class="form-row" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data">
+	<form class="form-row needs-validation" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data" novalidate>
 	           
 	           <div class="row mb-3" style = "display:none;">
 	    <div class="form-group col-12 col-md-6">
@@ -26,8 +26,8 @@
 	           
 	            <div class="form-group col-12 col-md-6">
 					<label class="form-label" for="fname">Nombre</label>
-					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}">
-					<div class="alert alert-danger" th:if="${#fields.hasErrors('nombrePoI')}" th:errors="*{nombrePoI}">Name	Error</div>
+					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}" required>
+					<div class="valid-feedback"></div>
 				</div>
 				
 				<div class="form-group col-12 col-md-6">
@@ -52,22 +52,23 @@
 		
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="phone">Calle</label>
-					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}">
+					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}" required>
 				</div>
 								
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="birth">N°</label>
-					<input class="form-control" type="number" placeholder="Ingrese Numero" id="birth" th:field="*{numeroCasa}">
+					<input class="form-control" type="number" placeholder="Ingrese Numero" id="birth" th:field="*{numeroCasa}" >
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('numeroCasa')}" th:errors="*{numeroCasa}">Name	Error</div>
 				</div>
 				
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="birth">Barrio</label>
-					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}">
+					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}" required>
 				</div>
 					
 				<div class="form-group col-12 col-md-6">
 					<label class="form-label">Localidad</label>
-					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}">
+					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}" required>
 				</div>
 				
 				<div class="form-group col-12 col-md-6">
@@ -77,7 +78,7 @@
 							
 				<div class="form-group col-12 col-md-4">
 			       <label for="file" class="col-sm-4 col-form-label"> Subir Imagen </label>
-				<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="(e)=>{mostrar(fotografias)}">
+				<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
 						<img id="output" style="padding-top: 2px; width: 100px;" />
 	            </div>		
 				
@@ -158,6 +159,23 @@ function eliminarPoI(){
 	    console.log(archivo)
 	    }
 	  }
+
+(function () {
+   'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
 </script>
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>

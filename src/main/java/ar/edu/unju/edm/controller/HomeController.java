@@ -16,5 +16,5 @@ public class HomeController {
 	public String cargarInicio(Model model){	
 	return "inicio";
 	}
-}
+	}
 
