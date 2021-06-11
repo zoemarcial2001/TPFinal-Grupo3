@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ar.edu.unju.edm.model.Fotografia;
 import ar.edu.unju.edm.model.PoI;
 import ar.edu.unju.edm.model.Turista;
+import ar.edu.unju.edm.service.IFotografiaService;
 import ar.edu.unju.edm.service.IPoIService;
 import ar.edu.unju.edm.service.ITuristaService;
 
@@ -38,6 +39,9 @@ public class PoIController{
 	
 	@Autowired
 	ITuristaService turistaService;
+	
+	@Autowired
+	IFotografiaService fotografiaService;
 	
 	@GetMapping("/poI/cargar")
 	public String cargarPoI(Model model) {
@@ -55,12 +59,17 @@ public class PoIController{
 			return "poI";
 		}
 		else {
+			/*
+			nuevaFotografia = fotografiaService.crearFotografia();
+			byte[] content = file.getBytes();
+			String base64 = Base64.getEncoder().encodeToString(content);
+			nuevaFotografia.setImagen(base64);
+			nuevaFotografia.setPoI(nuevoPoI);
 			
-			//Fotografia nuevaFotografia = new Fotografia();
-			//nuevaFotografia.setPoI(nuevoPoI);
-			//byte[] content = file.getBytes();
-			//String base64 = Base64.getEncoder().encodeToString(content);
-			//nuevaFotografia.setImagen(base64);
+			nuevoPoI.setFotografias(fotografiaService.guardarFotografia(nuevaFotografia));
+			fotografiaService.guardarFotografia(nuevaFotografia);
+			
+			*/
 			Authentication auth = SecurityContextHolder
 		            .getContext()
 		            .getAuthentication();
@@ -135,13 +144,36 @@ public class PoIController{
 		return("pois");
 	}
 	
-	
-	@GetMapping(value= "/poI/cargarFotografias", consumes = "multipart/form-data" ) 
-		public String guardarFotografia (@RequestParam("file") MultipartFile file, @ModelAttribute("unaFotografia") Fotografia nuevaFotografia, Model model) throws IOException {
-		byte[] content = file.getBytes();
-		String base64 = Base64.getEncoder().encodeToString(content);
-		nuevaFotografia.setImagen(base64);
-		return("fotografias");
+	@GetMapping("/poI/mostrar/mispois" )
+	public String mostrarMisPoIs(Model model) {
+		Authentication auth = SecurityContextHolder
+	            .getContext()
+	            .getAuthentication();
+	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+	    
+	    try {
+			//Turista turistaAutor = turistaService.buscarUnTurista(userDetail.getUsername());
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return("mispois");
 	}
+	
+	@GetMapping("/poI/ver/{codigoPoI}")
+	public String verPoI( @PathVariable(name="codigoPoI") int codigoPoI, Model model) {
+		try {
+			model.addAttribute("unPoI", poIService.encontrarUnPoI(codigoPoI));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+		}
+		
+		return("verpoi");
+	}
+	
 
 }

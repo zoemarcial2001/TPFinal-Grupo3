@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.PoI;
+import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.repository.IPoIDAO;
 import ar.edu.unju.edm.service.IPoIService;
 
@@ -68,4 +69,5 @@ public class PoIServiceMySQL implements IPoIService {
 		poIDAO.delete(poIEliminar);
 	}
 
+	
 }

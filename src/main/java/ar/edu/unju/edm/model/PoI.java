@@ -9,13 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,8 +31,9 @@ public class PoI {
 	@Column
 	private int codigoPoI;
 	
-	@NotBlank(message="debe ingresar un nombre")
+	
 	@Column
+	@NotEmpty(message="El nombre del producto es obligatorio")
 	private String nombrePoI;
 	@Column
 	private String descripcion;
@@ -40,17 +41,20 @@ public class PoI {
 	private String etiqueta;
 	@Column
 	private String sitioWeb;
+	
+	@Column
 	@NotBlank(message="debe ingresar una calle")
-	@Column
 	private String calle;
+	@Column
 	@NotNull(message="debe ingresar un numero")
-	@Column
+	@Min(1)
+	@Max(99999)
 	private int numeroCasa;
-	@NotBlank(message="debe ingresar un barrio")
 	@Column
+	@NotNull(message="debe ingresar un barrio")
 	private String barrio;
-	@NotBlank(message="debe ingresar una localidad")
 	@Column
+	@NotBlank(message="debe ingresar una localidad")
 	private String localidad;
 	@Column
 	private int latitud;

@@ -19,6 +19,19 @@ public class TuristaController {
 	@Qualifier("impsql")
 	ITuristaService turistaService;
 	
+	@GetMapping("/registrar")
+	public String cargarTurista1(Model model) {
+		model.addAttribute("unTurista", turistaService.crearTurista());
+	    return ("registroturista");
+	}
+	
+	@PostMapping("/registrar/guardar")
+	public String guardarNuevoTurista1(@ModelAttribute("unTurista") Turista nuevoTurista, Model model) {
+		System.out.println(" turistaaaaaaaa" + nuevoTurista.getEmail());
+		turistaService.guardarTurista(nuevoTurista);
+		
+		return "redirect:/login";
+	}
 	
 	@GetMapping("/turista/mostrar")
 	public String cargarTurista(Model model) {
