@@ -1,7 +1,10 @@
 package ar.edu.unju.edm.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -16,8 +19,9 @@ import org.springframework.stereotype.Component;
 public class Fotografia {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	@Column
-	private int idFoto;
+	private Integer idFoto;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigoPoI" )

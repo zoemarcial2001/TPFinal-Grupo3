@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.Fotografia;
+import ar.edu.unju.edm.model.PoI;
 
 
 @Service
 public interface IFotografiaService {
-
 	public void guardarFotografia(Fotografia unaFotografia);
 	public Fotografia crearFotografia();
 	public List<Fotografia> obtenerTodasFotografias();

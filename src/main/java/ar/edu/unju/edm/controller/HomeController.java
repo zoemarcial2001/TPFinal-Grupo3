@@ -16,5 +16,10 @@ public class HomeController {
 	public String cargarInicio(Model model){	
 	return "inicio";
 	}
+	
+	@GetMapping("/simulador")
+	public String cargarSimulador(Model model){	
+		return "simulador";
+		}
 	}
 

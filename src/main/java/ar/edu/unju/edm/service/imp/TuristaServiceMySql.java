@@ -81,5 +81,11 @@ public class TuristaServiceMySql implements ITuristaService{
 		return turistaDAO.findByEmail(email).orElseThrow(() ->new Exception("el turista no existe"));
 	}
 
+	@Override
+	public List<Turista> conMasPuntos() {
+		// TODO Auto-generated method stub
+		return (List<Turista>) turistaDAO.conMasPuntos();
+	}
+
 	
 }

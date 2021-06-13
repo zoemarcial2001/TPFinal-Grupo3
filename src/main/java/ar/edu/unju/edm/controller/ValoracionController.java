@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ar.edu.unju.edm.model.PoI;
 import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.model.Turistas_PoIs;
 import ar.edu.unju.edm.service.IPoIService;
@@ -61,11 +62,24 @@ public class ValoracionController {
 	    
 	    System.out.println(userDetail.getUsername());
 	    try {
-	    	nuevaValoracion.setPoI(poiService.encontrarUnPoI(codigo));
+	    	PoI poiEncontrado = poiService.encontrarUnPoI(codigo);
+	    	nuevaValoracion.setPoI(poiEncontrado);
 			System.out.println(nuevaValoracion.getPoI().getCodigoPoI());
 			Turista turistaEncontrado = turistaService.buscarUnTurista(userDetail.getUsername());
 			if (turistaEncontrado != null) {
 				
+				if (nuevaValoracion.getComentario().isEmpty()) {
+					nuevaValoracion.setComentario(null);
+				}
+				else {
+					turistaEncontrado.setPuntos(turistaEncontrado.getPuntos() + 5);
+				}
+				
+				if(nuevaValoracion.getValoracion() != 0) {
+					turistaEncontrado.setPuntos(turistaEncontrado.getPuntos() + 8);
+				}
+				
+				turistaService.guardarTurista(turistaEncontrado);
 				nuevaValoracion.setTurista(turistaEncontrado);
 				valoracionService.guardarValoracion(nuevaValoracion);
 			}
