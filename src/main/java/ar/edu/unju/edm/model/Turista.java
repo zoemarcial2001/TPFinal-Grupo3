@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class Turista {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 //	@GenericGenerator(name="native", strategy="native")
 	@Column
 	private Integer id;

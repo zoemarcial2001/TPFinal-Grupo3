@@ -3,12 +3,15 @@ package ar.edu.unju.edm.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,10 +30,9 @@ import org.springframework.stereotype.Component;
 public class PoI {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="native") 
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	@Column
 	private int codigoPoI;
-	
 	
 	@Column
 	@NotEmpty(message="El nombre del producto es obligatorio")
@@ -41,7 +43,6 @@ public class PoI {
 	private String etiqueta;
 	@Column
 	private String sitioWeb;
-	
 	@Column
 	@NotBlank(message="debe ingresar una calle")
 	private String calle;
@@ -63,14 +64,24 @@ public class PoI {
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaCarga;
+	@Lob
+	@Column(name = "imagen", columnDefinition = "LONGBLOB")
+	private String imagen;
+	@Lob
+	@Column(name = "imagen2", columnDefinition = "LONGBLOB")
+	private String imagen2;
+	@Lob
+	@Column(name = "imagen3", columnDefinition = "LONGBLOB")
+	private String imagen3;
 	
 	@ManyToOne
 	@JoinColumn(name = "idTurista")
 	private Turista turistaAutor;
 	
-	@OneToMany(mappedBy = "poI")
+	/*
+	@OneToMany(mappedBy = "poI", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Fotografia> fotografias;
-	
+	*/
 	
 	public PoI() {
 		// TODO Auto-generated constructor stub
@@ -145,6 +156,47 @@ public class PoI {
 		this.longitud = longitud;
 	}
 
+	
+	public LocalDate getFechaCarga() {
+		return fechaCarga;
+	}
+
+
+	public void setFechaCarga(LocalDate fechaCarga) {
+		this.fechaCarga = fechaCarga;
+	}
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
+	public String getImagen2() {
+		return imagen2;
+	}
+
+
+	public void setImagen2(String imagen2) {
+		this.imagen2 = imagen2;
+	}
+
+
+	public String getImagen3() {
+		return imagen3;
+	}
+
+
+	public void setImagen3(String imagen3) {
+		this.imagen3 = imagen3;
+	}
+
+
 	public Turista getTuristaAutor() {
 		return turistaAutor;
 	}
@@ -154,14 +206,4 @@ public class PoI {
 		this.turistaAutor = turistaAutor;
 	}
 
-
-	public List<Fotografia> getFotografias() {
-		return fotografias;
-	}
-
-
-	public void setFotografias(List<Fotografia> fotografias) {
-		this.fotografias = fotografias;
-	}
-	
 }

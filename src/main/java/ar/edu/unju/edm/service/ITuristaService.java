@@ -17,4 +17,5 @@ public interface ITuristaService {
 	public void modificarTurista(Turista turistaModificado) throws Exception;
 	public void eliminarTurista(int id) throws Exception;
 	public Turista buscarUnTurista(String email)throws Exception;
+	public List<Turista> conMasPuntos();
 }

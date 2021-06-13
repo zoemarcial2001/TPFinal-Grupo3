@@ -30,7 +30,7 @@ public class PoIServiceMySQL implements IPoIService {
 	@Override
 	public PoI crearPoI() {
 		// TODO Auto-generated method stub
-		return unPoI;
+		return new PoI();
 	}
 
 	@Override
@@ -67,6 +67,24 @@ public class PoIServiceMySQL implements IPoIService {
 		// TODO Auto-generated method stub
 		PoI poIEliminar = poIDAO.findById(codigo).orElseThrow(()->new Exception("el poI no fue encontrado"));
 		poIDAO.delete(poIEliminar);
+	}
+
+	@Override
+	public List<PoI> obtenerMisPoIs(Turista turistaAutor) {
+		// TODO Auto-generated method stub
+		return (List<PoI>) poIDAO.findAllByTuristaAutor(turistaAutor) ;
+	}
+
+	@Override
+	public List<PoI> masValorados() {
+		// TODO Auto-generated method stub
+		return (List<PoI>) poIDAO.masValorados();
+	}
+
+	@Override
+	public List<PoI> masComentados() {
+		// TODO Auto-generated method stub
+		return (List<PoI>) poIDAO.masComentados();
 	}
 
 	

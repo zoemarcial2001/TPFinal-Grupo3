@@ -1,7 +1,6 @@
 package ar.edu.unju.edm.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -17,5 +16,13 @@ public interface IPoIDAO extends CrudRepository<PoI, Integer>{
 	@Query("from PoI p order by p.codigoPoI")
 	public List<PoI> obtenerPoIs();
 	
-	public Optional<PoI> findAllByTuristaAutor(Turista turistaAutor);
+	public List<PoI> findAllByTuristaAutor(Turista turistaAutor);
+	
+	@Query (value= " {call sumarvaloracion()}", nativeQuery = true)
+	
+	public List<PoI> masValorados();
+	
+	@Query (value= " {call mascomentados()}", nativeQuery = true)
+	
+	public List<PoI> masComentados();
 }

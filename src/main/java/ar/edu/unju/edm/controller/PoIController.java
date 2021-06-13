@@ -1,9 +1,9 @@
 package ar.edu.unju.edm.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -43,15 +43,17 @@ public class PoIController{
 	@Autowired
 	IFotografiaService fotografiaService;
 	
+	PoI poiPrueba;
+	
 	@GetMapping("/poI/cargar")
 	public String cargarPoI(Model model) {
 		model.addAttribute("unPoI", poIService.crearPoI());
-		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		return("poI");
 	}
 	
 	@PostMapping(value="/poI/guardar", consumes = "multipart/form-data")
-	public String guardarNuevoPoI(@Valid @ModelAttribute("unPoI") PoI nuevoPoI, @RequestParam("file") MultipartFile file, BindingResult resultado, Model model) throws IOException {
+	public String guardarNuevoPoI(@Valid @ModelAttribute("unPoI") PoI nuevoPoI, @RequestParam("file") MultipartFile file, @RequestParam("file2") MultipartFile file2, @RequestParam("file3") MultipartFile file3, BindingResult resultado, Model model) throws IOException {
+		//Fotografia nuevaFotografia = new Fotografia();
 		
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoI", nuevoPoI);
@@ -59,17 +61,35 @@ public class PoIController{
 			return "poI";
 		}
 		else {
-			/*
-			nuevaFotografia = fotografiaService.crearFotografia();
+			
 			byte[] content = file.getBytes();
+			byte[] content2 = file2.getBytes();
+			byte[] content3 = file3.getBytes();
 			String base64 = Base64.getEncoder().encodeToString(content);
-			nuevaFotografia.setImagen(base64);
-			nuevaFotografia.setPoI(nuevoPoI);
+			String base65 = Base64.getEncoder().encodeToString(content2);
+			String base66 = Base64.getEncoder().encodeToString(content3);
 			
-			nuevoPoI.setFotografias(fotografiaService.guardarFotografia(nuevaFotografia));
-			fotografiaService.guardarFotografia(nuevaFotografia);
+            if(base64.equals("")) {
+            	
+			}
+			else {
 			
-			*/
+			    nuevoPoI.setImagen(base64);
+			}
+			if(base65.equals("")) {
+				
+			}
+			else {
+				nuevoPoI.setImagen2(base65);
+			}
+			if(base66.equals("")) {
+				
+			}
+			else {
+				nuevoPoI.setImagen3(base66);
+			}
+			
+			
 			Authentication auth = SecurityContextHolder
 		            .getContext()
 		            .getAuthentication();
@@ -77,11 +97,27 @@ public class PoIController{
 		    try {
 				Turista turistaEncontrado = turistaService.buscarUnTurista(userDetail.getUsername());
 				if (turistaEncontrado != null) {
+					
+					turistaEncontrado.setPuntos(turistaEncontrado.getPuntos() + 10);
 					nuevoPoI.setTuristaAutor(turistaEncontrado);
 					poIService.guardarPoI(nuevoPoI);
-					System.out.println(poIService.obtenerTodosPoIs());
-					model.addAttribute("poIs", poIService.obtenerTodosPoIs().size());
+					model.addAttribute("poIs", poIService.obtenerTodosPoIs());
+					/*
+					for(int i = 0; i < files.length; i++) {
+						MultipartFile file = files[i];
+						System.out.println(files.length);
+						byte[] content = file.getBytes();
+						nuevaFotografia = fotografiaService.crearFotografia();
+						String base64 = Base64.getEncoder().encodeToString(content);
+						nuevaFotografia.setImagen(base64);
+						nuevaFotografia.setPoI(nuevoPoI);
+						//fotografiaService.guardarFotografia(nuevaFotografia);
+						nuevoPoI.getFotografias().add(nuevaFotografia);
+					}
+					*/
+					
 				}
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -138,22 +174,23 @@ public class PoIController{
 	
 	@GetMapping("/poI/mostrar" )
 	public String mostrarPoI(Model model) {
-		List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
-		listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
-		model.addAttribute("poIs", listaPoIs); 
+		//List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
+		//listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
+		model.addAttribute("poIs", poIService.obtenerTodosPoIs()); 
 		return("pois");
 	}
 	
 	@GetMapping("/poI/mostrar/mispois" )
 	public String mostrarMisPoIs(Model model) {
+		
 		Authentication auth = SecurityContextHolder
 	            .getContext()
 	            .getAuthentication();
 	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
 	    
 	    try {
-			//Turista turistaAutor = turistaService.buscarUnTurista(userDetail.getUsername());
-			
+			Turista turista = turistaService.buscarUnTurista(userDetail.getUsername());
+			model.addAttribute("poIs", poIService.obtenerMisPoIs(turista));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

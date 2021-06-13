@@ -18,4 +18,7 @@ public interface ITuristaDAO extends CrudRepository<Turista, Integer>{
 
 	public Optional<Turista> findByEmail(String email);
 	
+	@Query (value= " {call turistasconmaspuntos()}", nativeQuery = true)
+	
+	public List<Turista> conMasPuntos();
 }
