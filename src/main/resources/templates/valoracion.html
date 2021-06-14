@@ -16,93 +16,50 @@
 <div class = "container">
 
  <form th:object="${unaValoracion}"  th:action="@{'/valoracion/guardar/'+*{poI.codigoPoI}}" method="post">
- 
- <!-- 
- <div class="container1">
- 	<div class="product-details">
-		
-	<h1>Biru Putaran</h1>
- 		<span class="hint new">New</span> 
- 		<span class="hint free-shipping">Free Shipping</span> 
- 		the Product rating 
-	<span class="hint-star star">
-		<i class="fa fa-star" aria-hidden="true"></i>
-		<i class="fa fa-star" aria-hidden="true"></i>
-		<i class="fa fa-star" aria-hidden="true"></i>
-		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-		<i class="fa fa-star-o" aria-hidden="true"></i>
-	</span>
-	
-		<p class="information">" Especially good for container gardening, the Angelonia will keep blooming all summer even if old flowers are removed. Once tall enough to cut, bring them inside and you'll notice a light scent that some say is reminiscent of apples. "</p>
-
-<div class="control">
-	
-	<button class="btn">
-<!-- 		the Price 
-	 <span class="price">49 $</span>
-<!-- 		shopping cart icon
-   <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-<!-- 		Buy Now / ADD to Cart
-   <span class="buy">Buy Now</span>
- </button>
-	<!-- End Button buying 
-	
-</div>
-			
-</div>
-	
-<!-- 	End	Product details  
-	
-	
-	
-<!-- 	Start product image & Information 
-	
-<div class="product-image">
-	
-	<img src="https://sc01.alicdn.com/kf/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3/200006212/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3.jpg" alt="Omar Dsoky">
-	
-<!-- 	product Information
-<div class="info">
-	<h2>The Description</h2>
-	<ul>
-		<li><strong>Sun Needs: </strong>Full Sun</li>
-		<li><strong>Soil Needs: </strong>Damp</li>
-		<li><strong>Zones: </strong>9 - 11</li>
-		<li><strong>Height: </strong>2 - 3 feet</li>
-		<li><strong>Blooms in: </strong>Mid‑Summer - Mid‑Fall</li>
-		<li><strong>Features: </strong>Tolerates heat</li>
-	</ul>
-</div>
-</div>
-<!--  End product image 
- </div>
-   -->
    
  <div class="carta">
 <div class="card">
   <div class="row g-2">
-  <div class="col">
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class=" group col-12 col-md-7">
+  <div id="carouselExample" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+      <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExample" data-slide-to="1" class="active"></li>
+      <li data-target="#carouselExample" data-slide-to="2" class="active"></li>
+  </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img th:src="*{'data:;base64,'+poI.imagen}" class="d-block w-100" alt="">
+      <img th:src="*{'data:;base64,'+poI.imagen}" class="d-block w-100" width="500" height="400">
     </div>
     <div class="carousel-item">
-      <img th:src="*{'data:;base64,'+poI.imagen}" class="d-block w-100" alt="">
+      <img th:src="*{'data:;base64,'+poI.imagen2}" class="d-block w-100" width="500" height="400" >
     </div>
     <div class="carousel-item">
-     <img th:src="*{'data:;base64,'+poI.imagen}" class="d-block w-100" alt="">
+     <img th:src="*{'data:;base64,'+poI.imagen3}" class="d-block w-100" alt="" width="500" height="400">
     </div>
   </div>
+  <a href="#carouselExample" class="carousel-control-prev" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"> </span>
+        <span class="visually-hidden"></span>
+   </a>
+    <a href="#carouselExample" class="carousel-control-next" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"> </span>
+        <span class="visually-hidden"></span>
+   </a>
 </div>
     </div>
     
-    <div class="col">
+    <div class="group col-12 col-md-5">
       <div class="card-body">
-        <p class="card-title" th:text="*{poI.codigoPoI}"></p>
+        
+        <h3 class="card-title" th:text="*{poI.nombrePoI}"></h3> 
+        <span class="badge bg-success text-light" th:text="*{poI.etiqueta}"></span>
+        <br>
         <p class="card-text" th:text="*{'Direccion:  ' + poI.calle + ' ' + 'N°' + poI.numeroCasa + ' ' + 'B° ' + poI.barrio}"></p>
-        <p class="card-text" th:text="*{poI.localidad}"></p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <p class="card-text" th:text="*{'Localidad: ' + poI.localidad}"></p>
+        <p class="card-text" th:text="*{'Coordenadas: ' + poI.latitud + '° ' + poI.Longitud} + '° ' "></p>
+        <p class="card-text" th:text="*{'Descripcion: ' + poI.descripcion}"></p>
+        <p class="card-text" th:text="*{'Sitio Web: ' + poI.sitioWeb}"></p>
       </div>
     </div>
   </div>
