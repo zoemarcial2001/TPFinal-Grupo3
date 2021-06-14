@@ -13,30 +13,33 @@
 <div th:insert="layouts/header :: header"></div>
 <div class="album py-5">
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="row row-cols-1 row-cols-sm-2 g-3">
       <div th:each="p : ${poIs}">
-        <div class="col">
+        <div class="col lg-4 mb-4">
           <div class="card shadow-sm">
            <!--  <img th:src="*{'data:;base64,'+p.fotografias.get('0').imagen}" class="card-img-top" alt="hola"> -->
-           
-           <div th:each= "f: ${fotografias}">
-           <div style=" backgroundImage: `url(${f.imagen})` "></div>
-           </div>
+           <img th:src="*{'data:;base64,'+p.imagen}" class="card-img-top" alt=" ">
             <div class="card-body">
               <p class="card-text" th:text="${p.nombrePoI}"> </p>
               <p class="card-text" th:text="${p.codigoPoI}"> </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a class="btn btn-sm btn-outline-secondary" th:href="@{'/poI/ver/'+${p.codigoPoI}}">Ver Mas</a>
-                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/editar/'+${p.codigoPoI}}" >Editar</a>
-                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/eliminar/'+${p.codigoPoI}}" >Eliminar</a>
+                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/editar/'+${p.codigoPoI}}">Editar <i class="fas fa-edit"></i></a>
+                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/eliminar/'+${p.codigoPoI}}">Eliminar <i class="far fa-trash-alt"></i></a>
                 </div>
                 <small class="text-muted" th:text="${p.localidad}"></small>
               </div>
             </div>
           </div>
+         </div> 
         </div>
         <br>
+        <div class="col lg-4 mb-4">
+          <div class="card shadow-sm">
+             <a href="/poI/cargar"><img alt="" src="https://lh3.googleusercontent.com/proxy/Nmi2B-gZHUd189onfMBnYHQGS1zbY61Sx2jwNxi52g0hfVFBehhWN94EI2kyzQbq1DP6-HcHSJhIpwv3h-KWitMIiaKkcaITGBglYIqjZ07E"></a>
+          </div>
+        
         </div>
         </div>
         </div>

@@ -24,6 +24,10 @@ public class PoIServiceMySQL implements IPoIService {
 	@Override
 	public void guardarPoI(PoI unPoI) {
 		// TODO Auto-generated method stub
+		int valorLatitud = (int) (Math.random()*30);
+		int valorLongitud = (int) (Math.random()*30);
+		unPoI.setLatitud(valorLatitud);
+		unPoI.setLongitud(valorLongitud);
 		poIDAO.save(unPoI);
 	}
 

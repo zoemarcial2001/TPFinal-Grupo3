@@ -158,7 +158,7 @@ public class PoIController{
 			model.addAttribute("editMode", "true");
 		}
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
-		return("poI");
+		return "redirect:/poI/mostrar/mispois";
 	}
 	
 	@GetMapping("/poI/eliminarPoI/{codigo}")
@@ -200,17 +200,7 @@ public class PoIController{
 		return("mispois");
 	}
 	
-	@GetMapping("/poI/ver/{codigoPoI}")
-	public String verPoI( @PathVariable(name="codigoPoI") int codigoPoI, Model model) {
-		try {
-			model.addAttribute("unPoI", poIService.encontrarUnPoI(codigoPoI));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-		}
-		
-		return("verpoi");
-	}
+	
 	
 
 }
