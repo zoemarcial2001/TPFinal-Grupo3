@@ -15,6 +15,10 @@ section {
 	background-image: url("https://s3.amazonaws.com/blog.avt.prd/uploads/2018/07/24154647/portada-II.jpg");
 }
 
+h2{
+	text-align: center;
+}
+
 .inicio-box {
 	
   padding: 80px 20px 20px 20px;
