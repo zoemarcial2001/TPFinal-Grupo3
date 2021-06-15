@@ -18,7 +18,32 @@
         <div class="col lg-4 mb-4">
           <div class="card shadow-sm">
            <!--  <img th:src="*{'data:;base64,'+p.fotografias.get('0').imagen}" class="card-img-top" alt="hola"> -->
-           <img th:src="*{'data:;base64,'+p.imagen}" class="card-img-top" alt=" ">
+           <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                   <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
+                   <li data-target="#carouselExample" data-slide-to="1" class="active"></li>
+                   <li data-target="#carouselExample" data-slide-to="2" class="active"></li>
+                </ol>
+                <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img th:src="*{'data:;base64,'+p.imagen}" class="d-block w-100" >
+    </div>
+    <div class="carousel-item">
+      <img th:src="*{'data:;base64,'+p.imagen2}" class="d-block w-100" >
+    </div>
+    <div class="carousel-item">
+     <img th:src="*{'data:;base64,'+p.imagen3}" class="d-block w-100" >
+    </div>
+  </div>
+  <a href="#carouselExample" class="carousel-control-prev" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"> </span>
+        <span class="visually-hidden"></span>
+   </a>
+    <a href="#carouselExample" class="carousel-control-next" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"> </span>
+        <span class="visually-hidden"></span>
+   </a>
+</div>
             <div class="card-body">
               <p class="card-text" th:text="${p.nombrePoI}"> </p>
               <p class="card-text" th:text="${p.codigoPoI}"> </p>
@@ -26,7 +51,7 @@
                 <div class="btn-group">
                   <a class="btn btn-sm btn-outline-secondary" th:href="@{'/poI/ver/'+${p.codigoPoI}}">Ver Mas</a>
                   <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/editar/'+${p.codigoPoI}}">Editar <i class="fas fa-edit"></i></a>
-                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/eliminar/'+${p.codigoPoI}}">Eliminar <i class="far fa-trash-alt"></i></a>
+                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/eliminarPoI/'+${p.codigoPoI}}">Eliminar <i class="far fa-trash-alt"></i></a>
                 </div>
                 <small class="text-muted" th:text="${p.localidad}"></small>
               </div>
