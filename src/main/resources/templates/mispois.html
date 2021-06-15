@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilozoe.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title>PoIs</title>
+</head>
+<body>
+<div th:insert="layouts/header :: header"></div>
+<div class="album py-5">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 g-3">
+      <div th:each="p : ${poIs}">
+        <div class="col lg-4 mb-4">
+          <div class="card shadow-sm">
+           <!--  <img th:src="*{'data:;base64,'+p.fotografias.get('0').imagen}" class="card-img-top" alt="hola"> -->
+           <img th:src="*{'data:;base64,'+p.imagen}" class="card-img-top" alt=" ">
+            <div class="card-body">
+              <p class="card-text" th:text="${p.nombrePoI}"> </p>
+              <p class="card-text" th:text="${p.codigoPoI}"> </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-secondary" th:href="@{'/poI/ver/'+${p.codigoPoI}}">Ver Mas</a>
+                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/editar/'+${p.codigoPoI}}">Editar <i class="fas fa-edit"></i></a>
+                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/eliminar/'+${p.codigoPoI}}">Eliminar <i class="far fa-trash-alt"></i></a>
+                </div>
+                <small class="text-muted" th:text="${p.localidad}"></small>
+              </div>
+            </div>
+          </div>
+         </div> 
+        </div>
+        <br>
+        <div class="col lg-4 mb-4">
+          <div class="card shadow-sm">
+             <a href="/poI/cargar"><img alt="" src="https://lh3.googleusercontent.com/proxy/Nmi2B-gZHUd189onfMBnYHQGS1zbY61Sx2jwNxi52g0hfVFBehhWN94EI2kyzQbq1DP6-HcHSJhIpwv3h-KWitMIiaKkcaITGBglYIqjZ07E"></a>
+          </div>
+        
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -12,7 +12,7 @@
 <body>
 <div class="form">
 <div th:insert="layouts/header :: header"></div>
-<div class="container">
+<div class="container" >
 	<h1>Registrarse</h1>
 	<form th:object="${unTurista}" th:action="@{/turista/guardar}" method="post">
 	
@@ -23,19 +23,19 @@
 	    </div>
 	</div>
 		
-	<div class="row mb-3">
+	<div class="row mb-3" >
          <div class="col">
              <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
              <input type="text" class="form-control" placeholder="Ingrese Nombre" aria-label="First name" th:field="*{nombre}">
         
-    </div>
+         </div>
         
        
         <div class="col">
         <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
              <input type="text" class="form-control" placeholder="Ingrese Apellido" aria-label="Last name" th:field="*{apellido}">
          </div>
-       </div>
+   </div>
        
       <div class="row mb-3"> 
        

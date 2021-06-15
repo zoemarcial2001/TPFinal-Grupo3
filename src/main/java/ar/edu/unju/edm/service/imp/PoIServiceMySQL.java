@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.PoI;
+import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.repository.IPoIDAO;
 import ar.edu.unju.edm.service.IPoIService;
 
@@ -23,13 +24,17 @@ public class PoIServiceMySQL implements IPoIService {
 	@Override
 	public void guardarPoI(PoI unPoI) {
 		// TODO Auto-generated method stub
+		int valorLatitud = (int) (Math.random()*30);
+		int valorLongitud = (int) (Math.random()*30);
+		unPoI.setLatitud(valorLatitud);
+		unPoI.setLongitud(valorLongitud);
 		poIDAO.save(unPoI);
 	}
 
 	@Override
 	public PoI crearPoI() {
 		// TODO Auto-generated method stub
-		return unPoI;
+		return new PoI();
 	}
 
 	@Override
@@ -68,4 +73,23 @@ public class PoIServiceMySQL implements IPoIService {
 		poIDAO.delete(poIEliminar);
 	}
 
+	@Override
+	public List<PoI> obtenerMisPoIs(Turista turistaAutor) {
+		// TODO Auto-generated method stub
+		return (List<PoI>) poIDAO.findAllByTuristaAutor(turistaAutor) ;
+	}
+
+	@Override
+	public List<PoI> masValorados() {
+		// TODO Auto-generated method stub
+		return (List<PoI>) poIDAO.masValorados();
+	}
+
+	@Override
+	public List<PoI> masComentados() {
+		// TODO Auto-generated method stub
+		return (List<PoI>) poIDAO.masComentados();
+	}
+
+	
 }

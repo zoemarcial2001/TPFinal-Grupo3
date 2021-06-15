@@ -25,8 +25,7 @@ public class TpFinalGrupo3Application implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-	//inicializo un cliente para pruebas
+  /*
 			turista.setNombre("karen");
 		   turista.setApellido("Merlos");
 		
@@ -34,6 +33,7 @@ public class TpFinalGrupo3Application implements CommandLineRunner{
 			turista.setPassword("1234");	
 			
 			turista.setPais("Argentina");
-		//	turistaService.guardarTurista(turista);	
+			turistaService.guardarTurista(turista);	
+			*/
 	}
 }

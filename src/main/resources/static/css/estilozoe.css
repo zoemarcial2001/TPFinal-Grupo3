@@ -1,3 +1,7 @@
+*{
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+
 
 .col:hover{
      transform: scale(1.1);
@@ -19,6 +23,11 @@
   background-size: cover;
 }
 
+.body-inicio {
+	background: url(https://img.vixdata.io/pd/webp-large/es/sites/default/files/imj/nuestrorumbo/K/Krabi-en-Tailandia-2.jpg) 50% fixed;
+    background-size: cover;
+}
+
 
 .login-box {
 	
@@ -32,6 +41,32 @@
   top: 50px; 
   left: 400px;
   
+ }
+ 
+ .inicio-box {
+	
+  padding: 80px 20px 20px 20px;
+  width: 90%;
+  max-width: 500px;
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+  opacity: 0.6;
+  top: 100px; 
+  left: 300px;
+  
+ }
+ 
+ .lead {
+  text-align: center;
+  font-size: 16pt;
+ }
+ 
+ .inicio-box a{
+   
+   position: relative;
+   top: 20px; 
+   left: 150px;
  }
  
 .app-title {

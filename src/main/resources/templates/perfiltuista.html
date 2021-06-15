@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloturista.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    
+<title>Perfil Turista</title>
+</head>
+<body>
+<div th:insert="layouts/header :: header"></div>
+    
+    <div id="main-wrapper">
+     
+     
+        <div class="page-wrapper">
+           
+          
+            <div class="container-fluid">
+              
+               
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Perfil Turista</h3>
+                    </div>
+               </div>
+              
+                
+                <div class="row">
+                    
+                    <div class="col-lg-4 col-xlg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <center class="mt-4"> <img src="../static/img/user.png" class="img-circle"
+                                        width="150" />
+                                    <h4 class="card-title mt-2">Hanna Gover</h4>
+                                    <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
+                                    
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-8 col-xlg-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-horizontal form-material mx-2">
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12">Nombre</label>
+                                        <div class="col-md-12">
+                                            <input type="text" placeholder="Ingrese Nombre"
+                                                class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Apellido</label>
+                                        <div class="col-md-12">
+                                            <input type="text" placeholder="Ingrese apellido"
+                                                class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <input type="email" placeholder="nombre@gmail.com"
+                                                class="form-control form-control-line" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Password</label>
+                                        <div class="col-md-12">
+                                            <input type="password" placeholder="ingrese contraseña"
+                                                class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Mensaje</label>
+                                        <div class="col-md-12">
+                                            <textarea rows="5" class="form-control form-control-line"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12">Pais</label>
+                                        <div class="col-sm-12">
+                                            <select class="form-control form-control-line">
+                                                <option>Argentina</option>
+                                                <option>India</option>
+                                                <option>Usa</option>
+                                                <option>Canada</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success">Update Profile</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </div>
+            
+        </div>
+       
+    </div>
+    
+   
+    
+</body>
+</html>
