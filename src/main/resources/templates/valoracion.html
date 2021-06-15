@@ -60,6 +60,10 @@
         <p class="card-text" th:text="*{'Coordenadas: ' + poI.latitud + '° ' + poI.Longitud} + '° ' "></p>
         <p class="card-text" th:text="*{'Descripcion: ' + poI.descripcion}"></p>
         <p class="card-text" th:text="*{'Sitio Web: ' + poI.sitioWeb}"></p>
+        <a class="btn btn-sm btn-outline-secondary" th:href="*{poI.sitioWeb}">Ir</a>
+        <br>
+        <br>
+        <p class="card-text" th:text="*{'Autor: ' + poI.turistaAutor.email}"></p>
       </div>
     </div>
   </div>

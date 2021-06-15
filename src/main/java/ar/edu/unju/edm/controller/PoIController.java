@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import ar.edu.unju.edm.model.Fotografia;
 import ar.edu.unju.edm.model.PoI;
 import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.service.IFotografiaService;
@@ -169,13 +167,28 @@ public class PoIController{
 		catch(Exception e){
 			model.addAttribute("listErrorMessage",e.getMessage());
 		}			
-		return "redirect:/poI/mostrar";
+		return "redirect:/poI/mostrar/mispois";
 	}
 	
 	@GetMapping("/poI/mostrar" )
 	public String mostrarPoI(Model model) {
 		//List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
 		//listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
+		List<PoI> mas = new ArrayList<>();
+		PoI prueba = poIService.obtenerTodosPoIs().get(0);
+		PoI prueba1 = poIService.obtenerTodosPoIs().get(1);
+		PoI prueba2 = poIService.obtenerTodosPoIs().get(2);
+		
+		if(prueba != null){
+			mas.add(prueba);
+			if(prueba1 != null) {
+				mas.add(prueba1);
+				if(prueba2 != null) {
+					mas.add(prueba2);
+				}
+			}
+		}
+		
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs()); 
 		return("pois");
 	}

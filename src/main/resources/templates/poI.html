@@ -26,8 +26,8 @@
 	           
 	            <div class="form-group col-12 col-md-6">
 					<label class="form-label" for="fname">Nombre</label>
-					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}" required>
-					<div class="valid-feedback"></div>
+					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}" >
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('nombrePoI')}" th:errors="*{nombrePoI}">Name	Error</div>
 				</div>
 				
 				<div class="form-group col-12 col-md-6">
@@ -52,7 +52,7 @@
 		
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="phone">Calle</label>
-					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}" required>
+					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}">
 				</div>
 								
 				<div class="form-group col-12 col-md-4">
@@ -63,12 +63,12 @@
 				
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="birth">Barrio</label>
-					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}" required>
+					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}">
 				</div>
 					
 				<div class="form-group col-12 col-md-6">
 					<label class="form-label">Localidad</label>
-					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}" required>
+					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}">
 				</div>
 				
 				<div class="form-group col-12 col-md-6">
