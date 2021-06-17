@@ -24,10 +24,19 @@ public class PoIServiceMySQL implements IPoIService {
 	@Override
 	public void guardarPoI(PoI unPoI) {
 		// TODO Auto-generated method stub
+		
+		//generando valores aleatorios para latutud y longitud
 		int valorLatitud = (int) (Math.random()*30);
 		int valorLongitud = (int) (Math.random()*30);
 		unPoI.setLatitud(valorLatitud);
 		unPoI.setLongitud(valorLongitud);
+		
+		//primera letra de cada palabra en mayuscula
+		unPoI.setBarrio(PrimeraMayuscula(unPoI.getBarrio()));
+		unPoI.setCalle(PrimeraMayuscula(unPoI.getCalle()));
+		unPoI.setNombrePoI(PrimeraMayuscula(unPoI.getNombrePoI()));
+		unPoI.setLocalidad(PrimeraMayuscula(unPoI.getLocalidad()));
+		
 		poIDAO.save(unPoI);
 	}
 
@@ -91,5 +100,19 @@ public class PoIServiceMySQL implements IPoIService {
 		return (List<PoI>) poIDAO.masComentados();
 	}
 
+	
+	public String PrimeraMayuscula (String cadena) {
+		
+		char[] cadena1 = cadena.toCharArray();
+		cadena1[0] = Character.toUpperCase(cadena1[0]);
+		
+		for (int i = 0; i < cadena.length()- 2; i++) {
+			if (cadena1[i] == ' ' || cadena1[i] == '.' || cadena1[i] == ',') {
+				cadena1[i + 1] = Character.toUpperCase(cadena1[i + 1]);
+			}
+		}
+		
+		return new String(cadena1);
+	}
 	
 }

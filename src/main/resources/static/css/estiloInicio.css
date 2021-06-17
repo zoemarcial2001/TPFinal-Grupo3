@@ -1,0 +1,127 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	scroll-behavior: smooth;
+}
+
+section {
+	height: 700px;
+}
+
+#sec1 {
+	background-image: url("https://s3.amazonaws.com/blog.avt.prd/uploads/2018/07/24154647/portada-II.jpg");
+}
+
+h2{
+	text-align: center;
+}
+
+.inicio-box {
+	
+  padding: 80px 20px 20px 20px;
+  width: 90%;
+  max-width: 700px;
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0);
+  opacity: 0.8;
+  top: 200px; 
+  left: 450px;
+  
+ }
+ 
+ .lead {
+  text-align: center;
+  font-size: 16pt;
+ }
+ 
+ .inicio-box a{
+   
+   position: relative;
+   top: 20px; 
+   left: 250px;
+ }
+ 
+ .inicio-box h1{
+ 
+      text-align: center;
+ }
+ 
+.poI{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.poI img{
+	
+	
+	
+}
+
+.contenedor figure{
+       position:relative;
+        height: 250px;
+        cursor: pointer;
+        width: 350px;
+        overflow: hidden;
+        border-radius: 6px;
+        box-shadow: 0px 15px 25px rgba(0,0,0,0.50);
+    }
+    .contenedor figure img{
+        width: 100%;
+        height: 100%;
+        transition: all 400ms ease-out;
+        will-change: transform;
+    }
+    .contenedor figure .texto{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(31,31,31,0.7);
+        transition: all 400ms ease-out;
+        opacity: 0;
+        visibility: hidden;
+        text-align: center;
+    }
+    
+    
+    .contenedor figure:hover > .texto {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .contenedor figure:hover > img{
+        transform: scale(1.3);
+    }
+    
+    .centrado {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+/*
+.texto-encima{
+	display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    color: white; 
+}
+
+
+.imagen:hover .texto-encima .centrado{
+display: block;
+}
+
+*/
