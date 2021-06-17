@@ -93,4 +93,11 @@ public class TuristaController {
 		return "redirect:/turista/mostrar";
 	}
 
+	
+	
+	@GetMapping("/turista/prueba")
+	public String cargarPerfil(Model model) {
+	    return ("perfiltuista");
+	}
+	
 }
