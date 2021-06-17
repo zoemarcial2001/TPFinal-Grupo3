@@ -51,7 +51,7 @@
                 <div class="btn-group">
                   <a class="btn btn-sm btn-outline-secondary" th:href="@{'/poI/ver/'+${p.codigoPoI}}">Ver Mas</a>
                   <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/editar/'+${p.codigoPoI}}">Editar <i class="fas fa-edit"></i></a>
-                  <a  class="btn btn-sm btn-outline-secondary"  th:href="@{'/poI/eliminarPoI/'+${p.codigoPoI}}">Eliminar <i class="far fa-trash-alt"></i></a>
+                  <a  class="btn btn-sm btn-outline-secondary"  th:onclick="'javascript:confirmarEliminar(\''+${p.codigoPoI}+'\');'">Eliminar <i class="far fa-trash-alt"></i></a>
                 </div>
                 <small class="text-muted" th:text="${p.localidad}"></small>
               </div>
@@ -69,6 +69,39 @@
         </div>
         </div>
         </div>
+        
+        <!--Modal Eliminar--> 
+							<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="eliminarModalTitulo">Eliminar</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body"><h6>Desea eliminar este poI?</h6></div>
+										<input type="hidden" id="identificadorPoI" name="codigoPoI"/>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"	data-dismiss="modal">Close</button>
+										    <button type="button" class="btn btn-primary" th:onclick="eliminarPoI()">Eliminar PoI</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+	<script type="text/javascript">
+function confirmarEliminar(codigo){
+	$('#modalEliminar').modal('show');
+	$("#identificadorPoI").val(codigo);
+}
+
+function eliminarPoI(){
+	var codigo = $("#identificadorPoI").val();
+    window.location = "/poI/eliminarPoI/"+codigo;
+}
+        
+</script>
 
         <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
