@@ -37,11 +37,7 @@ public class PoIController{
 	
 	@Autowired
 	ITuristaService turistaService;
-	
-	@Autowired
-	IFotografiaService fotografiaService;
-	
-	PoI poiPrueba;
+
 	
 	@GetMapping("/poI/cargar")
 	public String cargarPoI(Model model) {
@@ -143,13 +139,42 @@ public class PoIController{
 		return("poI");
 	}
 	
-	@PostMapping("/poI/modificar")
-	public String modificarPoI(@ModelAttribute("unPoI") PoI poIModificado, Model model) {
+	@PostMapping( value="/poI/modificar", consumes = "multipart/form-data")
+	public String modificarPoI(@ModelAttribute("unPoI") PoI poIModificado, @RequestParam("file") MultipartFile file, @RequestParam("file2") MultipartFile file2, @RequestParam("file3") MultipartFile file3, Model model) throws IOException{
 		try {
+			
+			byte[] content = file.getBytes();
+			byte[] content2 = file2.getBytes();
+			byte[] content3 = file3.getBytes();
+			String base64 = Base64.getEncoder().encodeToString(content);
+			String base65 = Base64.getEncoder().encodeToString(content2);
+			String base66 = Base64.getEncoder().encodeToString(content3);
+			
+            if(base64.equals("")) {
+            	
+			}
+			else {
+			
+			    poIModificado.setImagen(base64);
+			}
+			if(base65.equals("")) {
+				
+			}
+			else {
+				poIModificado.setImagen2(base65);
+			}
+			if(base66.equals("")) {
+				
+			}
+			else {
+				poIModificado.setImagen3(base66);
+			}
+			
 			poIService.modificarPoI(poIModificado);
 			model.addAttribute("unPoI", new PoI());				
 			model.addAttribute("editMode", "false");
 		} catch (Exception e) {
+			
 			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
 			model.addAttribute("unPoI", poIModificado);			
 			model.addAttribute("poIs", poIService.obtenerTodosPoIs());

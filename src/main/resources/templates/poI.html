@@ -10,12 +10,11 @@
 <title>Poi</title>
 </head>
 <body>
-<div >
 <div th:insert="layouts/header :: header"></div>
 <div class="container">
 	<h1>Añadir un Punto de Interes</h1>
 	<div>
-	<form class="form-row needs-validation" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data" novalidate>
+	<form class="form-row needs-validation" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data">
 	           
 	           <div class="row mb-3" style = "display:none;">
 	    <div class="form-group col-12 col-md-6">
@@ -26,8 +25,8 @@
 	           
 	            <div class="form-group col-12 col-md-6">
 					<label class="form-label" for="fname">Nombre</label>
-					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}" >
-					<div class="alert alert-danger" th:if="${#fields.hasErrors('nombrePoI')}" th:errors="*{nombrePoI}">Name	Error</div>
+					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('nombrePoI')}" th:errors="*{nombrePoI}"></small>
 				</div>
 				
 				<div class="form-group col-12 col-md-6">
@@ -53,22 +52,25 @@
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="phone">Calle</label>
 					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}"></small>
 				</div>
 								
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="birth">N°</label>
 					<input class="form-control" type="number" placeholder="Ingrese Numero" id="birth" th:field="*{numeroCasa}" >
-					<div class="alert alert-danger" th:if="${#fields.hasErrors('numeroCasa')}" th:errors="*{numeroCasa}">Name	Error</div>
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('numeroCasa')}" th:errors="*{numeroCasa}"></small>
 				</div>
 				
 				<div class="form-group col-12 col-md-4">
 					<label class="form-label" for="birth">Barrio</label>
 					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('barrio')}" th:errors="*{barrio}"></small>
 				</div>
 					
 				<div class="form-group col-12 col-md-6">
 					<label class="form-label">Localidad</label>
 					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('localidad')}" th:errors="*{localidad}"></small>
 				</div>
 				
 				<div class="form-group col-12 col-md-6">
@@ -77,22 +79,24 @@
 				</div>
 							
 				<div class="form-group col-12 col-md-4">
-			       <label for="file" class="col-sm-4 col-form-label" th:field="*{imagen}" > Subir Imagen </label>
-				<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-						<img id="output" style="padding-top: 2px; width: 100px;" />
+			       <label for="file" class="col-sm-4 col-form-label"> Subir Imagen </label>
+				<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" th:field="*{imagen}" onchange="loadFile(event)">
+						<img th:src="*{'data:;base64,'+imagen}" id="output" style="padding-top: 2px; width: 100px;" />
 	            </div>	
 	            
 	            <div class="form-group col-12 col-md-4">
-			       <label for="file2" class="col-sm-4 col-form-label" th:field="*{imagen2}"> Subir Imagen </label>
-				<input type="file" name="file2" class="form-control-file" id="file2" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-						<img id="output" style="padding-top: 2px; width: 100px;" />
+			       <label for="file2" class="col-sm-4 col-form-label"> Subir Imagen </label>
+				<input type="file" name="file2" class="form-control-file" id="file2" th:field="*{imagen2}" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+						<img th:src="*{'data:;base64,'+imagen2}" id="output" style="padding-top: 2px; width: 100px;" />
 	            </div>	
 	            
 	            <div class="form-group col-12 col-md-4">
-			       <label for="file3" class="col-sm-4 col-form-label" th:field="*{imagen3}"> Subir Imagen </label>
-				<input type="file" name="file3" class="form-control-file" id="file3" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-						<img id="output" style="padding-top: 2px; width: 100px;" />
-	            </div>		
+			       <label for="file3" class="col-sm-4 col-form-label"> Subir Imagen </label>
+				<input type="file" name="file3" class="form-control-file" id="file3" th:field="*{imagen2}" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+						<img th:src="*{'data:;base64,'+imagen3}" id="output" style="padding-top: 2px; width: 100px;" />
+	            </div>	
+	            
+	            	
 				 
 				<div class="col-12">
 						<input type="submit" class="btn btn-primary" th:value="${editMode}?'Modificar Poi':'Crear PoI'">
@@ -101,7 +105,6 @@
 				</form>
 				</div>
 </div>
-	</div>
 		
 	<!-- 
 			<a th:onclick="'javascript:confirmarEliminar(\''+${codigoPoI}+'\');'"></a>			

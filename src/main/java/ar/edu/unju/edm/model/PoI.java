@@ -31,7 +31,7 @@ public class PoI {
 	private int codigoPoI;
 	
 	@Column
-	@NotBlank(message="El nombre del producto es obligatorio")
+	@NotEmpty(message="El nombre del producto es obligatorio")
 	private String nombrePoI;
 	@Column
 	private String descripcion;
@@ -40,7 +40,7 @@ public class PoI {
 	@Column
 	private String sitioWeb;
 	@Column
-	@NotBlank(message="debe ingresar una calle")
+	@NotEmpty(message="debe ingresar una calle")
 	private String calle;
 	@Column
 	@NotNull(message="debe ingresar un numero")
@@ -48,10 +48,10 @@ public class PoI {
 	@Max(99999)
 	private int numeroCasa;
 	@Column
-	@NotNull(message="debe ingresar un barrio")
+	@NotEmpty(message="debe ingresar un barrio")
 	private String barrio;
 	@Column
-	@NotBlank(message="debe ingresar una localidad")
+	@NotEmpty(message="debe ingresar una localidad")
 	private String localidad;
 	@Column
 	private int latitud;
