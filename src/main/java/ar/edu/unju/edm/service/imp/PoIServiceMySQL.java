@@ -73,9 +73,27 @@ public class PoIServiceMySQL implements IPoIService {
 		hacia.setBarrio(desde.getBarrio());
 		hacia.setCalle(desde.getCalle());
 		hacia.setNumeroCasa(desde.getNumeroCasa());
-		hacia.setImagen(desde.getImagen());
-		hacia.setImagen2(desde.getImagen2());
-		hacia.setImagen3(desde.getImagen3());
+		if(desde.getImagen()!="") {
+			hacia.setImagen(desde.getImagen());
+		}
+		else {
+			hacia.setImagen(hacia.getImagen());
+		}
+		
+		if(desde.getImagen2()!="") {
+			hacia.setImagen2(desde.getImagen2());
+		}
+		else {
+			hacia.setImagen2(hacia.getImagen2());
+		}
+		
+		if(desde.getImagen3()!="") {
+			hacia.setImagen3(desde.getImagen3());
+		}
+		else {
+			hacia.setImagen3(hacia.getImagen3());
+		}
+		
 	}
 
 	@Override

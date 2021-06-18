@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilozoe.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title>Agregar Poi</title>
+</head>
+<body>
+<div th:insert="layouts/header :: header"></div>
+<div class="container">
+	<h1>Añadir un Punto de Interes</h1>
+	<div>
+	<form class="form-row needs-validation" th:object="${unPoI}" th:action="@{/poI/guardar}" method="post" enctype="multipart/form-data">
+	           
+	           <div class="row mb-3" style = "display:none;">
+	    <div class="form-group col-12 col-md-6">
+		    <label for="nombre" class="col-sm-2 col-form-label">codigo</label>
+		    <input type="number" class="form-control" id="nombre" th:field="*{codigoPoI}">
+	    </div>
+	</div>
+	           
+	            <div class="form-group col-12 col-md-6">
+					<label class="form-label" for="fname">Nombre</label>
+					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('nombrePoI')}" th:errors="*{nombrePoI}"></small>
+				</div>
+				
+				<div class="form-group col-12 col-md-6">
+					<label class="form-label" for="lname">Etiqueta</label>
+					<div class="dropdown bootstrap-select" style="width: 100%;">
+						<select class="form-control" data-width="100%" th:field="*{etiqueta}">
+								<option value="">Seleccionar</option>
+								<option value="Cultura">Cultura</option>
+								<option value="Naturaleza">Naturaleza</option>
+					     		<option value="Aventura">Aventura</option>
+					     		<option value="Deportivo">Deportivo</option>
+					     		<option value="Gastronomia">Gastronomia</option>
+						</select>
+					</div>
+					
+				</div>
+				
+				<div class="form-group col-12 col-md-12">
+					<label class="form-label" for="lname">Descripcion</label>
+					<input type="text" id="lname" class="form-control" placeholder="Ingrese una Descripcion" th:field="*{descripcion}">
+				</div>
+		
+				<div class="form-group col-12 col-md-4">
+					<label class="form-label" for="phone">Calle</label>
+					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}"></small>
+				</div>
+								
+				<div class="form-group col-12 col-md-4">
+					<label class="form-label" for="birth">N°</label>
+					<input class="form-control" type="number" placeholder="Ingrese Numero" id="birth" th:field="*{numeroCasa}" >
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('numeroCasa')}" th:errors="*{numeroCasa}"></small>
+				</div>
+				
+				<div class="form-group col-12 col-md-4">
+					<label class="form-label" for="birth">Barrio</label>
+					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('barrio')}" th:errors="*{barrio}"></small>
+				</div>
+					
+				<div class="form-group col-12 col-md-6">
+					<label class="form-label">Localidad</label>
+					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}">
+					<small class="alert alert-danger" th:if="${#fields.hasErrors('localidad')}" th:errors="*{localidad}"></small>
+				</div>
+				
+				<div class="form-group col-12 col-md-6">
+					<label class="form-label" for="fname">Sitio Web</label>
+					<input type="url" id="fname" class="form-control" placeholder="Ingrese Sitio Web" th:field="*{sitioWeb}">
+				</div>
+							
+				<div class="form-group col-12 col-md-4">
+			       <label for="file" class="col-sm-4 col-form-label" th:field="*{imagen}"> Subir Imagen </label>
+				<input type="file" name="foto" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+						 <img id="output" style="padding-top: 2px; width: 100px;" />  -->
+	            </div>	
+	            
+	            <div class="form-group col-12 col-md-4">
+			       <label for="file2" class="col-sm-4 col-form-label" th:field="*{imagen2}"> Subir Imagen </label>
+				<input type="file" name="file2" class="form-control-file" id="file2" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+					 <img  id="output" style="padding-top: 2px; width: 100px;" />  -->	
+	            </div>	
+	            
+	            <div class="form-group col-12 col-md-4">
+			       <label for="file3" class="col-sm-4 col-form-label" th:field="*{imagen3}"> Subir Imagen </label>
+				<input type="file" name="file3" class="form-control-file" id="file3" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+					 <img id="output" style="padding-top: 2px; width: 100px;" />   -->
+	            </div>	
+	            
+	            	
+				 
+				<div class="col-12">
+						<input type="submit" class="btn btn-primary" th:value="Crear PoI">
+				</div>
+				
+				</form>
+				</div>
+</div>
+							
+	<script type="text/javascript">
+
+(function () {
+   'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+</script>
+        <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
