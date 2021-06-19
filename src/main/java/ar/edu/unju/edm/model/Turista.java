@@ -36,7 +36,9 @@ public class Turista {
 	@Column
 	private int puntos;
 	@Column
-	private String tipo="consultor";
+	private String tipo;
+	@Column
+	private Boolean active=true;
 	
 	public Turista() {
 		super();
@@ -121,5 +123,15 @@ public class Turista {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+	
+	
 
 }

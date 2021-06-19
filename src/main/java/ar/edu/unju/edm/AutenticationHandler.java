@@ -31,6 +31,7 @@ public class AutenticationHandler implements AuthenticationSuccessHandler {
 					userConsultor = true;
 					break;
 				} else {
+					if(grantedAuthority.getAuthority().equals("root"))
 					userRegistrador = true;
 					break;
 				}
@@ -40,7 +41,7 @@ public class AutenticationHandler implements AuthenticationSuccessHandler {
 				redirectStrategy.sendRedirect(request, response, "/inicio");
 			} else {
 				if (userRegistrador) {
-					redirectStrategy.sendRedirect(request, response, "/registrador");
+					redirectStrategy.sendRedirect(request, response, "/turista/mostrar");
 				} else {
 					throw new IllegalStateException();
 				}

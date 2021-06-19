@@ -51,7 +51,7 @@ public class PoIController{
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoI", nuevoPoI);
 			model.addAttribute("poIs", poIService.obtenerTodosPoIs());
-			return "poI";
+			return "agregarpoi";
 		}
 		else {
 			
@@ -152,6 +152,7 @@ public class PoIController{
 				poIModificado.setImagen3(base66);
 			
 			poIService.modificarPoI(poIModificado);
+			
 			model.addAttribute("unPoI", new PoI());				
 		} catch (Exception e) {
 			
