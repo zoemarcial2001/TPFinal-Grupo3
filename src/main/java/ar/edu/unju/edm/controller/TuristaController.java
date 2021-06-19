@@ -2,6 +2,7 @@ package ar.edu.unju.edm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class TuristaController {
 	@Qualifier("impsql")
 	ITuristaService turistaService;
 	
+	
+	//metodos para usuario normal
+	
 	@GetMapping("/registrar")
 	public String cargarTurista1(Model model) {
 		model.addAttribute("unTurista", turistaService.crearTurista());
@@ -27,11 +31,45 @@ public class TuristaController {
 	
 	@PostMapping("/registrar/guardar")
 	public String guardarNuevoTurista1(@ModelAttribute("unTurista") Turista nuevoTurista, Model model) {
-		System.out.println(" turistaaaaaaaa" + nuevoTurista.getEmail());
 		turistaService.guardarTurista(nuevoTurista);
-		
 		return "redirect:/login";
 	}
+	
+	@GetMapping("/turista/eliminarTurista/{id}")
+	public String eliminarTurista(Model model, @PathVariable(name="id") int id) {		
+		try {			
+			turistaService.eliminarTurista(id);	
+		}
+		catch(Exception e){
+			model.addAttribute("listErrorMessage",e.getMessage());
+		}			
+		return "redirect:/turista/mostrar";
+	}
+
+	
+	@GetMapping("/turista/perfil")
+	public String verTurista1(Model model)throws Exception {
+		Turista logueado = turistaService.encontrarUnTurista(SecurityContextHolder.getInitializeCount());
+	if (logueado == null) {
+		return ("redirect:/abc");
+	}else {
+		model.addAttribute("perfil", logueado);
+		
+	    return ("perfil");
+	}
+ // System.out.println(logueado + "jsdhg");
+	}
+		
+	@PostMapping("/turista/perfilGuardar")
+	public String guardarPerfil( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {		
+		turistaService.guardarTurista(nuevoTurista);
+		System.out.println(turistaService.obtenerTodosTuristas());
+		model.addAttribute("perfil", turistaService.obtenerTodosTuristas().size());
+		return "redirect:/turista/perfil";
+	}
+	
+	
+	//metodos para usuario root
 	
 	@GetMapping("/turista/mostrar")
 	public String cargarTurista(Model model) {
@@ -47,6 +85,7 @@ public class TuristaController {
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas().size());
 		return "redirect:/turista/mostrar";
 	}
+	
 	
 	@GetMapping("/turista/editar/{id}")
 	public String editarTurista(Model model, @PathVariable(name="id") int id) throws Exception {
@@ -80,24 +119,5 @@ public class TuristaController {
 		return("turista1");
 	}
 	
-	
-	
-	@GetMapping("/turista/eliminarTurista/{id}")
-	public String eliminarTurista(Model model, @PathVariable(name="id") int id) {		
-		try {			
-			turistaService.eliminarTurista(id);	
-		}
-		catch(Exception e){
-			model.addAttribute("listErrorMessage",e.getMessage());
-		}			
-		return "redirect:/turista/mostrar";
-	}
-
-	
-	
-	@GetMapping("/turista/prueba")
-	public String cargarPerfil(Model model) {
-	    return ("perfiltuista");
-	}
 	
 }
