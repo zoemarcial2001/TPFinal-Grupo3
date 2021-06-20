@@ -26,6 +26,9 @@ public class HomeController {
 	
 	@GetMapping({"/inicio"})
 	public String cargarInicio(Model model){	
+	
+	
+		
 		List<PoI> mas = new ArrayList<>();
 		PoI prueba = poIService.masValorados().get(0);
 		PoI prueba1 = poIService.masValorados().get(1);
@@ -39,9 +42,12 @@ public class HomeController {
 					mas.add(prueba2);
 				}
 			}
+			model.addAttribute("poIs", mas);
+		}
+		else {		
+			model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		}
 		
-		model.addAttribute("poIs", mas);
 		
 	return "inicio2";
 	}

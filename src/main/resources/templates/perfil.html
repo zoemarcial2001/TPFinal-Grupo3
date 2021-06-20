@@ -1,20 +1,127 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilozoe.css}" />
-	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}" />
-	
-	<meta charset="UTF-8">
-<title>Mi Perfil</title>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloturista.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+    <meta charset="utf-8">
+    
+    
+
+
+
+<title>Perfil Turista</title>
 </head>
 <body>
-
-
-
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
-	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
-	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<div th:insert="layouts/header :: header"></div>
+  <form th:object="${perfil}"  th:action="@{/turista/perfilGuardar}" method="post">
+  
+<input type="hidden" name="id" th:field="*{id}" th:value="id">
+  
+  <div id="main-wrapper">
+  
+     <div id="page-wrapper">
      
+         <div class = "container">
+         
+                   <h3 class = "text-themecolor">Perfil Turista</h3>
+            <div th:each="t : ${perfil}">  
+             <div class= "row g-2">
+           
+                 <div class=" group col-12 col-md-4">
+               <div class="card">
+                            <div class="card-body">
+                                
+                                        
+                              <img class="rounded-circle m-1" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="90">          
+                                        
+                                    <h4 class="card-title mt-2" th:text="${t.apellido + '  ' + t.nombre}"></h4>
+                                    <h6 class="card-subtitle mt-2" th:text="${'Puntos: ' + t.puntos}"></h6>
+                                    <h6 class="card-subtitle mt-2" th:text="${'Email: ' + t.email}"></h6>
+                                    <h6 class="card-subtitle mt-2" th:text="${'Pais: ' + t.pais}"></h6>
+                                    
+                               
+                        </div>
+                   </div>
+               </div>
+             
+             
+             
+             
+             
+             <div class=" group col-12 col-md-8">
+               <div class = "card">
+                    <div class = "card-body">
+                  <form class="form-horizontal form-material mx-2">
+                  
+                         <div class="form-group">
+                           <label class="col-md-12">Nombre</label>
+                           <div class="col-md-12">
+                              <input type = "text" placeholder="Ingrese Nombre"
+                              class = "form-control form-control-line" th:field="*{nombre}" th:value="*{nombre}">
+                           </div>
+                         </div>
+                         
+                         <div class="form-group">
+                           <label class="col-md-12">Apellido</label>
+                           <div class="col-md-12">
+                              <input type = "text" placeholder="Ingrese Apellido"
+                              class = "form-control form-control-line" th:field="*{apellido}" th:value="*{apellido}">
+                           </div>
+                         </div>
+                         
+                         <div class="form-group" style = "display:none;">
+                           <label class="col-md-12">Email</label>
+                           <div class="col-md-12">
+                              <input type = "email" placeholder="nombre@gmail.com"
+                              class = "form-control form-control-line" th:field="*{email}" th:value="*{email}">
+                           </div>
+                         </div>
+                         
+                         <div class="form-group">
+                           <label class="col-md-12">Password</label>
+                           <div class="col-md-12">
+                              <input type = "password" placeholder="Ingrese Contraseña"
+                              class = "form-control form-control-line" th:field="*{password}" th:value="*{password}">
+                           </div>
+                         </div>
+                         
+                         <div class ="form-group">
+                           <label class="col-md-12">Pais</label>
+                           <div class="col-md-12">
+                              <select class ="form-control form-control-line" th:field="*{pais}" >
+                              <option value="Argentina">Argentina</option>
+                              <option value="Brasil">Brasil</option>
+                              <option value="Alemania">Alemania</option>
+                              <option value="Canada">Canada</option>
+                              <option value="Usa">Usa</option>
+                              </select>
+                             
+                           </div>
+                         </div>
+                         
+                         <div class ="form-group">
+                           <div class ="col-sm-12">
+                             <input type="submit" class="btn btn-success "  value="Actualizar">
+                           </div>
+                         </div>
+                         
+                       </form>
+                    </div>
+               </div>
+             </div>
+              </div>
+         </div>
+         </div>
+     </div>
+  </div>
+    
+  
+  </form> 
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
