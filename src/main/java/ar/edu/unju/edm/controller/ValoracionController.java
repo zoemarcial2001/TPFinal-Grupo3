@@ -159,7 +159,6 @@ public class ValoracionController {
 		return "redirect:/valoracion/mostrar";
 	}
 	
-<<<<<<< HEAD
 	//usuario root
 	
 	@GetMapping("/valoraciones/ver")
@@ -168,8 +167,5 @@ public class ValoracionController {
 		
 		return ("vervaloraciones");
 		
-	}
-
-=======
->>>>>>> branch 'master' of https://github.com/zoemarcial2001/TPFinal-Grupo3.git
+   }
 }

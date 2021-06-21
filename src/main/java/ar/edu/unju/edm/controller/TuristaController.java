@@ -51,10 +51,6 @@ public class TuristaController {
 		return "redirect:/login";
 	}
 	
-<<<<<<< HEAD
-	
-	
-=======
 	@GetMapping("/turista/eliminarTurista/{id}")
 	public String eliminarTurista(Model model, @PathVariable(name="id") int id) {		
 		try {			
@@ -66,8 +62,7 @@ public class TuristaController {
 		return "redirect:/turista/mostrar";
 	}
 
-
->>>>>>> branch 'master' of https://github.com/zoemarcial2001/TPFinal-Grupo3.git
+  
 	@GetMapping("/turista/perfil")
 	public String verTurista1(Model model)throws Exception {
 		Authentication auth = SecurityContextHolder
@@ -82,9 +77,7 @@ public class TuristaController {
 	}
  // System.out.println(logueado + "jsdhg");
 	
-		
 	@PostMapping("/turista/perfilGuardar")
-<<<<<<< HEAD
 	public String guardarPerfil( @ModelAttribute("unTurista") Turista turistaModificado, Model model) {		
 			try {
 				turistaService.modificarTurista(turistaModificado);
@@ -97,33 +90,6 @@ public class TuristaController {
 			return("redirect:/turista/perfil");
 		}
 	
-	
-	
-=======
-	public String guardarPerfil( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {		
-		turistaService.guardarTurista(nuevoTurista);
-		System.out.println(turistaService.obtenerTodosTuristas());
-		model.addAttribute("perfil", turistaService.obtenerTodosTuristas().size());
-		return "redirect:/turista/perfil";
-	}
-/*	
-	@PostMapping("/turista/modificar")
-	public String modificarTurista(@ModelAttribute("unTurista") Turista turistaModificado, Model model) {
-		try {
-			turistaService.modificarTurista(turistaModificado);
-			model.addAttribute("unTurista", new Turista());
-			model.addAttribute("editMode", "false");
-		} catch (Exception e) {
-			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-			model.addAttribute("unTurista", turistaModificado);			
-			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());			
-			model.addAttribute("editMode", "true");
-		}
-		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
-		return("turista1");
-	}
-*/	
->>>>>>> branch 'master' of https://github.com/zoemarcial2001/TPFinal-Grupo3.git
 	
 	//metodos para usuario root
 	
