@@ -9,6 +9,12 @@
     <meta charset="utf-8">
     
     
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> branch 'master' of https://github.com/zoemarcial2001/TPFinal-Grupo3.git
 <title>Perfil Turista</title>
 </head>
 <body>
@@ -21,6 +27,7 @@
   
      <div id="page-wrapper">
      
+<<<<<<< HEAD
          <div class = "container-fluid">
          
                <div class = "row page-titles">
@@ -103,5 +110,106 @@
   
   </form> 
     
+=======
+         <div class = "container">
+         
+                   <h3 class = "text-themecolor">Perfil Turista</h3>
+            <div th:each="t : ${perfil}">  
+             <div class= "row g-2">
+           
+                 <div class=" group col-12 col-md-4">
+               <div class="card">
+                            <div class="card-body">
+                                
+                                        
+                              <img class="rounded-circle m-1" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="90">          
+                                        
+                                    <h4 class="card-title mt-2" th:text="${t.apellido + '  ' + t.nombre}"></h4>
+                                    <h6 class="card-subtitle mt-2" th:text="${'Puntos: ' + t.puntos}"></h6>
+                                    <h6 class="card-subtitle mt-2" th:text="${'Email: ' + t.email}"></h6>
+                                    <h6 class="card-subtitle mt-2" th:text="${'Pais: ' + t.pais}"></h6>
+                                    
+                               
+                        </div>
+                   </div>
+               </div>
+             
+             
+             
+             
+             
+             <div class=" group col-12 col-md-8">
+               <div class = "card">
+                    <div class = "card-body">
+                  <form class="form-horizontal form-material mx-2">
+                  
+                         <div class="form-group">
+                           <label class="col-md-12">Nombre</label>
+                           <div class="col-md-12">
+                              <input type = "text" placeholder="Ingrese Nombre"
+                              class = "form-control form-control-line" th:field="*{nombre}" th:value="*{nombre}">
+                           </div>
+                         </div>
+                         
+                         <div class="form-group">
+                           <label class="col-md-12">Apellido</label>
+                           <div class="col-md-12">
+                              <input type = "text" placeholder="Ingrese Apellido"
+                              class = "form-control form-control-line" th:field="*{apellido}" th:value="*{apellido}">
+                           </div>
+                         </div>
+                         
+                         <div class="form-group" style = "display:none;">
+                           <label class="col-md-12">Email</label>
+                           <div class="col-md-12">
+                              <input type = "email" placeholder="nombre@gmail.com"
+                              class = "form-control form-control-line" th:field="*{email}" th:value="*{email}">
+                           </div>
+                         </div>
+                         
+                         <div class="form-group">
+                           <label class="col-md-12">Password</label>
+                           <div class="col-md-12">
+                              <input type = "password" placeholder="Ingrese Contraseña"
+                              class = "form-control form-control-line" th:field="*{password}" th:value="*{password}">
+                           </div>
+                         </div>
+                         
+                         <div class ="form-group">
+                           <label class="col-md-12">Pais</label>
+                           <div class="col-md-12">
+                              <select class ="form-control form-control-line" th:field="*{pais}" >
+                              <option value="Argentina">Argentina</option>
+                              <option value="Brasil">Brasil</option>
+                              <option value="Alemania">Alemania</option>
+                              <option value="Canada">Canada</option>
+                              <option value="Usa">Usa</option>
+                              </select>
+                             
+                           </div>
+                         </div>
+                         
+                         <div class ="form-group">
+                           <div class ="col-sm-12">
+                             <input type="submit" class="btn btn-success "  value="Actualizar">
+                           </div>
+                         </div>
+                         
+                       </form>
+                    </div>
+               </div>
+             </div>
+              </div>
+         </div>
+         </div>
+     </div>
+  </div>
+    
+  
+  </form> 
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+>>>>>>> branch 'master' of https://github.com/zoemarcial2001/TPFinal-Grupo3.git
 </body>
 </html>

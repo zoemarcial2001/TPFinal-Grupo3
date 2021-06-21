@@ -178,24 +178,20 @@ public class PoIController{
 	public String mostrarPoI(Model model) {
 		//List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
 		//listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
-		List<PoI> mas = new ArrayList<>();
-		PoI prueba = poIService.obtenerTodosPoIs().get(0);
-		PoI prueba1 = poIService.obtenerTodosPoIs().get(1);
-		PoI prueba2 = poIService.obtenerTodosPoIs().get(2);
-		
-		if(prueba != null){
-			mas.add(prueba);
-			if(prueba1 != null) {
-				mas.add(prueba1);
-				if(prueba2 != null) {
-					mas.add(prueba2);
-				}
-			}
-		}
+	
 		
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs()); 
 		return("pois");
 	}
+	
+	@GetMapping("/poI/mostrarValorados" )
+	public String mostrarMasValorados(Model model) {
+		
+		model.addAttribute("poIs", poIService.masValorados()); 
+		
+		return("pois");
+	}
+	
 	
 	@GetMapping("/poI/mostrar/mispois" )
 	public String mostrarMisPoIs(Model model) {
