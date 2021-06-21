@@ -1,4 +1,4 @@
-package ar.edu.unju.edm.controller;
+package ar.edu.unju.edm.controller
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.service.ITuristaService;
-
 @Controller
 public class TuristaController {
 	
@@ -48,22 +46,22 @@ public class TuristaController {
 		return "redirect:/turista/mostrar";
 	}
 
+	
 
 	@GetMapping("/turista/perfil")
 	public String verTurista1(Model model)throws Exception {
+		
 		Authentication auth = SecurityContextHolder
 	            .getContext()
 	            .getAuthentication();
 	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
-	    
+
 		Turista logueado = turistaService.buscarUnTurista(userDetail.getUsername());
 		model.addAttribute("perfil", logueado);
-		
+
 	    return ("perfil");
 	}
- // System.out.println(logueado + "jsdhg");
-	
-		
+
 	@PostMapping("/turista/perfilGuardar")
 	public String guardarPerfil( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {		
 		turistaService.guardarTurista(nuevoTurista);
@@ -71,6 +69,7 @@ public class TuristaController {
 		model.addAttribute("perfil", turistaService.obtenerTodosTuristas().size());
 		return "redirect:/turista/perfil";
 	}
+
 /*	
 	@PostMapping("/turista/modificar")
 	public String modificarTurista(@ModelAttribute("unTurista") Turista turistaModificado, Model model) {
@@ -88,9 +87,9 @@ public class TuristaController {
 		return("turista1");
 	}
 */	
-	
+
 	//metodos para usuario root
-	
+
 	@GetMapping("/turista/mostrar")
 	public String cargarTurista(Model model) {
 		model.addAttribute("unTurista", turistaService.crearTurista());
@@ -138,6 +137,5 @@ public class TuristaController {
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("turista1");
 	}
-	
 	
 }

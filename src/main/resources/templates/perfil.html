@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
+  
 <link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloturista.css}" />
 <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 
     <meta charset="utf-8">
-    
-    
-
-
-
+  
 <title>Perfil Turista</title>
 </head>
 <body>
@@ -88,6 +84,22 @@
                            </div>
                          </div>
                          
+                         <div class="form-group" style = "display:none;">
+                           <label class="col-md-12">Tipo</label>
+                           <div class="col-md-12">
+                              <input type = "text" placeholder="Ingrese Contraseña"
+                              class = "form-control form-control-line" th:field="*{tipo}" th:value="*{tipo}">
+                           </div>
+                         </div>
+                         
+                         <div class="form-group" style = "display:none;">
+                           <label class="col-md-12">Puntos</label>
+                           <div class="col-md-12">
+                              <input type = "number" placeholder="Ingrese Contraseña"
+                              class = "form-control form-control-line" th:field="*{puntos}" th:value="*{puntos}">
+                           </div>
+                         </div>
+                       
                          <div class ="form-group">
                            <label class="col-md-12">Pais</label>
                            <div class="col-md-12">
@@ -102,8 +114,10 @@
                            </div>
                          </div>
                          
+                         
                          <div class ="form-group">
                            <div class ="col-sm-12">
+
                              <input type="submit" class="btn btn-success "  value="Actualizar">
                            </div>
                          </div>
@@ -112,6 +126,7 @@
                     </div>
                </div>
              </div>
+
               </div>
          </div>
          </div>
@@ -120,6 +135,7 @@
     
   
   </form> 
+
     	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
 		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
