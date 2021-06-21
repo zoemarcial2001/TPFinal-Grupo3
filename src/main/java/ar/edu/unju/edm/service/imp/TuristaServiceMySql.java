@@ -23,11 +23,18 @@ public class TuristaServiceMySql implements ITuristaService{
 	
 	@Override
 	public void guardarTurista(Turista unTurista) {
+		
 		String pw = unTurista.getPassword();
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		unTurista.setPassword(bCryptPasswordEncoder.encode(pw));
-		turistaDAO.save(unTurista);
 		
+		int valorLatitud = (int) (Math.random()*30);
+		int valorLongitud = (int) (Math.random()*30);
+		unTurista.setLocalizacionLatitud(valorLatitud);
+		unTurista.setLocalizacionLongitud(valorLongitud);
+		unTurista.setTipo("consultor");
+		turistaDAO.save(unTurista);
+		 
 	}
 
 	@Override

@@ -37,9 +37,11 @@ public class ValoracionController {
 		Turistas_PoIs valoracionNueva = valoracionService.crearValoracion();
 		try {
 			valoracionNueva.setPoI(poiService.encontrarUnPoI(codigo));
+			
 			System.out.println(valoracionNueva.getPoI().getCodigoPoI());
 			model.addAttribute("unaValoracion", valoracionNueva);
-		    model.addAttribute("valoraciones", valoracionService.obtenerTodasValoraciones());
+		    model.addAttribute("valoraciones", valoracionService.obtenerTodasValoracionesUnPois(valoracionNueva.getPoI()));
+		    System.out.println();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,5 +158,5 @@ public class ValoracionController {
 		}			
 		return "redirect:/valoracion/mostrar";
 	}
-
+	
 }
