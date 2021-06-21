@@ -19,7 +19,7 @@ public class Turista {
 //	@GenericGenerator(name="native", strategy="native")
 	@Column
 	private Integer id;
-	@Column
+	@Column(unique = true)
 	private String email;
 	@Column
 	private String password;

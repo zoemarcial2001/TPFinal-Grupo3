@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloValoracion.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title> Valoraciones y Comentarios</title>
+</head>
+<body>
+<div th:insert="layouts/headerRoot :: header"></div>
+<div class="album py-5">
+	<div class="container-xl">
+		<div class="row row-cols-1 row-cols-sm-2 g-3">
+    		<div th:each="v : ${valoraciones}">
+   				 <div class="col lg-5 mb-5">
+            		<div class="card-body border border-dark">
+             			 <p class="card-text" th:text="${v.poI.nombrePoI}"></p>
+            			 <p class="card-text" th:text="${v.poI.codigoPoI}"> </p>
+          			</div>
+          			
+    
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
