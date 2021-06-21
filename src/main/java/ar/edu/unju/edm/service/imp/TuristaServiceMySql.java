@@ -87,7 +87,7 @@ public class TuristaServiceMySql implements ITuristaService{
 	@Override
 	public Turista buscarUnTurista(String email) throws Exception {
 		// TODO Auto-generated method stub
-		return turistaDAO.findByEmail(email).orElseThrow(() ->new Exception("el turista no existe"));
+		return turistaDAO.findByEmail(email).orElseThrow(()->new Exception("el turista no existe"));
 	}
 
 	@Override
@@ -95,6 +95,22 @@ public class TuristaServiceMySql implements ITuristaService{
 		// TODO Auto-generated method stub
 		return (List<Turista>) turistaDAO.conMasPuntos();
 	}
+	
 
+	// para usuario root
+	
+	@Override
+	public void rootGuardarTurista(Turista unTurista) {
+		String pw = unTurista.getPassword();
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		unTurista.setPassword(bCryptPasswordEncoder.encode(pw));
+		
+		int valorLatitud = (int) (Math.random()*30);
+		int valorLongitud = (int) (Math.random()*30);
+		unTurista.setLocalizacionLatitud(valorLatitud);
+		unTurista.setLocalizacionLongitud(valorLongitud);
+		turistaDAO.save(unTurista);
+	}
+	
 	
 }

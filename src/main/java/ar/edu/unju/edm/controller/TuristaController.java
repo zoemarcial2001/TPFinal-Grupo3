@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.service.ITuristaService;
-
 @Controller
 public class TuristaController {
 	
@@ -33,21 +31,7 @@ public class TuristaController {
 	
 	@PostMapping("/registrar/guardar")
 	public String guardarNuevoTurista1(@ModelAttribute("unTurista") Turista nuevoTurista, Model model) {
-		Turista turistaEncontrado;
-		try {
-			turistaEncontrado = turistaService.buscarUnTurista(nuevoTurista.getEmail());
-			if(turistaEncontrado == null) {
-				turistaService.guardarTurista(nuevoTurista);
-			}
-			else {
-				
-			}
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		turistaService.guardarTurista(nuevoTurista);
 		return "redirect:/login";
 	}
 	
@@ -62,37 +46,50 @@ public class TuristaController {
 		return "redirect:/turista/mostrar";
 	}
 
-  
+	
+
 	@GetMapping("/turista/perfil")
 	public String verTurista1(Model model)throws Exception {
+		
 		Authentication auth = SecurityContextHolder
 	            .getContext()
 	            .getAuthentication();
 	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
-	    
+
 		Turista logueado = turistaService.buscarUnTurista(userDetail.getUsername());
 		model.addAttribute("perfil", logueado);
-		
+
 	    return ("perfil");
 	}
- // System.out.println(logueado + "jsdhg");
-	
+
 	@PostMapping("/turista/perfilGuardar")
-	public String guardarPerfil( @ModelAttribute("unTurista") Turista turistaModificado, Model model) {		
-			try {
-				turistaService.modificarTurista(turistaModificado);
-				model.addAttribute("unTurista", new Turista());
-			} catch (Exception e) {
-				model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-				model.addAttribute("unTurista", turistaModificado);			
-				model.addAttribute("turistas", turistaService.obtenerTodosTuristas());			
-			}
-			return("redirect:/turista/perfil");
+	public String guardarPerfil( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {		
+		turistaService.guardarTurista(nuevoTurista);
+		System.out.println(turistaService.obtenerTodosTuristas());
+		model.addAttribute("perfil", turistaService.obtenerTodosTuristas().size());
+		return "redirect:/turista/perfil";
+	}
+
+/*	
+	@PostMapping("/turista/modificar")
+	public String modificarTurista(@ModelAttribute("unTurista") Turista turistaModificado, Model model) {
+		try {
+			turistaService.modificarTurista(turistaModificado);
+			model.addAttribute("unTurista", new Turista());
+			model.addAttribute("editMode", "false");
+		} catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unTurista", turistaModificado);			
+			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());			
+			model.addAttribute("editMode", "true");
 		}
-	
-	
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		return("turista1");
+	}
+*/	
+
 	//metodos para usuario root
-	
+
 	@GetMapping("/turista/mostrar")
 	public String cargarTurista(Model model) {
 		model.addAttribute("unTurista", turistaService.crearTurista());
@@ -101,20 +98,10 @@ public class TuristaController {
 	}
 	
 	@PostMapping("/turista/guardar")
-	public String guardarNuevoTurista( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {	
-		
-		Turista turistaEncontrado;
-		try {
-			turistaEncontrado = turistaService.buscarUnTurista(nuevoTurista.getEmail());
-			if(turistaEncontrado == null) {
-				turistaService.guardarTurista(nuevoTurista);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+	public String guardarNuevoTurista( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {		
+		turistaService.guardarTurista(nuevoTurista);
+		System.out.println(turistaService.obtenerTodosTuristas());
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas().size());
 		return "redirect:/turista/mostrar";
 	}
 	
@@ -144,27 +131,12 @@ public class TuristaController {
 		} catch (Exception e) {
 			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
 			model.addAttribute("unTurista", turistaModificado);			
-			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());	
+			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());			
 			model.addAttribute("editMode", "true");
 		}
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("turista1");
 	}
 	
-	@GetMapping("/turista/eliminarTurista/{id}")
-	public String eliminarTurista(Model model, @PathVariable(name="id") int id) {		
-		try {			
-			turistaService.eliminarTurista(id);	
-		}
-		catch(Exception e){
-			model.addAttribute("listErrorMessage",e.getMessage());
-		}			
-		return "redirect:/turista/mostrar";
-	}
 	
-	@GetMapping ("/cancelar/carga")
-	public String cancelar() {
-		return "redirect:/turista/mostrar";
-	}
-
 }
