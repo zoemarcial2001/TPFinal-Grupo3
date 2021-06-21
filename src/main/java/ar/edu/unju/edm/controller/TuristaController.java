@@ -1,4 +1,4 @@
-package ar.edu.unju.edm.controller;
+package ar.edu.unju.edm.controller
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -137,6 +137,5 @@ public class TuristaController {
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("turista1");
 	}
-	
 	
 }

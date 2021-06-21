@@ -159,13 +159,4 @@ public class ValoracionController {
 		return "redirect:/valoracion/mostrar";
 	}
 	
-	//usuario root
-	
-	@GetMapping("/valoraciones/ver")
-	public String mostrarValoraciones(Model model) {
-		model.addAttribute("valoraciones", valoracionService.obtenerTodasValoraciones()) ;
-		
-		return ("vervaloraciones");
-		
-   }
 }
