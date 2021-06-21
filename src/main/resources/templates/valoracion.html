@@ -83,29 +83,55 @@
     --><input id="radio5" type="radio" name="estrellas" value="1" th:field="*{valoracion}"><!--
     --><label for="radio5">★</label>
   </p>
-  
-  <div class="form-group row">
-			<label for="comentario" class="col-sm-2 col-form-label">Comentario</label>
-			<div class="col-sm-10">
-				<input type="text" id="comentario" th:field="*{comentario}" class="form-control">
+  	<h2 class="text-center">Deja una puntuacion y comenta</h2>
+  <div class="row mt-5">
+  <div class="col-md-12">
+			
+			<div class="p-2">
+						<div class="d-flex flex-row align-items-start">
+							<input type="hidden" id="stars" value="0" name="valoracion">
+							<img class="rounded-circle" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="50">
+							<textarea placeholder="Escribe un comentario" id="caja-comentario" class="form-control ml-1 shadow-none" name="comentario"></textarea>
+						</div>
+						<div class="mt-4 text-right">
+							<button class="btn btn-primary btn-sm" type="submit">Publicar</button>
+							<button type="button" id="boton-cancelar" class="btn btn-danger btn-sm ml-1">Cancelar</button>
+						</div>
 			</div>
-		</div>
-		
-		<div>
-			<div class="form-group row">
-				<div class="col-sm-6">
-				        <input type="submit" class="btn btn-success "  th:value="${editMode}?'Modificar Valoracion':'Agregar Valoracion'">
-				</div>
-				<!--
-				<div class="col-sm-6">				
-				<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
-				</div>
-				-->
-			</div>
-	   </div>
+  </div>
+  </div>
+				
 </form>
+</div>
+<h2 class="text-center">Comentarios</h2>
+<div th:each="v : ${valoraciones}">
+			<hr class="my-3">
+			
+
+			<div class="bg-white p-2 mb-2">
+				<div class="d-flex flex-row">
+					<img class="rounded-circle m-3" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="90">
+					<div class="d-flex flex-column justify-content-start">
+						<p class="d-block font-weight-bold name"></p>
+						<p class="date text-black-50" th:text="${v.turista.nombre  + '  ' + v.turista.apellido}"></p>
+						<p class="date text-black-50" th:text="${v.turista.email}"></p>
+						<p class="date text-black-50" th:text="${'Valoracion: ' + v.valoracion}"></p>
+					</div>
+				</div>
+				<div class="mt-2">
+					<p class="comment-text" th:text="${v.comentario}"></p>
+				</div>
+			<!--	<div>
+					<a class="btn btn-sm btn-primary">Modificar</a>
+					<a href="/userpoi/eliminar/1" class="btn btn-sm btn-danger">Eliminar</a>   
+				</div>     -->
+				<hr>
+			</div>
+			
 
 </div>
+
+
 
  <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>

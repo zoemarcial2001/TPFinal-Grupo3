@@ -2,7 +2,9 @@ package ar.edu.unju.edm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,21 +51,32 @@ public class TuristaController {
 		return "redirect:/login";
 	}
 	
-	
-	
+	@GetMapping("/turista/eliminarTurista/{id}")
+	public String eliminarTurista(Model model, @PathVariable(name="id") int id) {		
+		try {			
+			turistaService.eliminarTurista(id);	
+		}
+		catch(Exception e){
+			model.addAttribute("listErrorMessage",e.getMessage());
+		}			
+		return "redirect:/turista/mostrar";
+	}
+
+  
 	@GetMapping("/turista/perfil")
 	public String verTurista1(Model model)throws Exception {
-		Turista logueado = turistaService.encontrarUnTurista(SecurityContextHolder.getInitializeCount());
-	if (logueado == null) {
-		return ("redirect:/abc");
-	}else {
+		Authentication auth = SecurityContextHolder
+	            .getContext()
+	            .getAuthentication();
+	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+	    
+		Turista logueado = turistaService.buscarUnTurista(userDetail.getUsername());
 		model.addAttribute("perfil", logueado);
 		
 	    return ("perfil");
 	}
  // System.out.println(logueado + "jsdhg");
-	}
-		
+	
 	@PostMapping("/turista/perfilGuardar")
 	public String guardarPerfil( @ModelAttribute("unTurista") Turista turistaModificado, Model model) {		
 			try {
@@ -76,8 +89,6 @@ public class TuristaController {
 			}
 			return("redirect:/turista/perfil");
 		}
-	
-	
 	
 	
 	//metodos para usuario root
