@@ -22,11 +22,8 @@ label {
 }
 
 .clasificacion {
-  width: 600px;
   direction: rtl;
   unicode-bidi: bidi-override;
-  font-size: 30px;
-  
 }
 
 label:hover,

@@ -80,8 +80,6 @@ public class TuristaServiceMySql implements ITuristaService{
 		hacia.setNombre(desde.getNombre());
 		hacia.setApellido(desde.getApellido());
 		hacia.setPais(desde.getPais());
-		hacia.setPuntos(desde.getPuntos());
-		hacia.setTipo(desde.getTipo());
 	}
 
 	@Override
