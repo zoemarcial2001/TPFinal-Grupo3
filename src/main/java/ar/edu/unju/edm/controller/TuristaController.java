@@ -1,4 +1,4 @@
-package ar.edu.unju.edm.controller
+package ar.edu.unju.edm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -87,6 +87,52 @@ public class TuristaController {
 		return("turista1");
 	}
 */	
+	
+	@GetMapping("/cupones/mostrar")
+    public String mostrarCupones( Model model) {
+		
+		Authentication auth = SecurityContextHolder
+	            .getContext()
+	            .getAuthentication();
+	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+	    
+	    try {
+			Turista turista = turistaService.buscarUnTurista(userDetail.getUsername());
+			model.addAttribute("turista", turista );
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return("canjear");
+		
+	}
+	
+	@PostMapping("/cupones/canjear")
+	 public String canjearCupon(Model model) {
+		 
+		Authentication auth = SecurityContextHolder
+	            .getContext()
+	            .getAuthentication();
+	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+	    
+		try {
+			    Turista turistaEnc = turistaService.buscarUnTurista(userDetail.getUsername());
+			    if(turistaEnc != null) {
+			    	turistaEnc.setPuntos(turistaEnc.getPuntos() - 10);
+			    	System.out.println(turistaEnc.getPuntos());
+			    	
+			    }
+				
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/cupones/mostrar";
+		 
+	 }
 
 	//metodos para usuario root
 
