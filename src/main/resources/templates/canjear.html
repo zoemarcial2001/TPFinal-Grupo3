@@ -14,16 +14,17 @@
 <div th:insert="layouts/header :: header"></div>
 
 <div class="container">
-	<div th:each="t : ${turista}">
+	
+	<form th:object="${turista}" th:action="@{/cupones/canjear}" method="post">	
+	
 	<div class="puntos">
 	<h1>Mis Puntos:</h1>
-	<h1 th:text="${t.puntos}"></h1>
-	</div>
-	<a th:action="${t.puntos} - 1">hola</a>
+	<h1 th:text="*{puntos}"></h1>
 	</div>
 	
+	<input type="submit" class="btn btn-primary btn-block" value="Canjear">
 	
-
+	</form>
 </div>
 
         <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
