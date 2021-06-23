@@ -93,7 +93,14 @@ public class TuristaServiceMySql implements ITuristaService{
 		// TODO Auto-generated method stub
 		return (List<Turista>) turistaDAO.conMasPuntos();
 	}
-	
+/*	
+	@Override
+	public void guardarPuntos(Turista unTurista) {
+		unTurista.setPuntos(puntos);
+		turistaDAO.save(unTurista.getPuntos());
+	}
+*/
+
 
 	// para usuario root
 	

@@ -19,4 +19,5 @@ public interface ITuristaService {
 	public Turista buscarUnTurista(String email)throws Exception;
 	public List<Turista> conMasPuntos();
 	void rootGuardarTurista(Turista unTurista);
+//	void guardarPuntos(Turista unTurista);
 }

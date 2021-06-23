@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,10 @@ public class Turista {
 //	@GenericGenerator(name="native", strategy="native")
 	@Column
 	private Integer id;
+	@NotEmpty (message = "debe ingresar un correo")
 	@Column
 	private String email;
+	@NotEmpty (message = "debe ingresar una contraseña")
 	@Column
 	private String password;
 	@Column
