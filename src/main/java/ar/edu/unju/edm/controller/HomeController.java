@@ -34,23 +34,23 @@ public class HomeController {
 	
 		List<PoI> todosPoIs = poIService.obtenerTodosPoIs();
 		
-	if (todosPoIs.size() >= 3 ) {
+	if (todosPoIs.size() != 0 ) {
 		List<PoI> mas = new ArrayList<>();
-		PoI prueba = poIService.masValorados().get(0);
-		PoI prueba1 = poIService.masValorados().get(1);
-		PoI prueba2 = poIService.masValorados().get(2);
 		
-		if(prueba != null){
-			mas.add(prueba);
-			if(prueba1 != null) {
-				mas.add(prueba1);
-				if(prueba2 != null) {
-					mas.add(prueba2);
-				}
+		boolean parar=true;
+		
+		for(int i=0; i>=2 || parar==false ; i++) {
+			if(poIService.masValorados().get(i) != null) {
+				mas.add(poIService.masValorados().get(i));
 			}
+			else {
+				parar=false;
+			}
+		}
 			model.addAttribute("poIs", mas);
 	     }
-		else {		
+		else {	
+			
 			model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		}
 		
@@ -73,8 +73,6 @@ public class HomeController {
 				model.addAttribute("turista", turistaService.obtenerTodosTuristas());
 		}
 		
-	 
-	}
 	 return "inicio2";
 	}
 }	
