@@ -10,13 +10,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import ar.edu.unju.edm.model.PoI;
+import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.service.IPoIService;
+import ar.edu.unju.edm.service.ITuristaService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	IPoIService poIService;
+	
+	@Autowired
+	ITuristaService turistaService;
 	
 	
 	@GetMapping({"/","/login","/home", "/index","/login?error=true"})
@@ -49,8 +54,22 @@ public class HomeController {
 		}
 		
 		
+		
+		List<Turista> masPuntos = new ArrayList<>();
+		Turista pruebaT = turistaService.conMasPuntos().get(0);
+		Turista pruebaT1 = turistaService.conMasPuntos().get(1);
+		Turista pruebaT2 = turistaService.conMasPuntos().get(2);
+		
+		masPuntos.add(pruebaT);
+		masPuntos.add(pruebaT1);
+		masPuntos.add(pruebaT2);
+		
+		model.addAttribute("turista", masPuntos);
+		
 	return "inicio2";
 	}
+	
+	
 	
 }
 

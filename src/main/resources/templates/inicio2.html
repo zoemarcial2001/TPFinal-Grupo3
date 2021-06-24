@@ -49,15 +49,25 @@
           </div>
 		</div>
 		
-		</div>
 		
 		<div class="turistas">
-			<h2>Usuarios con mas puntos</h2>
-			<a href="#sec1" class=""> boton</a>
+		 <div class="container">
+		<h2>Usuarios con mas puntos</h2>
+		<div class="album py-5">
+		<div class="row row-cols-1 row-cols-sm-3 g-3">
+		 <div th:each="t : ${turista}">
+		 <div class="col lg-4 mb-4">
+		 <div class="conte">
+		    <img class="rounded-circle" src="https://cdn.xxl.thumbs.canstockphoto.es/-imagen_csp70544377.jpg" width="250">
+			<h3  th:text = "${t.email}"></h3>
+			<h3  th:text = "${t.puntos}"></h3>
+		</div>	
 		</div>
-		
 		</div>
-		
+		</div>
+		</div>
+		</div>
+		</div>
 	</section>
 	
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>

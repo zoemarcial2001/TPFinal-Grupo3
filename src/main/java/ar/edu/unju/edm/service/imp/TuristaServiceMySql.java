@@ -33,6 +33,11 @@ public class TuristaServiceMySql implements ITuristaService{
 		unTurista.setLocalizacionLatitud(valorLatitud);
 		unTurista.setLocalizacionLongitud(valorLongitud);
 		unTurista.setTipo("consultor");
+		
+		//primera letra de cada palabra en mayuscula
+		unTurista.setNombre(PrimeraMayuscula(unTurista.getNombre()));
+		unTurista.setApellido(PrimeraMayuscula(unTurista.getApellido()));
+		
 		turistaDAO.save(unTurista);
 		 
 	}
@@ -114,8 +119,25 @@ public class TuristaServiceMySql implements ITuristaService{
 		int valorLongitud = (int) (Math.random()*30);
 		unTurista.setLocalizacionLatitud(valorLatitud);
 		unTurista.setLocalizacionLongitud(valorLongitud);
+		
+		unTurista.setNombre(PrimeraMayuscula(unTurista.getNombre()));
+		unTurista.setApellido(PrimeraMayuscula(unTurista.getApellido()));
+		
 		turistaDAO.save(unTurista);
 	}
 	
+public String PrimeraMayuscula (String cadena) {
+		
+		char[] cadena1 = cadena.toCharArray();
+		cadena1[0] = Character.toUpperCase(cadena1[0]);
+		
+		for (int i = 0; i < cadena.length()- 2; i++) {
+			if (cadena1[i] == ' ' || cadena1[i] == '.' || cadena1[i] == ',') {
+				cadena1[i + 1] = Character.toUpperCase(cadena1[i + 1]);
+			}
+		}
+		
+		return new String(cadena1);
+	}
 	
 }
