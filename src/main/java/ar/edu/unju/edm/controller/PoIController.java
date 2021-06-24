@@ -127,10 +127,12 @@ public class PoIController{
 		try {
 			PoI poIEncontrado = poIService.encontrarUnPoI(codigo);
 			model.addAttribute("unPoI", poIEncontrado);	
+			model.addAttribute("editMode", "true");
 		}
 		catch (Exception e) {
 			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
 			model.addAttribute("unPoI", poIService.crearPoI());
+			model.addAttribute("editMode", "false");
 		}
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		return("editarpoi");
@@ -164,14 +166,15 @@ public class PoIController{
 	}
 	
 	@GetMapping("/poI/eliminarPoI/{codigo}")
-	public String eliminarPoI(Model model, @PathVariable(name="codigo") int codigo) {		
-		try {			
-			poIService.eliminarPoI(codigo);			
-		}
-		catch(Exception e){
-			model.addAttribute("listErrorMessage",e.getMessage());
-		}			
-		return "redirect:/poI/mostrar/mispois";
+	public String eliminarPoI(Model model, @PathVariable(name="codigo") int codigo) throws Exception {		
+		
+			try {		
+				poIService.eliminarPoI(codigo);			
+			}
+			catch(Exception e){
+				model.addAttribute("listErrorMessage",e.getMessage());
+			}		
+			return "redirect:/poI/mostrar/mispois";	
 	}
 	
 	@GetMapping("/poI/mostrar" )
@@ -217,6 +220,29 @@ public class PoIController{
 	@GetMapping ("/cancelar")
 	public String cancelar() {
 		return "redirect:/poI/mostrar";
+	}
+	
+	//metodos para usuario root
+	
+	@GetMapping("/poI/cargarRoot")
+	public String cargarPoIRoot(Model model) {
+		model.addAttribute("unPoI", poIService.crearPoI());
+		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
+		return("poiroot");
+	}
+	
+	@GetMapping("/poI/eliminarRoot/{codigo}")
+	public String eliminarPoIRoot(Model model, @PathVariable(name="codigo") int codigo) {		
+		
+		try {		
+				poIService.eliminarPoI(codigo);			
+			}
+			catch(Exception e){
+				model.addAttribute("listErrorMessage",e.getMessage());
+			}
+		
+		return "redirect:/poI/cargarRoot";
+		
 	}
 
 }
