@@ -32,8 +32,9 @@ public class HomeController {
 	@GetMapping({"/inicio"})
 	public String cargarInicio(Model model){	
 	
-	
+		List<PoI> todosPoIs = poIService.obtenerTodosPoIs();
 		
+	if (todosPoIs.size() >= 3 ) {
 		List<PoI> mas = new ArrayList<>();
 		PoI prueba = poIService.masValorados().get(0);
 		PoI prueba1 = poIService.masValorados().get(1);
@@ -48,28 +49,35 @@ public class HomeController {
 				}
 			}
 			model.addAttribute("poIs", mas);
-		}
+	     }
 		else {		
 			model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		}
 		
 		
+		 List<Turista> todosTuristas = turistaService.obtenerTodosTuristas();
 		
-		List<Turista> masPuntos = new ArrayList<>();
-		Turista pruebaT = turistaService.conMasPuntos().get(0);
-		Turista pruebaT1 = turistaService.conMasPuntos().get(1);
-		Turista pruebaT2 = turistaService.conMasPuntos().get(2);
+		 if (todosTuristas.size() >= 3) {
+			 List<Turista> masPuntos = new ArrayList<>();
+				Turista pruebaT = turistaService.conMasPuntos().get(0);
+				Turista pruebaT1 = turistaService.conMasPuntos().get(1);
+				Turista pruebaT2 = turistaService.conMasPuntos().get(2);
+				
+				masPuntos.add(pruebaT);
+				masPuntos.add(pruebaT1);
+				masPuntos.add(pruebaT2);
+				
+				model.addAttribute("turista", masPuntos);
+		}
+		 else {
+				model.addAttribute("turista", turistaService.obtenerTodosTuristas());
+		}
 		
-		masPuntos.add(pruebaT);
-		masPuntos.add(pruebaT1);
-		masPuntos.add(pruebaT2);
-		
-		model.addAttribute("turista", masPuntos);
-		
-	return "inicio2";
+	 
 	}
+	 return "inicio2";
+	}
+}	
 	
-	
-	
-}
+
 
