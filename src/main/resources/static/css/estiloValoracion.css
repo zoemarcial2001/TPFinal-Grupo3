@@ -24,6 +24,7 @@ label {
 .clasificacion {
   direction: rtl;
   unicode-bidi: bidi-override;
+  font-size: 30px;
 }
 
 label:hover,
