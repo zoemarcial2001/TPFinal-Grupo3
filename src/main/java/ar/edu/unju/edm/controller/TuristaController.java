@@ -35,7 +35,7 @@ public class TuristaController {
 	}
 	
 	@PostMapping("/registrar/guardar")
-	public String guardarNuevoTurista1(@Valid @ModelAttribute("unTurista") Turista nuevoTurista,BindingResult resultado,  Model model) {
+	public String guardarNuevoTurista1(@Valid @ModelAttribute("unTurista") Turista nuevoTurista,BindingResult resultado,  Model model){
       if(resultado.hasErrors()) {
         model.addAttribute("unTurista", nuevoTurista);
          return "registroturista";
@@ -158,8 +158,6 @@ public class TuristaController {
 	@PostMapping("/turista/guardar")
 	public String guardarNuevoTurista( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {		
 		turistaService.rootGuardarTurista(nuevoTurista);
-		System.out.println(turistaService.obtenerTodosTuristas());
-		model.addAttribute("turistas", turistaService.obtenerTodosTuristas().size());
 		return "redirect:/turista/mostrar";
 	}
 	

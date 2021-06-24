@@ -113,6 +113,7 @@
 				      <th>Id</th>
 				      <th>Nombre</th>
 				      <th>Apellido</th>
+				      <th>Puntos</th>
 				      <th>Pais</th>
 				      <th>Email</th>
 				      <th>Contraseña</th>  
@@ -127,9 +128,6 @@
 						<td th:text="${tur.email}"></td>
 						<td th:text="${tur.password}"></td>
 						
-						
-					
-					
 					
 						<td><a href="#" th:href="@{'/turista/editar/'+${tur.id}}">
 									<i class="fa fa-edit"></i></a>		
