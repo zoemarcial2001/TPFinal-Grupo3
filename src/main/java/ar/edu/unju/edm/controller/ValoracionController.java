@@ -159,4 +159,25 @@ public class ValoracionController {
 		return "redirect:/valoracion/mostrar";
 	}
 	
+	
+	
+	
+	
+	@GetMapping("/valoracion/vistaRoot")
+	public String verValoraciones (Model model) {
+		model.addAttribute("valoracion", valoracionService.obtenerTodasValoraciones());
+		return ("valoracionesComentariosRoot");
+	}
+	
+	@GetMapping("/valoracion/eliminarValoracionRoot/{id}")
+	public String eliminarValoracionRoot(Model model, @PathVariable(name="id") int id) {		
+		try {	
+			valoracionService.eliminarValoracion(id);
+		}
+		catch(Exception e){
+			model.addAttribute("listErrorMessage",e.getMessage());
+		}			
+		return "redirect:/valoracion/vistaRoot";
+	}
+	
 }

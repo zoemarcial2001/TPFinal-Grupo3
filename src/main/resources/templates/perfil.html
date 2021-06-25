@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 
                               <div class="imagen">        
-                              <img class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px">          
+                              <img onerror="this.src='/img/perfil.png';" class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px">          
                               </div>          
                                     <h4 class="card-title mt-2" th:text="${t.nombre + '  ' + t.apellido}"></h4>
                                     <h6 class="card-subtitle mt-2" th:text="${'Puntos: ' + t.puntos}"></h6>
