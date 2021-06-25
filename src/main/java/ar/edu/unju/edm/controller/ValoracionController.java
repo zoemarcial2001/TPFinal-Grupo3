@@ -90,7 +90,7 @@ public class ValoracionController {
 			
 			e.printStackTrace();
 		}
-		return "redirect:/poI/mostrar";
+		return "redirect:/valoracion/mostrar/{codigo}";
 	}
 	
 /*	

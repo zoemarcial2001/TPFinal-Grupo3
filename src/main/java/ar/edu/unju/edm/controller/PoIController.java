@@ -46,7 +46,6 @@ public class PoIController{
 	
 	@PostMapping(value="/poI/guardar", consumes = "multipart/form-data")
 	public String guardarNuevoPoI(@Valid @ModelAttribute("unPoI") PoI nuevoPoI, BindingResult resultado, @RequestParam("foto") MultipartFile file, @RequestParam("file2") MultipartFile file2, @RequestParam("file3") MultipartFile file3,  Model model) throws IOException {
-		//Fotografia nuevaFotografia = new Fotografia();
 		
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoI", nuevoPoI);
@@ -141,17 +140,23 @@ public class PoIController{
 	@PostMapping( value="/poI/modificar", consumes = "multipart/form-data")
 	public String modificarPoI(@ModelAttribute("unPoI") PoI poIModificado, @RequestParam("foto") MultipartFile file, @RequestParam("file2") MultipartFile file2, @RequestParam("file3") MultipartFile file3, Model model) throws IOException{
 		try {
+			if (!file.isEmpty() ) {
+				byte[] content = file.getBytes();
+				String base64 = Base64.getEncoder().encodeToString(content);
+				 poIModificado.setImagen(base64);
+			}
 			
-			byte[] content = file.getBytes();
-			byte[] content2 = file2.getBytes();
-			byte[] content3 = file3.getBytes();
-			String base64 = Base64.getEncoder().encodeToString(content);
-			String base65 = Base64.getEncoder().encodeToString(content2);
-			String base66 = Base64.getEncoder().encodeToString(content3);
-			
-			    poIModificado.setImagen(base64);
+			if (!file2.isEmpty()) {
+				byte[] content2 = file2.getBytes();
+				String base65 = Base64.getEncoder().encodeToString(content2);
 				poIModificado.setImagen2(base65);
+			}
+			
+			if (!file3.isEmpty()) {
+				byte[] content3 = file3.getBytes();
+				String base66 = Base64.getEncoder().encodeToString(content3);
 				poIModificado.setImagen3(base66);
+			}
 			
 			poIService.modificarPoI(poIModificado);
 			

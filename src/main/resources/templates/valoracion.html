@@ -90,7 +90,6 @@
 			
 			<div class="p-2">
 						<div class="d-flex flex-row align-items-start">
-							<input type="hidden" id="stars" value="0" name="valoracion">
 							<img class="rounded-circle" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="50">
 							<textarea placeholder="Escribe un comentario" id="caja-comentario" class="form-control ml-1 shadow-none" name="comentario"></textarea>
 						</div>
@@ -105,30 +104,27 @@
 </form>
 </div>
 <h2 class="text-center">Comentarios</h2>
-<div th:each="v : ${valoraciones}">
-			<hr class="my-3">
-			
 
-			<div class="bg-white p-2 mb-2">
-				<div class="d-flex flex-row">
-					<img class="rounded-circle m-3" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="90">
-					<div class="d-flex flex-column justify-content-start">
-						<p class="d-block font-weight-bold name"></p>
-						<p class="date text-black-50" th:text="${v.turista.nombre  + '  ' + v.turista.apellido}"></p>
-						<p class="date text-black-50" th:text="${v.turista.email}"></p>
-						<p class="date text-black-50" th:text="${'Valoracion: ' + v.valoracion}"></p>
-					</div>
-				</div>
-				<div class="mt-2">
-					<p class="comment-text" th:text="${v.comentario}"></p>
-				</div>
-			<!--	<div>
-					<a class="btn btn-sm btn-primary">Modificar</a>
-					<a href="/userpoi/eliminar/1" class="btn btn-sm btn-danger">Eliminar</a>   
-				</div>     -->
-				<hr>
-			</div>
+		
 			
+<div class="container">
+<div class="album py-5">
+
+  <div class="row row-cols-1 row-cols-sm-3 g-3">
+  <div th:each="v : ${valoraciones}">
+      <div  class="col lg-4 mb-4">
+      <div class="caja border">
+        <img class="rounded-circle m-3" th:src="${'data:;base64,' + v.turista.fotoPerfil}" style="width:90px;height:90px">
+						<p class="d-block font-weight-bold name"></p>
+						<p class="date text-black-50" th:text="${v.turista.nombre+ '  ' +v.turista.apellido+ ' ' +v.turista.email}"></p>
+						<p class="date text-black-50" th:text="${'Valoracion: ' + v.valoracion}"></p>
+						<p class="comment-text" th:text="${v.comentario}"></p>
+      </div>
+      </div>
+  </div>
+
+</div>
+</div>		
 
 </div>
 

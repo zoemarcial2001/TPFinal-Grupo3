@@ -32,8 +32,8 @@
 		 <h2>Puntos de Interes Mas Populares</h2>
 		 
 		<div class="album py-5">
-		<div class="row row-cols-1 row-cols-sm-3 g-3">
-		<div th:each="p : ${poIs}">
+		<div th:if = "${poIs!=null}" class="row row-cols-1 row-cols-sm-3 g-3">
+		<div  th:each="p : ${poIs}">
 		<div class="col lg-4 mb-4">
 		<div class="contenedor">
 		<figure>
@@ -56,11 +56,12 @@
 		 <div class="container">
 		<h2>Usuarios con mas puntos</h2>
 		<div class="album py-5">
-		<div class="row row-cols-1 row-cols-sm-3 g-3">
-		 <div th:each="t : ${turista}">
-		 <div class="col lg-4 mb-4">
+		<div th:if = "${turista!=null}" class="row row-cols-1 row-cols-sm-3 g-3">
+		
+		 <div  th:each="t : ${turista}">
+		 <div  class="col lg-4 mb-4">
 		 <div class="conte">
-		    <img class="rounded-circle" src="https://cdn.xxl.thumbs.canstockphoto.es/-imagen_csp70544377.jpg" width="250">
+		    <img class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px"> 
 			<h3  th:text = "${t.email}"></h3>
 			<h3  th:text = "${t.puntos}"></h3>
 		</div>	
@@ -70,8 +71,11 @@
 		</div>
 		</div>
 		</div>
+		
+<div th:insert="layouts/footer :: footer"></div>	
 	</section>
-	
+
+
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
 		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>

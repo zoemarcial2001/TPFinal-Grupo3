@@ -1,5 +1,8 @@
 package ar.edu.unju.edm.controller;
 
+import java.io.IOException;
+import java.util.Base64;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.service.ITuristaService;
 @Controller
@@ -72,11 +78,22 @@ public class TuristaController {
 	    return ("perfil");
 	}
 
-	@PostMapping("/turista/perfilGuardar")
-	public String guardarPerfil( @ModelAttribute("unTurista") Turista nuevoTurista, Model model) {		
-		turistaService.guardarTurista(nuevoTurista);
-		System.out.println(turistaService.obtenerTodosTuristas());
-		model.addAttribute("perfil", turistaService.obtenerTodosTuristas().size());
+	@PostMapping(value="/turista/perfilGuardar",consumes = "multipart/form-data")
+	public String guardarPerfil( @ModelAttribute("perfil") Turista turistaModificado,@RequestParam("foto") MultipartFile file, Model model)throws IOException {		
+		
+		try {
+			if (!file.isEmpty() ) {
+				byte[] content = file.getBytes();
+				String base64 = Base64.getEncoder().encodeToString(content);
+				 turistaModificado.setFotoPerfil(base64);
+			}
+			turistaService.modificarTurista(turistaModificado);
+			model.addAttribute("perfil", new Turista());
+		} catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("perfil", turistaModificado);	
+		}
+		
 		return "redirect:/turista/perfil";
 	}
 
@@ -96,6 +113,11 @@ public class TuristaController {
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("turista1");
 	}
+	
+	
+	turistaService.guardarTurista(nuevoTurista);
+		System.out.println(turistaService.obtenerTodosTuristas());
+		model.addAttribute("perfil", turistaService.obtenerTodosTuristas().size());
 */	
 	
 	@GetMapping("/cupones/mostrar")

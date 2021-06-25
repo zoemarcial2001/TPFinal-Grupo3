@@ -12,7 +12,7 @@
 </head>
 <body>
 <div th:insert="layouts/header :: header"></div>
-  <form th:object="${perfil}"  th:action="@{/turista/perfilGuardar}" method="post">
+  <form th:object="${perfil}"  th:action="@{/turista/perfilGuardar}" method="post" enctype="multipart/form-data">
   
 <input type="hidden" name="id" th:field="*{id}" th:value="id">
   
@@ -30,14 +30,14 @@
                <div class="card">
                             <div class="card-body">
                                 
-                                        
-                              <img class="rounded-circle m-1" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="90">          
-                                        
-                                    <h4 class="card-title mt-2" th:text="${t.apellido + '  ' + t.nombre}"></h4>
+                              <div class="imagen">        
+                              <img class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px">          
+                              </div>          
+                                    <h4 class="card-title mt-2" th:text="${t.nombre + '  ' + t.apellido}"></h4>
                                     <h6 class="card-subtitle mt-2" th:text="${'Puntos: ' + t.puntos}"></h6>
                                     <h6 class="card-subtitle mt-2" th:text="${'Email: ' + t.email}"></h6>
                                     <h6 class="card-subtitle mt-2" th:text="${'Pais: ' + t.pais}"></h6>
-                                    
+                                   
                                
                         </div>
                    </div>
@@ -113,6 +113,12 @@
                              
                            </div>
                          </div>
+                         
+                <div class="form-group">
+			       <label for="file" class="col-sm-4 col-form-label" > Subir foto de Perfil </label>
+				   <input type="file" name="foto" class="form-control-file" id="foto" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+						 
+	            </div>
                          
                          
                          <div class ="form-group">
