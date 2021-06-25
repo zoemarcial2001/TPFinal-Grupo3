@@ -65,9 +65,8 @@ public class TuristaServiceMySql implements ITuristaService{
 
 	@Override
 	public void modificarTurista(Turista turistaModificado) throws Exception {
-	
 		Turista turistaAModificar = turistaDAO.findById(turistaModificado.getId()).orElseThrow(()->new Exception("El turista no fue encontrado"));
-		cambiarTurista(turistaModificado, turistaAModificar);
+	    cambiarTurista(turistaModificado, turistaAModificar);
 		turistaDAO.save(turistaAModificar);
 		
 	}
@@ -85,6 +84,19 @@ public class TuristaServiceMySql implements ITuristaService{
 		hacia.setNombre(desde.getNombre());
 		hacia.setApellido(desde.getApellido());
 		hacia.setPais(desde.getPais());
+		
+		if (!desde.getPassword().isEmpty()) {
+			
+			String pw = desde.getPassword();
+			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+			desde.setPassword(bCryptPasswordEncoder.encode(pw));
+			
+			hacia.setPassword(desde.getPassword());
+		}
+		if (desde.getFotoPerfil()!= null) {
+			hacia.setFotoPerfil(desde.getFotoPerfil());
+		}
+		
 	}
 
 	@Override
@@ -98,13 +110,6 @@ public class TuristaServiceMySql implements ITuristaService{
 		// TODO Auto-generated method stub
 		return (List<Turista>) turistaDAO.conMasPuntos();
 	}
-/*	
-	@Override
-	public void guardarPuntos(Turista unTurista) {
-		unTurista.setPuntos(puntos);
-		turistaDAO.save(unTurista.getPuntos());
-	}
-*/
 
 
 	// para usuario root

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -40,6 +41,9 @@ public class Turista {
 	private int puntos;
 	@Column
 	private String tipo;
+	@Lob
+	@Column(name = "fotoPerfil", columnDefinition = "LONGBLOB")
+	private String fotoPerfil;
 	@Column
 	private Boolean active=true;
 	
@@ -134,6 +138,15 @@ public class Turista {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+
+	public String getFotoPerfil() {
+		return fotoPerfil;
+	}
+
+	public void setFotoPerfil(String fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
+	}
+	
 	
 	
 
