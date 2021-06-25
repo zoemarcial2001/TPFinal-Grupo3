@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title>Valoraciones y Comentarios</title>
+</head>
+<body>
+<div >
+<div th:insert="layouts/headerRoot :: header"></div>
+
+<h3>Valoraciones y comentarios</h3><br>
+   <div>
+	         <table class="table">
+	         <thead class="tables">
+				    <tr>
+				      <th>id</th>
+				      <th>PoI</th>
+				      <th>Turista</th>
+				      <th>Comentario</th>
+				      <th>Valoracion</th>
+				      <th>Fecha Comentario</th>
+				    </tr>
+			 </thead>
+					<tr th:each="v : ${valoracion}">
+						<td th:text="${v.idTuristas_PoIs}"></td>
+						<td th:text="${v.poI.nombrePoI}"></td>
+						<td th:text="${v.turista.email}"></td>
+						<td th:text="${v.comentario}"></td>
+						<td th:text="${v.valoracion}"></td>
+						<td th:text="${v.fechaComentario}"></td>
+						
+						
+						<td><a href="#" th:href="@{'/valoracion/editar/'+${v.idTuristas_PoIs}}">
+									<i class="fa fa-edit"></i></a>		
+						<a href="#" th:onclick="'javascript:confirmarEliminar(\''+${v.idTuristas_PoIs}+'\');'">
+									<i class="fa fa-trash-alt"></i></a>			
+					</tr>
+				</table>
+				</div>
+				<!--Modal Eliminar--> 
+							<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="eliminarModalTitulo">Eliminar</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body"><h6>Desea eliminar esta Valoracion?</h6></div>
+										<input type="hidden" id="identificadorValoracion" name="idTuristas_PoIs"/>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"	data-dismiss="modal">Close</button>
+										    <button type="button" class="btn btn-primary" th:onclick="eliminarPoI()">Eliminar Valoracion</button>
+										</div>
+									</div>
+								</div>
+							</div>
+	<script type="text/javascript">
+function confirmarEliminar(id){
+	$('#modalEliminar').modal('show');
+	$("#identificadorValoracion").val(id);
+}
+
+function eliminarPoI(){
+	var id = $("#identificadorValoracion").val();
+    window.location = "eliminarValoracion/"+id;
+}
+</script>
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>

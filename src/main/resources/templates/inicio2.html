@@ -37,7 +37,7 @@
 		<div class="col lg-4 mb-4">
 		<div class="contenedor">
 		<figure>
-             <img th:src="*{'data:;base64,'+p.imagen}" class="d-block w-100">
+             <img onerror="this.src='/img/jujuy.jpg';" th:src="*{'data:;base64,'+p.imagen}" class="d-block w-100">
              <div class="texto">
                    <a class="centrado" th:href="@{'/valoracion/mostrar/'+${p.codigoPoI}}" th:text="${p.nombrePoI}"></a>
              </div>
@@ -61,7 +61,8 @@
 		 <div  th:each="t : ${turista}">
 		 <div  class="col lg-4 mb-4">
 		 <div class="conte">
-		    <img class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px"> 
+		 
+		    <img onerror="this.src='/img/perfil.png';" class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px"> 
 			<h3  th:text = "${t.email}"></h3>
 			<h3  th:text = "${t.puntos}"></h3>
 		</div>	

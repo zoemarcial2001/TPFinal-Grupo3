@@ -3,7 +3,7 @@
 }
 
 
-.col:hover{
+.container.col:hover{
      transform: scale(1.1);
      box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
 } 
@@ -18,9 +18,10 @@
 
 .body-home {
   font-family: "Open Sans", sans-serif;
-  height: 100vh;
-  background: url(https://static.vecteezy.com/system/resources/previews/002/050/415/non_2x/wooden-table-with-natural-background-free-photo.jpg) 50% fixed;
+  background-position : center;
+  background-image: url(https://www.localguidesconnect.com/t5/image/serverpage/image-id/997444i7BA45E8EF8DD4ADD/image-size/large?v=v2&px=999);
   background-size: cover;
+ 
 }
 
 .body-inicio {
