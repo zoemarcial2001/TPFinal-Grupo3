@@ -2,12 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<link th:rel="stylesheet" type="text/css"
-	th:href="@{/css/estilozoe.css}" />
-<link th:rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-<link th:rel="stylesheet"
-	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilozoe.css}" />
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 
 <meta charset="UTF-8">
 <title>PoIs</title>
@@ -15,11 +12,14 @@
 <body>
 	<div th:insert="layouts/header :: header"></div>
 
+	<div class="container-xxl">
 	
-	<h5> Ordenar Por:</h5>
-	<a href="/poI/mostrar" class="dropdown-item">Todos</a>
+	           <h5> Ordenar Por:</h5>
+	            <a href="/poI/mostrar" class="dropdown-item">Todos</a>
 				<a href="/poI/mostrarValorados" class="dropdown-item">Mas
 					Valorados</a>
+	</div>
+	
 
 
 	<div class="album py-5">
@@ -29,7 +29,7 @@
 				<div th:each="p : ${poIs}">
 					<div class="col lg-4 mb-4">
 						<div class="card border border-dark">
-							<img th:src="*{'data:;base64,'+p.imagen}" class="card-img-top" style="width:200px;height:200px"
+							<img onerror="this.src='/img/default.png';" th:src="*{'data:;base64,'+p.imagen}" class="card-img-top" style="width:200px;height:200px"
 								alt=" ">
 							<!--  <img th:src="*{'data:;base64,'+p.fotografias.get('0').imagen}" class="card-img-top" alt="hola"> -->
 						</div>
@@ -51,6 +51,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<div th:insert="layouts/footer :: footer"></div>
 
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
