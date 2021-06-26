@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert here</title>
+
+         <link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloperfil.css}" />
+         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+         <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}" />
+
+<meta charset="UTF-8">
+<title>Inicio</title>
 </head>
+
 <body>
+<div th:insert="layouts/header :: header"></div>
+    <section class="seccion-perfil-usuario">
+    <div th:each="t : ${turista}">
+        <div class="perfil-usuario-header">
+            <div class="perfil-usuario-portada" >
+                    <img onerror="this.src='/img/perfil.png';" class="perfil-usuario-avatar" th:src="${'data:;base64,' + t.fotoPerfil}">
+            </div>
+        </div>
+        <div class="perfil-usuario-body">
+            <div class="perfil-usuario-bio">
+                <h3 class="titulo" th:text="${t.nombre + '  ' + t.apellido}"></h3>
+                <p class="texto"></p>
+            </div>
+            <div class="perfil-usuario-footer">
+                <ul class="lista-datos">
+                    <li><i class="icono fas fa-map-signs"></i> Email: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-phone-alt"></i> Telefono: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-briefcase"></i> Trabaja en: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-building"></i> Cargo: <a th:text="${t.email}"></a></li>
+                </ul>
+                <ul class="lista-datos">
+                    <li><i class="icono fas fa-map-marker-alt"></i> Ubicacion: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-calendar-alt"></i> Fecha nacimiento: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-user-check"></i> Registro: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-share-alt"></i> Redes sociales: <a th:text="${t.email}"></a></li>
+                </ul>
+            </div>
+            <div class="redes-sociales">
+                <a href="" class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>
+                <a href="" class="boton-redes twitter fab fa-twitter"><i class="icon-twitter"></i></a>
+                <a href="" class="boton-redes instagram fab fa-instagram"><i class="icon-instagram"></i></a>
+            </div>
+        </div>
+        </div>
+    </section>
 
 </body>
+
 </html>

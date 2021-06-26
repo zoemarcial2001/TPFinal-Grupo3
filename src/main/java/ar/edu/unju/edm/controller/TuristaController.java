@@ -96,6 +96,19 @@ public class TuristaController {
 		
 		return "redirect:/turista/perfil";
 	}
+	
+	
+	@GetMapping("/perfil/{id}")
+	public String mostrarperfil(Model model, @PathVariable(name="id") Integer id) {
+		try {
+			model.addAttribute("turista", turistaService.encontrarUnTurista(id)); 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ("perfilusuarios");
+	}
 
 	
 	@GetMapping("/cupones/mostrar")
