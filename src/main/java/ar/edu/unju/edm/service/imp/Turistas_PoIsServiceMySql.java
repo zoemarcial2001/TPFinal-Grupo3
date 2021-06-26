@@ -59,9 +59,9 @@ public class Turistas_PoIsServiceMySql implements ITurista_PoIsService{
 	}
 
 	@Override
-	public void eliminarValoracion(int idTuristas_PoIs) throws Exception {
+	public void eliminarValoracion(int id) throws Exception {
 		// TODO Auto-generated method stub
-		Turistas_PoIs valoracionEliminar = valoracionDAO.findById(idTuristas_PoIs).orElseThrow(()->new Exception("La valoracion no fue encontrada"));
+		Turistas_PoIs valoracionEliminar = valoracionDAO.findById(id).orElseThrow(()->new Exception("La valoracion no fue encontrada"));
 	    valoracionDAO.delete(valoracionEliminar);
 	}
 

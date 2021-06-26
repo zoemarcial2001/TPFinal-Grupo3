@@ -131,6 +131,37 @@ public class TuristaServiceMySql implements ITuristaService{
 		turistaDAO.save(unTurista);
 	}
 	
+	
+	@Override
+	public void modificarTuristaRoot(Turista turistaModificado) throws Exception {
+		Turista turistaAModificar = turistaDAO.findById(turistaModificado.getId()).orElseThrow(()->new Exception("El turista no fue encontrado"));
+	    cambiarTuristaRoot(turistaModificado, turistaAModificar);
+		turistaDAO.save(turistaAModificar);
+		
+	}
+	
+	private void cambiarTuristaRoot(Turista desde, Turista hacia) {
+		hacia.setNombre(desde.getNombre());
+		hacia.setApellido(desde.getApellido());
+		hacia.setPais(desde.getPais());
+		hacia.setPuntos(desde.getPuntos());
+		hacia.setTipo(desde.getTipo());
+		
+		if (!desde.getPassword().isEmpty()) {
+			
+			String pw = desde.getPassword();
+			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+			desde.setPassword(bCryptPasswordEncoder.encode(pw));
+			
+			hacia.setPassword(desde.getPassword());
+		}
+		if (desde.getFotoPerfil()!= null) {
+			hacia.setFotoPerfil(desde.getFotoPerfil());
+		}
+		
+	}
+	
+    
 public String PrimeraMayuscula (String cadena) {
 		
 		char[] cadena1 = cadena.toCharArray();

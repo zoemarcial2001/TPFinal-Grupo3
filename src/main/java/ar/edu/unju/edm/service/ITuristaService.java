@@ -20,4 +20,5 @@ public interface ITuristaService {
 	public List<Turista> conMasPuntos();
 	void rootGuardarTurista(Turista unTurista);
 //	void guardarPuntos(Turista unTurista);
+	void modificarTuristaRoot(Turista turistaModificado) throws Exception;
 }

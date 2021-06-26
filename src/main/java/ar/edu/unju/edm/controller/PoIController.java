@@ -94,20 +94,6 @@ public class PoIController{
 					nuevoPoI.setTuristaAutor(turistaEncontrado);
 					poIService.guardarPoI(nuevoPoI);
 					model.addAttribute("poIs", poIService.obtenerTodosPoIs());
-					/*
-					for(int i = 0; i < files.length; i++) {
-						MultipartFile file = files[i];
-						System.out.println(files.length);
-						byte[] content = file.getBytes();
-						nuevaFotografia = fotografiaService.crearFotografia();
-						String base64 = Base64.getEncoder().encodeToString(content);
-						nuevaFotografia.setImagen(base64);
-						nuevaFotografia.setPoI(nuevoPoI);
-						//fotografiaService.guardarFotografia(nuevaFotografia);
-						nuevoPoI.getFotografias().add(nuevaFotografia);
-					}
-					*/
-					
 				}
 				
 			} catch (Exception e) {
@@ -134,7 +120,7 @@ public class PoIController{
 			model.addAttribute("editMode", "false");
 		}
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
-		return("editarpoi");
+		return("agregarpoi");
 	}
 	
 	@PostMapping( value="/poI/modificar", consumes = "multipart/form-data")
@@ -186,8 +172,6 @@ public class PoIController{
 	public String mostrarPoI(Model model) {
 		//List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
 		//listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
-	
-		
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs()); 
 		return("pois");
 	}
