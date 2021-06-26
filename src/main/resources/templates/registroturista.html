@@ -22,26 +22,55 @@
       <div class="row mb-3"> 
        
        <div class="form-group col-12 col-md-12">
-        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+        <label for="nombre" class="form-label">Nombre</label>
              <input type="text" class="form-control" placeholder="Ingrese un nombre"  th:field="*{nombre}">
              
        </div>
        
        <div class="form-group col-12 col-md-12">
-        <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
+        <label for="apellido" class="form-label">Apellido</label>
              <input type="text" class="form-control" placeholder="Ingrese un apellido"  th:field="*{apellido}">
              
        </div>
        
        <div class="form-group col-12 col-md-12">
-        <label for="email" class="col-sm-2 col-form-label">Email</label>
+					<label class="form-label" >Pais</label>
+					<div class="dropdown bootstrap-select" style="width: 100%;">
+						<select class="form-control" data-width="100%" th:field="*{pais}">
+								<option value="">Seleccionar</option>
+								<option value="Argentina">Argentina</option>
+								<option value="Brasil">Brasil</option>
+					     		<option value="Alemania">Alemania</option>
+						</select>
+					</div>
+		</div>
+	<!--  		
+			
+	<div class="form-group col-12 col-md-12">
+	<label for="email" class="col-sm-2 col-form-label">Email</label>
+	 <div class="input-group" th:field="*{email}">	
+		<input type="text" class="form-control" placeholder="nombre@gmail.com" aria-label="Email" >
+       <select class="input-group-text dropdown" id="basic-addon2">
+								<option value="@gmail.com">@gmail.com</option>
+								<option value="@facebook.com">@facebook.com</option>
+						</select>
+						
+		<small class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+       </div>
+       
+       </div>
+      -->
+      
+       
+       <div class="form-group col-12 col-md-12">
+        <label for="email" class="form-label">Email</label>
              <input type="email" class="form-control" placeholder="nombre@gmail.com" aria-label="Email" th:field="*{email}">
              <small class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
        </div>
        
        
        <div class="form-group col-12 col-md-12">
-        <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+        <label for="password" class="form-label">Contraseña</label>
            <input type="password" class="form-control" placeholder="Ingrese una contraseña" aria-label="password" th:field="*{password}">
            <small class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
        </div>

@@ -63,7 +63,7 @@
 		 <div class="conte">
 		 
 		    <img onerror="this.src='/img/perfil.png';" class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px"> 
-			<h3  th:text = "${t.email}"></h3>
+			<h3><a th:text = "${t.email}" th:href="@{'/perfil/'+${t.id}}"></a></h3>
 			<h3  th:text = "${t.puntos}"></h3>
 		</div>	
 		</div>
