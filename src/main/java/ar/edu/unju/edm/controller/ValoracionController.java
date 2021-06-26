@@ -93,22 +93,6 @@ public class ValoracionController {
 		return "redirect:/valoracion/mostrar/{codigo}";
 	}
 	
-/*	
- 
-	@GetMapping("/producto/vender/{codigo}")	
-	public String realizarVenta(Model model, @PathVariable(name="codigo") Integer codigo) throws Exception {
-		Venta venta = new Venta();	
-		
-		try {	
-			productoSeleccionado = productoService.encontrarUnProducto(codigo);
-			venta = iVentaService.crearVenta();		
-			venta.setProducto(productoSeleccionado);
-			model.addAttribute("venta",venta);
-			model.addAttribute("clientes",clienteService.obtenerTodosClientes());
-		}
-		catch (Exception e) {
-			model.addAtt
-*/	
 	
 	@GetMapping("/valoracion/editar/{id}")
 	public String editarValoracion(Model model, @PathVariable(name="id") int id) throws Exception {
@@ -148,8 +132,8 @@ public class ValoracionController {
 	
 	
 	
-	@GetMapping("/valoracion/eliminarValoracion/{id}")
-	public String eliminarValoracion(Model model, @PathVariable(name="id") int id) {		
+	@GetMapping("/valoracion/eliminarValoracion/{idTuristas_PoIs}")
+	public String eliminarValoracion(Model model, @PathVariable(name="idTuristas_PoIs") int id) {		
 		try {	
 			valoracionService.eliminarValoracion(id);
 		}
@@ -169,8 +153,8 @@ public class ValoracionController {
 		return ("valoracionesComentariosRoot");
 	}
 	
-	@GetMapping("/valoracion/eliminarValoracionRoot/{id}")
-	public String eliminarValoracionRoot(Model model, @PathVariable(name="id") int id) {		
+	@GetMapping("/valoracion/eliminarValoracionRoot/{idTuristas_PoIs}")
+	public String eliminarValoracionRoot(Model model, @PathVariable(name="idTuristas_PoIs") int id) {		
 		try {	
 			valoracionService.eliminarValoracion(id);
 		}

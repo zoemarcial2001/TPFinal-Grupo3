@@ -181,8 +181,6 @@ public class TuristaController {
 		return "redirect:/turista/mostrar";
 	}
 	
-	
-	
 	@GetMapping("/turista/editar/{id}")
 	public String editarTurista(Model model, @PathVariable(name="id") int id) throws Exception {
 		try {
@@ -202,7 +200,7 @@ public class TuristaController {
 	@PostMapping("/turista/modificar")
 	public String modificarTurista(@ModelAttribute("unTurista") Turista turistaModificado, Model model) {
 		try {
-			turistaService.modificarTurista(turistaModificado);
+			turistaService.modificarTuristaRoot(turistaModificado);
 			model.addAttribute("unTurista", new Turista());
 			model.addAttribute("editMode", "false");
 		} catch (Exception e) {
@@ -214,8 +212,6 @@ public class TuristaController {
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("turista1");
 	}
-	
-	
 	
 }
 

@@ -14,7 +14,7 @@
 <div class="container">
 	<h1>Añadir un Punto de Interes</h1>
 	<div>
-	<form class="form-row needs-validation" th:object="${unPoI}" th:action="@{/poI/guardar}" method="post" enctype="multipart/form-data">
+	<form class="form-row needs-validation" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data">
 	           
 	           <div class="row mb-3" style = "display:none;">
 	    <div class="form-group col-12 col-md-6">
@@ -79,25 +79,25 @@
 				</div>
 							
 				<div class="form-group col-12 col-md-4">
-			       <label for="file" class="col-sm-4 col-form-label" th:field="*{imagen}"> Subir Imagen </label>
+			       <label for="file" class="col-sm-4 col-form-label" > Subir Imagen </label>
 				<input type="file" name="foto" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-						 <img id="output" style="padding-top: 2px; width: 100px;" /> 
+						 <img th:src="*{'data:;base64,'+ imagen}" id="output" style="padding-top: 2px; width: 100px;" />
 	            </div>	
 	            
 	            <div class="form-group col-12 col-md-4">
-			       <label for="file2" class="col-sm-4 col-form-label" th:field="*{imagen2}"> Subir Imagen </label>
+			       <label for="file2" class="col-sm-4 col-form-label"> Subir Imagen </label>
 				<input type="file" name="file2" class="form-control-file" id="file2" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-					 <img  id="output" style="padding-top: 2px; width: 100px;" /> 
+					 <img th:src="*{'data:;base64,'+ imagen2}" id="output" style="padding-top: 2px; width: 100px;" /> 
 	            </div>	
 	            
 	            <div class="form-group col-12 col-md-4">
-			       <label for="file3" class="col-sm-4 col-form-label" th:field="*{imagen3}"> Subir Imagen </label>
+			       <label for="file3" class="col-sm-4 col-form-label" > Subir Imagen </label>
 				<input type="file" name="file3" class="form-control-file" id="file3" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-					 <img id="output" style="padding-top: 2px; width: 100px;" />  
+					 <img th:src="*{'data:;base64,'+ imagen3}" id="output" style="padding-top: 2px; width: 100px;" /> 
 	            </div>	
 				 
 				<div class="col-12 col-md-6">
-						<input type="submit" class="btn btn-primary btn-block" value="Agregar Poi">
+						<input type="submit" class="btn btn-primary" th:value="${editMode}?'Modificar Poi':'Crear PoI'">
 				</div>
 				
 				</form>
