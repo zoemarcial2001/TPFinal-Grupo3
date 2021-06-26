@@ -97,28 +97,6 @@ public class TuristaController {
 		return "redirect:/turista/perfil";
 	}
 
-/*	
-	@PostMapping("/turista/modificar")
-	public String modificarTurista(@ModelAttribute("unTurista") Turista turistaModificado, Model model) {
-		try {
-			turistaService.modificarTurista(turistaModificado);
-			model.addAttribute("unTurista", new Turista());
-			model.addAttribute("editMode", "false");
-		} catch (Exception e) {
-			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-			model.addAttribute("unTurista", turistaModificado);			
-			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());			
-			model.addAttribute("editMode", "true");
-		}
-		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
-		return("turista1");
-	}
-	
-	
-	turistaService.guardarTurista(nuevoTurista);
-		System.out.println(turistaService.obtenerTodosTuristas());
-		model.addAttribute("perfil", turistaService.obtenerTodosTuristas().size());
-*/	
 	
 	@GetMapping("/cupones/mostrar")
     public String mostrarCupones( Model model) {
@@ -152,9 +130,14 @@ public class TuristaController {
 		try {
 			    Turista turistaEnc = turistaService.buscarUnTurista(userDetail.getUsername());
 			    if(turistaEnc != null) {
-			    	turistaEnc.setPuntos(turistaEnc.getPuntos() - 10);
-			    	System.out.println(turistaEnc.getPuntos());
 			    	
+			    	if (turistaEnc.getPuntos()>=10) {
+			    		turistaEnc.setPuntos(turistaEnc.getPuntos() - 10);
+				    	turistaService.guardarTurista(turistaEnc);
+					}
+			    	else {
+						return ("insuficiente");
+					}
 			    }
 				
 		} catch (Exception e) {

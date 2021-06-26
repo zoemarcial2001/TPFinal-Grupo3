@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilozoe.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+
+<meta charset="UTF-8">
+<title>Puntos Insuficientes</title>
+</head>
+<body>
+
+<div th:insert="layouts/header :: header"></div>
+
+ <div class="container">
+ <br>
+<br>
+<br>
+<br>
+<br>
+ 
+    <h6 class="titulos">Puntos insuficientes para obtener este beneficio</h6>
+    <br>
+     <a href="/cupones/mostrar" id="button">volver atras</a>
+     
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div th:insert="layouts/footer :: footer"></div>
+
+        <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

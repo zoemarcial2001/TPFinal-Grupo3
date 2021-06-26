@@ -1,5 +1,6 @@
 package ar.edu.unju.edm.service.imp;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,14 @@ public class Turistas_PoIsServiceMySql implements ITurista_PoIsService{
 	
 	@Autowired
 	ITurista_PoIsDAO valoracionDAO;
+	
+	
 
 	@Override
 	public void guardarValoracion(Turistas_PoIs unaValoracion) {
-		// TODO Auto-generated method stub
+		LocalDate fecha = LocalDate.now();
+		unaValoracion.setFechaComentario(fecha);
+		
 		valoracionDAO.save(unaValoracion);
 	}
 
