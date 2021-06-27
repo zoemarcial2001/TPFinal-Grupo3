@@ -1,21 +1,7 @@
 
 @charset "UTF-8";
 
-body {
-	background-image: url("/img/marmol.jpg");
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-}
 
-body {
-	background-image: url("/img/s3.jpg");
-}
-
-.form{
-	background: #e6e6e6;
-}
 
 .col:hover{
      transform: scale(1.1);

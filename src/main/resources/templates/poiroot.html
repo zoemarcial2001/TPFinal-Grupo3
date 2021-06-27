@@ -10,97 +10,11 @@
 <title>Poi</title>
 </head>
 <body>
-<div >
+<div>
 <div th:insert="layouts/headerRoot :: header"></div>
-<div class="container">
-	<h1>Añadir un PoI</h1>
-	<div>
-	<form class="form-row" th:object="${unPoI}" th:action="${editMode}?@{/poI/modificar}:@{/poI/guardar}" method="post" enctype="multipart/form-data">
-	            <div class="form-group col-12 col-md-6">
-					<label class="form-label" for="fname">Nombre</label>
-					<input type="text" id="fname" class="form-control" placeholder="Ingrese Nombre" th:field="*{nombrePoI}">
-				</div>
-				
-				<div class="form-group col-12 col-md-6">
-					<label class="form-label" for="lname">Etiqueta</label>
-					<div class="dropdown bootstrap-select" style="width: 100%;">
-						<select class="form-control" data-width="100%" th:field="*{etiqueta}">
-								<option value="">Seleccionar</option>
-								<option value="Cultura">Cultura</option>
-								<option value="Naturaleza">Naturaleza</option>
-					     		<option value="Aventura">Aventura</option>
-					     		<option value="Deportivo">Deportivo</option>
-					     		<option value="Gastronomia">Gastronomia</option>
-						</select>
-					</div>
-					
-				</div>
-				
-				<div class="form-group col-12 col-md-12">
-					<label class="form-label" for="lname">Descripcion</label>
-					<input type="text" id="lname" class="form-control" placeholder="Ingrese una Descripcion" th:field="*{descripcion}">
-				</div>
-		
-				<div class="form-group col-12 col-md-4">
-					<label class="form-label" for="phone">Calle</label>
-					<input type="text" id="phone" class="form-control" placeholder="Ingrese Calle" th:field="*{calle}">
-				</div>
-								
-				<div class="form-group col-12 col-md-4">
-					<label class="form-label" for="birth">N°</label>
-					<input class="form-control" type="number" placeholder="Ingrese Numero" id="birth" th:field="*{numeroCasa}">
-				</div>
-				
-				<div class="form-group col-12 col-md-4">
-					<label class="form-label" for="birth">Barrio</label>
-					<input class="form-control" type="text" placeholder="Ingrese Barrio" id="birth" th:field="*{barrio}">
-				</div>
-					
-				<div class="form-group col-12 col-md-6">
-					<label class="form-label">Localidad</label>
-					<input type="text" id="lname" class="form-control" placeholder="Ingrese Localidad" th:field="*{localidad}">
-				</div>
-				
-				<div class="form-group col-12 col-md-6">
-					<label class="form-label" for="fname">Sitio Web</label>
-					<input type="url" id="fname" class="form-control" placeholder="Ingrese Sitio Web" th:field="*{sitioWeb}">
-				</div>
-				
-				 <div class="row mb-3" style = "display:none;">
-	    <div class="form-group col-12 col-md-6">
-		    <label for="nombre" class="col-sm-2 col-form-label">codigo</label>
-		    <input type="number" class="form-control" id="nombre" th:field="*{codigoPoI}">
-	    </div>
-	</div>
-				
-				<div class="form-group col-12 col-md-4">
-			       <label for="foto" class="col-sm-4 col-form-label"> Subir Imagen </label>
-				<input type="file" name="foto" class="form-control-file" id="foto" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-						<img id="output" style="padding-top: 2px; width: 100px;" />
-	            </div>		
-	            <div class="form-group col-12 col-md-4">
-			       <label for="file2" class="col-sm-4 col-form-label"> Subir Imagen </label>
-				<input type="file" name="file2" class="form-control-file" id="file2" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-						<img id="output" style="padding-top: 2px; width: 100px;" />
-	            </div>		
-	            <div class="form-group col-12 col-md-4">
-			       <label for="file3" class="col-sm-4 col-form-label"> Subir Imagen </label>
-				<input type="file" name="file3" class="form-control-file" id="file3" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-						<img id="output" style="padding-top: 2px; width: 100px;" />
-	            </div>			
-				
-				<div class="col-12">
-						<input type="submit" class="btn btn-primary" th:value="${editMode}?'Modificar Poi':'Crear PoI'">
-				</div>
-				
-				</form>
-				</div>
-</div>
-	</div>
-		
-	<!-- ---------------------------------------------------------------- -->
-<h3>Lista de PoI</h3><br>
-   <div>
+
+<h3>Lista de PoIs</h3><br>
+ <div>
 	         <table class="table">
 	         <thead class="tables">
 				    <tr>
@@ -110,7 +24,8 @@
 				      <th>Direccion</th>
 				      <th>Localidad</th>
 				      <th>Descripcion</th>
-				      <th>Sitio Web</th>				      
+				      <th>Sitio Web</th>	
+				      <th>Turista Autor</th>			      
 				    </tr>
 			 </thead>
 					<tr th:each="poI : ${poIs}">
@@ -120,11 +35,13 @@
 						<td th:text="${poI.calle}+ ' N°' +${poI.numeroCasa}+ ' B° ' +${poI.barrio}"></td>
 						<td th:text="${poI.descripcion}"></td>
 						<td th:text="${poI.sitioWeb}"></td>
+						<td th:text="${poI.turistaAutor.id}"></td>
+						<td th:text="${poI.turistaAutor.email}"></td>
 						
 						
 						<td><a href="#" th:href="@{'/poI/editar/'+${poI.codigoPoI}}">
 									<i class="fa fa-edit"></i></a>		
-0									<a th:onclick="'javascript:confirmarEliminar(\''+${poI.codigoPoI}+'\');'"><i class="fa fa-trash-alt"></i></a>			
+									<a th:onclick="'javascript:confirmarEliminar(\''+${poI.codigoPoI}+'\');'"><i class="fa fa-trash-alt"></i></a>			
 					</tr>
 				</table>
 				</div>
@@ -161,5 +78,6 @@ function eliminarPoI(){
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
 		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

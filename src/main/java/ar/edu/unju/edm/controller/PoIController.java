@@ -1,9 +1,7 @@
 package ar.edu.unju.edm.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 import javax.validation.Valid;
 

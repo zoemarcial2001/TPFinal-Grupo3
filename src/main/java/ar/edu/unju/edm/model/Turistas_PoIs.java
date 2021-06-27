@@ -41,7 +41,7 @@ public class Turistas_PoIs {
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaComentario;
-
+	
 	
 	public Turistas_PoIs() {
 		// TODO Auto-generated constructor stub
