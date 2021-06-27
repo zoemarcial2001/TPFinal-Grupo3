@@ -1,3 +1,9 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -38,7 +44,7 @@ body {
     display: block;
     position: relative;
     width: 90%;
-    height: 17rem;
+    height: 13rem;
     background: linear-gradient(45deg, #BC3CFF, #317FFF);
     border-radius: 0 0 20px 20px;
 }
@@ -61,10 +67,10 @@ body {
 
 .seccion-perfil-usuario .perfil-usuario-body {
     width: 100%;
-    position: relative;
+    position: absolute;
     max-width: 1000px;
-    left: 250px;
-    top: -2px;
+    left: 190px;
+    top: 310px;
 }
 
 .seccion-perfil-usuario .perfil-usuario-body .titulo {
@@ -84,8 +90,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     padding: 1.5rem 2rem;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    background-color: #fff;
+    box-shadow: 0 0 12px rgb(128, 128, 128) ; 
+    background-color: rgb(255, 255, 255);
     border-radius: 15px;
     width: 100%;
 }
@@ -191,6 +197,13 @@ body {
 .img{
 	text-align: center;
 	
+}
+
+.card-body{
+	 box-shadow: 0 0 12px rgb(128, 128, 128) ; 
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    
 }
 
 

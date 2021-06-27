@@ -22,7 +22,8 @@
      
          <div class = "container">
          
-                   <h3 class = "text-themecolor">Perfil Turista</h3>
+                   <h1 class = "text-themecolor">Perfil Turista</h1>
+<br>
             <div th:each="t : ${perfil}">  
              <div class= "row g-2">
            
@@ -34,7 +35,7 @@
                               <img onerror="this.src='/img/perfil.png';" class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:200px;height:200px">          
                               </div> 
                               
-                              <div class="perfil-usuario-body">         
+                              <div class="perfil-body">         
                                     <h4 class="card-title mt-2" th:text="${t.nombre + '  ' + t.apellido}"></h4>
                                     <h6 class="card-subtitle mt-2" th:text="${'Puntos: ' + t.puntos}"></h6>
                                     <h6 class="card-subtitle mt-2" th:text="${'Email: ' + t.email}"></h6>
@@ -144,7 +145,7 @@
     
   
   </form> 
-  
+  <br>
   <div th:insert="layouts/footer :: footer"></div>
 
     	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>

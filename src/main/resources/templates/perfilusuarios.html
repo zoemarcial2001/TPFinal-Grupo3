@@ -12,6 +12,7 @@
 
 <body>
 <div th:insert="layouts/header :: header"></div>
+<div class="container-xxl">
     <section class="seccion-perfil-usuario">
     <div th:each="t : ${turista}">
         <div class="perfil-usuario-header">
@@ -46,7 +47,25 @@
         </div>
         </div>
     </section>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <div th:insert="layouts/footer :: footer"></div>
 
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
-
 </html>
