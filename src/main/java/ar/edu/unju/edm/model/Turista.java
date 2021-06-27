@@ -28,15 +28,15 @@ public class Turista {
 	private Integer id;
 	@NotEmpty (message = "debe ingresar un correo")
 	@Column
-//	@Pattern ()
+
 	private String email;
 	@NotEmpty (message = "debe ingresar una contraseña")
 	@Column
 	private String password;
-	@Pattern(regexp = "[A-Za-z]+", message="El nombre del producto solo puede tener letras")
+	@Pattern(regexp = "[A-Za-z]+", message="Solo puede tener letras")
 	@Column
 	private String nombre;
-	@Pattern(regexp = "[A-Za-z]+", message="El nombre del producto solo puede tener letras")
+	@Pattern(regexp = "[A-Za-z]+", message="Solo puede tener letras")
 	@Column
 	private String apellido;
 	@Column

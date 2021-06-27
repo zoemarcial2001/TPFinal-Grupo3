@@ -11,12 +11,12 @@
 </head>
 <body>
 
-    <div class="form">
-    
-    <div class="container">
-    
-    
-    <h1>Registrarse</h1>
+
+    <br>
+ <div class="container">
+   
+   <br>
+    <h1 style="text-align: center">Registro</h1>
 	<form th:object="${unTurista}" th:action="@{/registrar/guardar}" method="post">
        
       <div class="row mb-3"> 
@@ -50,6 +50,7 @@
         <label for="email" class="form-label">Email</label>
              <input type="email" class="form-control" placeholder="nombre@gmail.com" aria-label="Email" th:field="*{email}">
              <small class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+
        </div>
        
        
@@ -67,9 +68,12 @@
 				        <input type="submit" class="btn btn-success "  value="Registrarse">
 				</div>
        </div>
+       <br>
+       
 	</form>
+		
     </div>
-    </div>
+
         <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
 		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
