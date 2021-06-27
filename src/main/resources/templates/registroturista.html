@@ -24,13 +24,13 @@
        <div class="form-group col-12 col-md-12">
         <label for="nombre" class="form-label">Nombre</label>
              <input type="text" class="form-control" placeholder="Ingrese un nombre"  th:field="*{nombre}">
-             
+             <small class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
        </div>
        
        <div class="form-group col-12 col-md-12">
         <label for="apellido" class="form-label">Apellido</label>
              <input type="text" class="form-control" placeholder="Ingrese un apellido"  th:field="*{apellido}">
-             
+             <small class="alert alert-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
        </div>
        
        <div class="form-group col-12 col-md-12">
