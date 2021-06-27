@@ -12,6 +12,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
 
@@ -32,10 +33,10 @@ public class Turista {
 	@NotEmpty (message = "debe ingresar una contraseña")
 	@Column
 	private String password;
-	@Pattern(regexp = "[A-Za-z]+", message="El nombre del producto solo puede tener letras")
+	@Pattern(regexp = "[A-Za-z]+", message="Solo puede tener letras")
 	@Column
 	private String nombre;
-	@Pattern(regexp = "[A-Za-z]+", message="El nombre del producto solo puede tener letras")
+	@Pattern(regexp = "[A-Za-z]+", message="Solo puede tener letras")
 	@Column
 	private String apellido;
 	@Column
