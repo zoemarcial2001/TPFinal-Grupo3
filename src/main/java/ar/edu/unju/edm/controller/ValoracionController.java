@@ -36,12 +36,21 @@ public class ValoracionController {
 	public String cargarValoracion(Model model,@PathVariable(name="codigoPoI") Integer codigo) {
 		Turistas_PoIs valoracionNueva = valoracionService.crearValoracion();
 		try {
+			
+			Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+
+			Turista logueado = turistaService.buscarUnTurista(userDetail.getUsername());
+			
 			valoracionNueva.setPoI(poiService.encontrarUnPoI(codigo));
 			
 			System.out.println(valoracionNueva.getPoI().getCodigoPoI());
 			model.addAttribute("unaValoracion", valoracionNueva);
 		    model.addAttribute("valoraciones", valoracionService.obtenerTodasValoracionesUnPois(valoracionNueva.getPoI()));
-		    System.out.println();
+		    
+		    model.addAttribute("mivaloracion", valoracionService.obtenerTodasValoracionesUnTurista(logueado));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,20 +79,21 @@ public class ValoracionController {
 			Turista turistaEncontrado = turistaService.buscarUnTurista(userDetail.getUsername());
 			if (turistaEncontrado != null) {
 				
-				if (nuevaValoracion.getComentario().isEmpty()) {
-					nuevaValoracion.setComentario(null);
-				}
-				else {
-					turistaEncontrado.setPuntos(turistaEncontrado.getPuntos() + 5);
-				}
+					if (nuevaValoracion.getComentario().isEmpty()) {
+						nuevaValoracion.setComentario(null);
+					}
+					else {
+						turistaEncontrado.setPuntos(turistaEncontrado.getPuntos() + 5);
+					}
+					
+					if(nuevaValoracion.getValoracion() != 0) {
+						turistaEncontrado.setPuntos(turistaEncontrado.getPuntos() + 8);
+					}
+					
+					turistaService.guardarTurista(turistaEncontrado);
+					nuevaValoracion.setTurista(turistaEncontrado);
+					valoracionService.guardarValoracion(nuevaValoracion);
 				
-				if(nuevaValoracion.getValoracion() != 0) {
-					turistaEncontrado.setPuntos(turistaEncontrado.getPuntos() + 8);
-				}
-				
-				turistaService.guardarTurista(turistaEncontrado);
-				nuevaValoracion.setTurista(turistaEncontrado);
-				valoracionService.guardarValoracion(nuevaValoracion);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -94,8 +104,8 @@ public class ValoracionController {
 	}
 	
 	
-	@GetMapping("/valoracion/editar/{id}")
-	public String editarValoracion(Model model, @PathVariable(name="id") int id) throws Exception {
+	@GetMapping("/valoracion/editar/{idTuristas_PoIs}")
+	public String editarValoracion(Model model, @PathVariable(name="idTuristas_PoIs") int id) throws Exception {
 		try {
 			Turistas_PoIs valoracionEncontrada = valoracionService.encontrarUnaValoracion(id);
 			model.addAttribute("unaValoracion", valoracionEncontrada);
@@ -108,7 +118,6 @@ public class ValoracionController {
 			model.addAttribute("editMode", "false");
 		}
 		
-		model.addAttribute("valoraciones" , valoracionService.obtenerTodasValoraciones());
 		return("valoracion");
 		
 	}
@@ -126,21 +135,25 @@ public class ValoracionController {
 			model.addAttribute("valoraciones", valoracionService.obtenerTodasValoraciones());
 			model.addAttribute("editMode", "true");
 		}
-		model.addAttribute("valoraciones", valoracionService.obtenerTodasValoraciones());
-		return("valoracion");
+		return "redirect:/inicio";
 	}
 	
 	
 	
 	@GetMapping("/valoracion/eliminarValoracion/{idTuristas_PoIs}")
-	public String eliminarValoracion(Model model, @PathVariable(name="idTuristas_PoIs") int id) {		
+	public String eliminarValoracion(Model model, @PathVariable(name="idTuristas_PoIs") int id) throws Exception {
+		
+	//	Turistas_PoIs valoracionEnc = valoracionService.encontrarUnaValoracion(id);
+	//	int codigo = valoracionEnc.getPoI().getCodigoPoI();
+	
+		
 		try {	
 			valoracionService.eliminarValoracion(id);
 		}
 		catch(Exception e){
 			model.addAttribute("listErrorMessage",e.getMessage());
 		}			
-		return "redirect:/valoracion/mostrar";
+		return "redirect:/inicio";
 	}
 	
 	

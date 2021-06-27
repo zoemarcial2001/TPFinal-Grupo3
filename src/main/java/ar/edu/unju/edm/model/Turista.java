@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ public class Turista {
 	private Integer id;
 	@NotEmpty (message = "debe ingresar un correo")
 	@Column
+//	@Pattern ()
 	private String email;
 	@NotEmpty (message = "debe ingresar una contraseña")
 	@Column

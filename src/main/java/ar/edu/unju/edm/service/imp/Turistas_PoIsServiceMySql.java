@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.PoI;
+import ar.edu.unju.edm.model.Turista;
 import ar.edu.unju.edm.model.Turistas_PoIs;
 import ar.edu.unju.edm.repository.ITurista_PoIsDAO;
 import ar.edu.unju.edm.service.ITurista_PoIsService;
@@ -74,6 +75,12 @@ public class Turistas_PoIsServiceMySql implements ITurista_PoIsService{
 	public List<Turistas_PoIs> obtenerTodasValoracionesUnPois(PoI poIValorado) {
 		// TODO Auto-generated method stub
 		return (List<Turistas_PoIs>) valoracionDAO.findAllByPoI(poIValorado);
+	}
+	
+	@Override
+	public List<Turistas_PoIs> obtenerTodasValoracionesUnTurista(Turista turistaBuscado) {
+		// TODO Auto-generated method stub
+		return (List<Turistas_PoIs>) valoracionDAO.findAllByTurista(turistaBuscado);
 	}
 
 }
