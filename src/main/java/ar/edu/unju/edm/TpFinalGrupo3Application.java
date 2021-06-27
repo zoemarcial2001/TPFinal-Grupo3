@@ -6,9 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ar.edu.unju.edm.model.Cupon;
 import ar.edu.unju.edm.model.Turista;
-import ar.edu.unju.edm.service.ICuponService;
 import ar.edu.unju.edm.service.ITuristaService;
 
 @SpringBootApplication
@@ -21,11 +19,7 @@ public class TpFinalGrupo3Application implements CommandLineRunner{
 	@Autowired
 	Turista turista;
 	
-	@Autowired
-	ICuponService cuponService;
 	
-	@Autowired
-	Cupon cupon;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(TpFinalGrupo3Application.class, args);
