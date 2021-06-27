@@ -107,8 +107,20 @@ public class ValoracionController {
 	@GetMapping("/valoracion/editar/{idTuristas_PoIs}")
 	public String editarValoracion(Model model, @PathVariable(name="idTuristas_PoIs") int id) throws Exception {
 		try {
+			Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+
+			Turista logueado = turistaService.buscarUnTurista(userDetail.getUsername());
+			
 			Turistas_PoIs valoracionEncontrada = valoracionService.encontrarUnaValoracion(id);
+			PoI poivalorado = valoracionEncontrada.getPoI();
+			
 			model.addAttribute("unaValoracion", valoracionEncontrada);
+			model.addAttribute("valoraciones", valoracionService.obtenerTodasValoracionesUnPois(poivalorado));
+			model.addAttribute("mivaloracion" , valoracionService.obtenerTodasValoracionesUnTurista(logueado));
+			
 		    model.addAttribute("editMode", "true");
 			
 		}
@@ -122,8 +134,8 @@ public class ValoracionController {
 		
 	}
 	
-	@PostMapping("/valoracion/modificar")
-	public String modificarValoracion(@ModelAttribute("unaValoracion") Turistas_PoIs valoracionModificada, Model model) {
+	@PostMapping("/valoracion/modificar/{codigo}")
+	public String modificarValoracion(@ModelAttribute("unaValoracion") Turistas_PoIs valoracionModificada, @PathVariable(name="codigo") Integer codigo, Model model) {
 		try {
 			valoracionService.modificarValoracion(valoracionModificada);
 			model.addAttribute("unaValoracion", new Turistas_PoIs());
@@ -135,7 +147,7 @@ public class ValoracionController {
 			model.addAttribute("valoraciones", valoracionService.obtenerTodasValoraciones());
 			model.addAttribute("editMode", "true");
 		}
-		return "redirect:/inicio";
+		return "redirect:/valoracion/mostrar/{codigo}";
 	}
 	
 	
@@ -158,7 +170,7 @@ public class ValoracionController {
 	
 	
 	
-	
+	//metodos para usuario root
 	
 	@GetMapping("/valoracion/vistaRoot")
 	public String verValoraciones (Model model) {

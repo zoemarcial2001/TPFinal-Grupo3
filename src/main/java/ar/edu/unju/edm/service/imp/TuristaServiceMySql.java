@@ -35,9 +35,13 @@ public class TuristaServiceMySql implements ITuristaService{
 		unTurista.setTipo("consultor");
 		
 		//primera letra de cada palabra en mayuscula
-		unTurista.setNombre(PrimeraMayuscula(unTurista.getNombre()));
-		unTurista.setApellido(PrimeraMayuscula(unTurista.getApellido()));
 		
+		if(!unTurista.getNombre().isBlank()) {
+			unTurista.setNombre(PrimeraMayuscula(unTurista.getNombre()));	
+		}
+		if(!unTurista.getApellido().isBlank()) {
+			unTurista.setApellido(PrimeraMayuscula(unTurista.getApellido()));
+		}
 		turistaDAO.save(unTurista);
 		 
 	}
@@ -125,8 +129,12 @@ public class TuristaServiceMySql implements ITuristaService{
 		unTurista.setLocalizacionLatitud(valorLatitud);
 		unTurista.setLocalizacionLongitud(valorLongitud);
 		
-		unTurista.setNombre(PrimeraMayuscula(unTurista.getNombre()));
-		unTurista.setApellido(PrimeraMayuscula(unTurista.getApellido()));
+		if(!unTurista.getNombre().isBlank()) {
+			unTurista.setNombre(PrimeraMayuscula(unTurista.getNombre()));	
+		}
+		if(!unTurista.getApellido().isBlank()) {
+			unTurista.setApellido(PrimeraMayuscula(unTurista.getApellido()));
+		}
 		
 		turistaDAO.save(unTurista);
 	}
