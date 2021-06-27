@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   
-<link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloturista.css}" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estiloperfil.css}" />
 <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 
@@ -10,10 +10,10 @@
   
 <title>Perfil Turista</title>
 </head>
+
 <body>
 <div th:insert="layouts/header :: header"></div>
   <form th:object="${perfil}"  th:action="@{/turista/perfilGuardar}" method="post" enctype="multipart/form-data">
-  
 <input type="hidden" name="id" th:field="*{id}" th:value="id">
   
   <div id="main-wrapper">
@@ -30,14 +30,17 @@
                <div class="card">
                             <div class="card-body">
                                 
-                              <div class="imagen">        
-                              <img onerror="this.src='/img/perfil.png';" class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:150px;height:150px">          
-                              </div>          
+                              <div class="img">        
+                              <img onerror="this.src='/img/perfil.png';" class="rounded-circle m-1" th:src="${'data:;base64,' + t.fotoPerfil}" style="width:200px;height:200px">          
+                              </div> 
+                              
+                              <div class="perfil-usuario-body">         
                                     <h4 class="card-title mt-2" th:text="${t.nombre + '  ' + t.apellido}"></h4>
                                     <h6 class="card-subtitle mt-2" th:text="${'Puntos: ' + t.puntos}"></h6>
                                     <h6 class="card-subtitle mt-2" th:text="${'Email: ' + t.email}"></h6>
                                     <h6 class="card-subtitle mt-2" th:text="${'Pais: ' + t.pais}"></h6>
-                                   
+                                     <h6 class="card-subtitle mt-2" th:text="${'Localizacion: ' + t.localizacionLatitud + '-' + t.localizacionLongitud}"></h6>
+                              </div>     
                                
                         </div>
                    </div>

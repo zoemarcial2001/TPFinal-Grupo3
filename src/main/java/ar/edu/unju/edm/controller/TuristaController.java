@@ -51,18 +51,6 @@ public class TuristaController {
 	 
 	}
 	
-	@GetMapping("/turista/eliminarTurista/{id}")
-	public String eliminarTurista(Model model, @PathVariable(name="id") int id) {		
-		try {			
-			turistaService.eliminarTurista(id);	
-		}
-		catch(Exception e){
-			model.addAttribute("listErrorMessage",e.getMessage());
-		}			
-		return "redirect:/turista/mostrar";
-	}
-
-	
 
 	@GetMapping("/turista/perfil")
 	public String verTurista1(Model model)throws Exception {
@@ -207,6 +195,17 @@ public class TuristaController {
 		}
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("turista1");
+	}
+	
+	@GetMapping("/turista/eliminarTurista/{id}")
+	public String eliminarTurista(Model model, @PathVariable(name="id") int id) {		
+		try {			
+			turistaService.eliminarTurista(id);	
+		}
+		catch(Exception e){
+			model.addAttribute("listErrorMessage",e.getMessage());
+		}			
+		return "redirect:/turista/mostrar";
 	}
 	
 }
