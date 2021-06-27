@@ -1,11 +1,15 @@
 package ar.edu.unju.edm.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -48,6 +52,13 @@ public class Turista {
 	private String fotoPerfil;
 	@Column
 	private Boolean active=true;
+	
+	
+	@OneToMany(mappedBy = "turista",cascade = CascadeType.ALL)
+	private List<Turistas_PoIs> turistaValoracion;
+	
+	@OneToMany(mappedBy = "turistaAutor",cascade = CascadeType.ALL)
+	private List<PoI> turistas;
 	
 	public Turista() {
 		super();

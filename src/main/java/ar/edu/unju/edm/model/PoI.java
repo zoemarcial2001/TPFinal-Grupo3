@@ -1,7 +1,9 @@
 package ar.edu.unju.edm.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -74,10 +76,10 @@ public class PoI {
 	@JoinColumn(name = "idTurista")
 	private Turista turistaAutor;
 	
-	/*
-	@OneToMany(mappedBy = "poI", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	private List<Fotografia> fotografias;
-	*/
+	
+	@OneToMany(mappedBy = "poI",cascade = CascadeType.ALL)
+	private List<Turistas_PoIs> poiValoracion;
+	
 	
 	public PoI() {
 		// TODO Auto-generated constructor stub
