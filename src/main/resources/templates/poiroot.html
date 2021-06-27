@@ -19,25 +19,24 @@
 	         <thead class="tables">
 				    <tr>
 				      <th>Codigo</th>
+				      <th>Turista Autor</th>
 				      <th>Nombre</th>
 				      <th>Etiqueta</th>
 				      <th>Direccion</th>
 				      <th>Localidad</th>
 				      <th>Descripcion</th>
-				      <th>Sitio Web</th>	
-				      <th>Turista Autor</th>			      
+				      <th>Sitio Web</th>
+				      <th>Hacer</th>	    
 				    </tr>
 			 </thead>
 					<tr th:each="poI : ${poIs}">
 						<td th:text="${poI.codigoPoI}"></td>
+						<td th:text="${poI.turistaAutor.email}"></td>
 						<td th:text="${poI.nombrePoI}"></td>
 						<td th:text="${poI.etiqueta}"></td>
 						<td th:text="${poI.calle}+ ' N°' +${poI.numeroCasa}+ ' B° ' +${poI.barrio}"></td>
 						<td th:text="${poI.descripcion}"></td>
 						<td th:text="${poI.sitioWeb}"></td>
-						<td th:text="${poI.turistaAutor.id}"></td>
-						<td th:text="${poI.turistaAutor.email}"></td>
-						
 						
 						<td><a href="#" th:href="@{'/poI/editar/'+${poI.codigoPoI}}">
 									<i class="fa fa-edit"></i></a>		

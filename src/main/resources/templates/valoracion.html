@@ -15,7 +15,7 @@
 
 <div class = "container">
 
- <form th:object="${unaValoracion}" th:action="${editMode}?@{/valoracion/modificar}:@{'/valoracion/guardar/'+*{poI.codigoPoI}}" method="post">
+ <form th:object="${unaValoracion}" th:action="${editMode}?@{'/valoracion/modificar/'+*{poI.codigoPoI}}:@{'/valoracion/guardar/'+*{poI.codigoPoI}}" method="post">
    
  <div class="carta">
 <div class="card">
@@ -95,11 +95,10 @@
 	    </div>
 	</div>
 			
-			
 			<div class="p-2">
 						<div class="d-flex flex-row align-items-start">
 							<img class="rounded-circle" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png" width="50">
-							<textarea placeholder="Escribe un comentario" id="caja-comentario" class="form-control ml-1 shadow-none" name="comentario"></textarea>
+							<textarea placeholder="Escribe un comentario" id="caja-comentario" class="form-control ml-1 shadow-none" name="comentario" th:field="*{comentario}"></textarea>
 						</div>
 						<div class="mt-4 text-right">
 							<button class="btn btn-primary btn-sm" type="submit">Publicar</button>
@@ -124,7 +123,7 @@
       <div class="caja border">
         <img onerror="this.src='/img/perfil.png';" class="rounded-circle m-3" th:src="${'data:;base64,' + v.turista.fotoPerfil}" style="width:90px;height:90px">
 						<p class="d-block font-weight-bold name"></p>
-						<p class="date text-black-50" th:text="${v.turista.nombre+ '  ' +v.turista.apellido}"></p>
+						<p class="date text-black-50" th:text="${v.turista.nombre + '  ' +v.turista.apellido}"></p>
 						<p class="date text-black-50" th:text="${v.turista.email}"></p>
 						<p class="date text-black-50" th:text="${'Valoracion: ' + v.valoracion}"></p>
 						<p class="date text-black-50" th:text="${'Fecha Valoracion: ' + v.fechaComentario}"></p>

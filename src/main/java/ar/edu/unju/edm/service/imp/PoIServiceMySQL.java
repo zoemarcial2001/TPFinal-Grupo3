@@ -32,11 +32,19 @@ public class PoIServiceMySQL implements IPoIService {
 		unPoI.setLongitud(valorLongitud);
 		
 		//primera letra de cada palabra en mayuscula
-		unPoI.setBarrio(PrimeraMayuscula(unPoI.getBarrio()));
-		unPoI.setCalle(PrimeraMayuscula(unPoI.getCalle()));
-		unPoI.setNombrePoI(PrimeraMayuscula(unPoI.getNombrePoI()));
-		unPoI.setLocalidad(PrimeraMayuscula(unPoI.getLocalidad()));
-		
+		if(!unPoI.getBarrio().isBlank()) {
+			unPoI.setBarrio(PrimeraMayuscula(unPoI.getBarrio()));
+		}
+		if(!unPoI.getCalle().isBlank()) {
+			unPoI.setCalle(PrimeraMayuscula(unPoI.getCalle()));
+		}
+		if(!unPoI.getNombrePoI().isBlank()) {
+			unPoI.setNombrePoI(PrimeraMayuscula(unPoI.getNombrePoI()));
+		}
+		if(!unPoI.getLocalidad().isBlank()) {
+			unPoI.setLocalidad(PrimeraMayuscula(unPoI.getLocalidad()));
+		}
+	
 		poIDAO.save(unPoI);
 	}
 
@@ -85,13 +93,6 @@ public class PoIServiceMySQL implements IPoIService {
 	if (desde.getImagen3()!= null) {
 		hacia.setImagen3(desde.getImagen3());
 	}
-		
-			
-		
-			
-		
-		
-		
 		
 	}
 
