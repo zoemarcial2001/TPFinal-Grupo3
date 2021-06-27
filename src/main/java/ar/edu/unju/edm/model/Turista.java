@@ -33,8 +33,10 @@ public class Turista {
 	@NotEmpty (message = "debe ingresar una contraseña")
 	@Column
 	private String password;
+	@Pattern(regexp = "[A-Za-z]+", message="El nombre del producto solo puede tener letras")
 	@Column
 	private String nombre;
+	@Pattern(regexp = "[A-Za-z]+", message="El nombre del producto solo puede tener letras")
 	@Column
 	private String apellido;
 	@Column
