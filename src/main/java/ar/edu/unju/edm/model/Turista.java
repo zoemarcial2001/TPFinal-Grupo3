@@ -16,6 +16,8 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
 
+import ar.edu.unju.edm.validator.validacionEmail;
+
 @Entity
 @Table (name="TURISTAS")
 @Component
@@ -28,7 +30,7 @@ public class Turista {
 	private Integer id;
 	@NotEmpty (message = "debe ingresar un correo")
 	@Column
-
+    @validacionEmail
 	private String email;
 	@NotEmpty (message = "debe ingresar una contraseña")
 	@Column
