@@ -154,11 +154,7 @@ public class ValoracionController {
 	
 	@GetMapping("/valoracion/eliminarValoracion/{idTuristas_PoIs}")
 	public String eliminarValoracion(Model model, @PathVariable(name="idTuristas_PoIs") int id) throws Exception {
-		
-	//	Turistas_PoIs valoracionEnc = valoracionService.encontrarUnaValoracion(id);
-	//	int codigo = valoracionEnc.getPoI().getCodigoPoI();
 	
-		
 		try {	
 			valoracionService.eliminarValoracion(id);
 		}

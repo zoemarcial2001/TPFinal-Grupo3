@@ -27,16 +27,14 @@
             </div>
             <div class="perfil-usuario-footer">
                 <ul class="lista-datos">
-                    <li><i class="icono fas fa-map-signs"></i> Email: <a th:text="${t.email}"></a></li>
-                    <li><i class="icono fas fa-phone-alt"></i> Telefono: <a th:text="${t.email}"></a></li>
-                    <li><i class="icono fas fa-briefcase"></i> Trabaja en: <a th:text="${t.email}"></a></li>
-                    <li><i class="icono fas fa-building"></i> Cargo: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-at"></i> Email: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-globe-americas"></i> Pais: <a th:text="${t.pais}"></a></li>
+                    
                 </ul>
                 <ul class="lista-datos">
-                    <li><i class="icono fas fa-map-marker-alt"></i> Ubicacion: <a th:text="${t.email}"></a></li>
-                    <li><i class="icono fas fa-calendar-alt"></i> Fecha nacimiento: <a th:text="${t.email}"></a></li>
-                    <li><i class="icono fas fa-user-check"></i> Registro: <a th:text="${t.email}"></a></li>
-                    <li><i class="icono fas fa-share-alt"></i> Redes sociales: <a th:text="${t.email}"></a></li>
+                    <li><i class="icono fas fa-map-marker-alt"></i> Ubicacion: <a th:text="${t.localizacionLatitud + '-' + t.localizacionLongitud}"></a></li>
+                    <li><i class="icono fas fa-gift"></i> Puntos: <a th:text="${t.puntos}"></a></li>
+                 
                 </ul>
             </div>
             <div class="redes-sociales">

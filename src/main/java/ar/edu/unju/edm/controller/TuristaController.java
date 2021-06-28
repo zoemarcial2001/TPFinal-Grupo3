@@ -39,16 +39,22 @@ public class TuristaController {
 	}
 	
 	@PostMapping("/registrar/guardar")
-	public String guardarNuevoTurista1(@Valid @ModelAttribute("unTurista") Turista nuevoTurista,BindingResult resultado,  Model model){
+	public String guardarNuevoTurista1(@Valid @ModelAttribute("unTurista") Turista nuevoTurista,BindingResult resultado,  Model model) throws Exception{
       if(resultado.hasErrors()) {
         model.addAttribute("unTurista", nuevoTurista);
          return "registroturista";
       }
       else {
-    	turistaService.guardarTurista(nuevoTurista);
-		return "redirect:/login";
+    	  if (turistaService.buscarUnTurista(nuevoTurista.getEmail()) == null) {
+    			turistaService.guardarTurista(nuevoTurista);
+    			return "redirect:/login";
+		} else {
+			return "registroturista";
+		}
+    
+		
 	   }
-	 
+	    
 	}
 	
 
