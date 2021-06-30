@@ -10,10 +10,13 @@
 <title>Turistas</title>
 </head>
 <body>
-<div th:insert="layouts/headerRoot :: header"></div>
+<br>
+<div style="font-size: 15pt" th:insert="layouts/headerRoot :: header"></div>
+<br>
 <div class="form">
 <div class="container" >
-	<h1>Registrarse</h1>
+    <br>
+	<h1 style="text-align: center">Añadir un usuario</h1>
 	<form th:object="${unTurista}" th:action="${editMode}?@{/turista/modificar}:@{/turista/guardar}" method="post">
 	
 	<div class="row mb-3" style = "display:none;">
@@ -92,20 +95,16 @@
 				<div class="col-sm-6">
 				        <input type="submit" class="btn btn-primary" th:value="${editMode}?'Modificar Usuario':'Crear Usuario'">
 				</div>
-				<!--
-				<div class="col-sm-6">				
-				<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
-				</div>
-				-->
+				
 			</div>
 				
 	   </div>
-		
+		<br>
 		
 	</form>
 </div>	
 	<!-- ---------------------------------------------------------------- -->
-
+<br>
 <div class="container-xxl">
 
 

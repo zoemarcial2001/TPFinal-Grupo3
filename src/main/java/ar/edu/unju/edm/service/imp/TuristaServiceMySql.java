@@ -114,6 +114,7 @@ public class TuristaServiceMySql implements ITuristaService{
 		// TODO Auto-generated method stub
 		return (List<Turista>) turistaDAO.conMasPuntos();
 	}
+	
 
 
 	// para usuario root

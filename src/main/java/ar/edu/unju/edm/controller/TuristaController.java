@@ -6,7 +6,6 @@ import java.util.Base64;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +25,6 @@ import ar.edu.unju.edm.service.ITuristaService;
 public class TuristaController {
 	
 	@Autowired
-	@Qualifier("impsql")
 	ITuristaService turistaService;
 	
 	
@@ -39,22 +37,16 @@ public class TuristaController {
 	}
 	
 	@PostMapping("/registrar/guardar")
-	public String guardarNuevoTurista1(@Valid @ModelAttribute("unTurista") Turista nuevoTurista,BindingResult resultado,  Model model) throws Exception{
+	public String guardarNuevoTurista1(@Valid @ModelAttribute("unTurista") Turista nuevoTurista,BindingResult resultado,  Model model){
       if(resultado.hasErrors()) {
         model.addAttribute("unTurista", nuevoTurista);
          return "registroturista";
       }
       else {
-    	  if (turistaService.buscarUnTurista(nuevoTurista.getEmail()) == null) {
-    			turistaService.guardarTurista(nuevoTurista);
-    			return "redirect:/login";
-		} else {
-			return "registroturista";
-		}
-    
-		
+    	turistaService.guardarTurista(nuevoTurista);
+		return "redirect:/login";
 	   }
-	    
+	 
 	}
 	
 
@@ -91,7 +83,7 @@ public class TuristaController {
 		return "redirect:/turista/perfil";
 	}
 	
-	
+//otros usuarios inicio
 	@GetMapping("/perfil/{id}")
 	public String mostrarperfil(Model model, @PathVariable(name="id") Integer id) {
 		try {

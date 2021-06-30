@@ -1,7 +1,6 @@
 package ar.edu.unju.edm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +28,6 @@ public class ValoracionController {
 	ITuristaService turistaService;
 	
 	@Autowired
-	@Qualifier("implementacionsql")
 	ITurista_PoIsService valoracionService;
 	
 	@GetMapping("/valoracion/mostrar/{codigoPoI}")
@@ -46,36 +44,27 @@ public class ValoracionController {
 			
 			valoracionNueva.setPoI(poiService.encontrarUnPoI(codigo));
 			
-			System.out.println(valoracionNueva.getPoI().getCodigoPoI());
 			model.addAttribute("unaValoracion", valoracionNueva);
 		    model.addAttribute("valoraciones", valoracionService.obtenerTodasValoracionesUnPois(valoracionNueva.getPoI()));
-		    
 		    model.addAttribute("mivaloracion", valoracionService.obtenerTodasValoracionesUnTurista(logueado));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
-		
 	    return ("valoracion");
 	}
 	
 	@PostMapping("/valoracion/guardar/{codigo}")
 	public String guardarNuevoValoracion( @ModelAttribute("unaValoracion") Turistas_PoIs nuevaValoracion,@PathVariable(name="codigo") Integer codigo, Model model) {		
 		
-		//System.out.println(valoracionService.obtenerTodasValoraciones());
-		model.addAttribute("valoraciones", valoracionService.obtenerTodasValoraciones().size());
-		
 		Authentication auth = SecurityContextHolder
 	            .getContext()
 	            .getAuthentication();
 	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
 	    
-	    System.out.println(userDetail.getUsername());
 	    try {
 	    	PoI poiEncontrado = poiService.encontrarUnPoI(codigo);
 	    	nuevaValoracion.setPoI(poiEncontrado);
-			System.out.println(nuevaValoracion.getPoI().getCodigoPoI());
 			Turista turistaEncontrado = turistaService.buscarUnTurista(userDetail.getUsername());
 			if (turistaEncontrado != null) {
 				
@@ -119,6 +108,7 @@ public class ValoracionController {
 			
 			model.addAttribute("unaValoracion", valoracionEncontrada);
 			model.addAttribute("valoraciones", valoracionService.obtenerTodasValoracionesUnPois(poivalorado));
+			
 			model.addAttribute("mivaloracion" , valoracionService.obtenerTodasValoracionesUnTurista(logueado));
 			
 		    model.addAttribute("editMode", "true");
@@ -154,14 +144,16 @@ public class ValoracionController {
 	
 	@GetMapping("/valoracion/eliminarValoracion/{idTuristas_PoIs}")
 	public String eliminarValoracion(Model model, @PathVariable(name="idTuristas_PoIs") int id) throws Exception {
-	
+		int codigo = valoracionService.encontrarUnaValoracion(id).getPoI().getCodigoPoI();
+		String redireccion = "redirect:/valoracion/mostrar/" + codigo;
+		
 		try {	
 			valoracionService.eliminarValoracion(id);
 		}
 		catch(Exception e){
 			model.addAttribute("listErrorMessage",e.getMessage());
 		}			
-		return "redirect:/inicio";
+		return redireccion;
 	}
 	
 	

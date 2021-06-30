@@ -20,7 +20,6 @@ public class TpFinalGrupo3Application implements CommandLineRunner{
 	Turista turista;
 	
 	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(TpFinalGrupo3Application.class, args);
 	}
@@ -37,13 +36,6 @@ public class TpFinalGrupo3Application implements CommandLineRunner{
 			turista.setPais("Argentina");
 			turistaService.guardarTurista(turista);	
 			*/
-		/*
-		    cupon.setValor(10);
-		    cupon.setDescripcion("canjealo en la sucursal mas cercana");
-		    cupon.setDescuento(50);
-		    cupon.setTitulo("en compras en supermercados comodin");
-		    
-		    cuponService.guardarCupon(cupon);
-		    */
+		
 	}
 }
