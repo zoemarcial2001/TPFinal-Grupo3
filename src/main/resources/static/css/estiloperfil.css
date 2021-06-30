@@ -41,7 +41,7 @@ body {
 }
 
 .seccion-perfil-usuario .perfil-usuario-portada {
-    display: block;
+    display: flex;
     position: relative;
     width: 90%;
     height: 13rem;
@@ -50,7 +50,7 @@ body {
 }
 
 .seccion-perfil-usuario .perfil-usuario-avatar {
-    display: flex;
+    display: block;
     width: 190px;
     height: 190px;
     align-items: center;
@@ -66,11 +66,12 @@ body {
 }
 
 .seccion-perfil-usuario .perfil-usuario-body {
+	display: flex;
     width: 100%;
-    position: absolute;
+    position: relative;
     max-width: 1000px;
-    left: 180px;
-    top: 310px;
+    left: 240px;
+    top: 10px;
 }
 
 .seccion-perfil-usuario .perfil-usuario-body .titulo {
@@ -206,6 +207,53 @@ body {
     border-radius: 15px;
     
 }
+
+.contenedor figure{
+       position:relative;
+        height: 250px;
+        cursor: pointer;
+        width: 350px;
+        overflow: hidden;
+        border-radius: 6px;
+        box-shadow: 0px 15px 25px rgba(0,0,0,0.50);
+    }
+    .contenedor figure img{
+        width: 100%;
+        height: 100%;
+        transition: all 400ms ease-out;
+        will-change: transform;
+    }
+    .contenedor figure .texto{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(31,31,31,0.7);
+        transition: all 400ms ease-out;
+        opacity: 0;
+        visibility: hidden;
+        text-align: center;
+    }
+    
+      .contenedor figure:hover > .texto {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .contenedor figure:hover > img{
+        transform: scale(1.3);
+    }
+    
+    .centrado {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+    
 
 
 

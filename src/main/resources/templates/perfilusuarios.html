@@ -38,28 +38,45 @@
                 </ul>
             </div>
             <div class="redes-sociales">
-                <a href="" class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>
+                <a class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>
                 <a href="" class="boton-redes twitter fab fa-twitter"><i class="icon-twitter"></i></a>
                 <a href="" class="boton-redes instagram fab fa-instagram"><i class="icon-instagram"></i></a>
             </div>
         </div>
-        </div>
+       </div>
+    </section>
+    
+    <section>
+    
+    <div class="container">
+    
+    <div class="album py-5">
+    <h1 style="text-align: center;"> Sus Puntos de Interes</h1>
+    <br>
+    
+		<div th:if = "${pois!=null}" class="row row-cols-1 row-cols-sm-3 g-3">
+		<div  th:each="p : ${pois}">
+		<div class="col lg-4 mb-4">
+		<div class="contenedor">
+		<figure>
+             <img onerror="this.src='/img/recursolisto.png';" th:src="*{'data:;base64,'+p.imagen}" class="d-block w-100">
+             <div class="texto">
+                   <a class="centrado" th:href="@{'/valoracion/mostrar/'+${p.codigoPoI}}" th:text="${p.nombrePoI}"></a>
+             </div>
+             
+             </figure>
+             
+             </div>
+             </div>
+             </div>
+             </div>
+          </div>
+    
+    </div>
     </section>
 </div>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
   <div th:insert="layouts/footer :: footer"></div>
 
     	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
