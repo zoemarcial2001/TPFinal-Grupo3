@@ -20,12 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unju.edm.model.Turista;
+import ar.edu.unju.edm.service.IPoIService;
 import ar.edu.unju.edm.service.ITuristaService;
 @Controller
 public class TuristaController {
 	
 	@Autowired
 	ITuristaService turistaService;
+	
+	@Autowired
+	IPoIService poiService;
 	
 	
 	//metodos para usuario normal
@@ -87,7 +91,9 @@ public class TuristaController {
 	@GetMapping("/perfil/{id}")
 	public String mostrarperfil(Model model, @PathVariable(name="id") Integer id) {
 		try {
-			model.addAttribute("turista", turistaService.encontrarUnTurista(id)); 
+			Turista turista = turistaService.encontrarUnTurista(id);
+			model.addAttribute("turista", turista); 
+			model.addAttribute("pois", poiService.obtenerMisPoIs(turista));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
