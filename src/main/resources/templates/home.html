@@ -39,9 +39,16 @@
 						<a href="#">¿Olvidaste tu contraseña?</a><br>
 						<a href="/registrar">Registrarse</a>					
 					
+	    	<div th:if="${param.error}" class="alert alert-danger" role="alert">
+				Combinación Invalida de Usuario y Contraseña</div>
+			<div th:if="${param.logout}" class="alert alert-success" role="alert">
+				Ha salido del Sistema. Gracias!</div>
+				
 				</div>
 			</div>
 		</div>
+		
+		
 
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>

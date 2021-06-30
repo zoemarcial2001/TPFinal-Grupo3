@@ -6,7 +6,6 @@ import java.util.Base64;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +25,6 @@ import ar.edu.unju.edm.service.ITuristaService;
 public class TuristaController {
 	
 	@Autowired
-	@Qualifier("impsql")
 	ITuristaService turistaService;
 	
 	
@@ -85,7 +83,7 @@ public class TuristaController {
 		return "redirect:/turista/perfil";
 	}
 	
-	
+//otros usuarios inicio
 	@GetMapping("/perfil/{id}")
 	public String mostrarperfil(Model model, @PathVariable(name="id") Integer id) {
 		try {

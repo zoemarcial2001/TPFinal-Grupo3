@@ -2,11 +2,12 @@ package ar.edu.unju.edm.controller;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +30,6 @@ import ar.edu.unju.edm.service.ITuristaService;
 public class PoIController{
 
 	@Autowired
-	@Qualifier("impsql")
 	IPoIService poIService;
 	
 	@Autowired
@@ -99,7 +99,6 @@ public class PoIController{
 				e.printStackTrace();
 			}
 			
-			
 		    return "redirect:/poI/mostrar";
 			
 		}
@@ -168,8 +167,6 @@ public class PoIController{
 	
 	@GetMapping("/poI/mostrar" )
 	public String mostrarPoI(Model model) {
-		//List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
-		//listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs()); 
 		return("pois");
 	}
@@ -182,6 +179,13 @@ public class PoIController{
 		return("pois");
 	}
 	
+	@GetMapping("/poI/mostrarAlfabeto")
+	public String mostrarAlfabeticamente(Model model) {
+	List<PoI>listaPoIs = poIService.obtenerTodosPoIs();
+	listaPoIs = listaPoIs.stream().sorted((p1,p2)->p1.getNombrePoI().compareTo(p2.getNombrePoI())).collect(Collectors.toList());
+	model.addAttribute("poIs", listaPoIs);
+	return("pois");
+	}
 	
 	@GetMapping("/poI/mostrar/mispois" )
 	public String mostrarMisPoIs(Model model) {
@@ -206,14 +210,13 @@ public class PoIController{
 	
 	@GetMapping ("/cancelar")
 	public String cancelar() {
-		return "redirect:/poI/mostrar";
+		return "redirect:/poI/mostrar/mispois";
 	}
 	
 	//metodos para usuario root
 	
 	@GetMapping("/poI/cargarRoot")
-	public String cargarPoIRoot(Model model) {
-		model.addAttribute("unPoI", poIService.crearPoI());
+	public String mostrarPoIRoot(Model model) {
 		model.addAttribute("poIs", poIService.obtenerTodosPoIs());
 		return("poiroot");
 	}
@@ -227,7 +230,6 @@ public class PoIController{
 			catch(Exception e){
 				model.addAttribute("listErrorMessage",e.getMessage());
 			}
-		
 		return "redirect:/poI/cargarRoot";
 		
 	}

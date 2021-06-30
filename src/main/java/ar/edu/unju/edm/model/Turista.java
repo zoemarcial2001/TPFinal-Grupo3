@@ -54,9 +54,7 @@ public class Turista {
 	@Lob
 	@Column(name = "fotoPerfil", columnDefinition = "LONGBLOB")
 	private String fotoPerfil;
-	@Column
-	private Boolean active=true;
-	
+
 	
 	@OneToMany(mappedBy = "turista",cascade = CascadeType.ALL)
 	private List<Turistas_PoIs> turistaValoracion;
@@ -146,14 +144,6 @@ public class Turista {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
 	}
 
 	public String getFotoPerfil() {

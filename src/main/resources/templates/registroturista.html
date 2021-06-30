@@ -15,7 +15,6 @@
     <br>
  <div class="container">
    
-   <br>
     <h1 style="text-align: center">Registro</h1>
 	<form th:object="${unTurista}" th:action="@{/registrar/guardar}" method="post">
        
@@ -73,6 +72,27 @@
 	</form>
 		
     </div>
+
+<script type="text/javascript">
+
+(function () {
+   'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+</script>
+
 
         <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
