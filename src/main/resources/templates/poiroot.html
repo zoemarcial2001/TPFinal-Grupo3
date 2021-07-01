@@ -26,7 +26,7 @@
 				      <th>Localidad</th>
 				      <th>Descripcion</th>
 				      <th>Sitio Web</th>
-				      <th>Hacer</th>	    
+				      	    
 				    </tr>
 			 </thead>
 					<tr th:each="poI : ${poIs}">
@@ -38,8 +38,7 @@
 						<td th:text="${poI.descripcion}"></td>
 						<td th:text="${poI.sitioWeb}"></td>
 						
-						<td><a href="#" th:href="@{'/poI/editar/'+${poI.codigoPoI}}">
-									<i class="fa fa-edit"></i></a>		
+						<td>	
 									<a th:onclick="'javascript:confirmarEliminar(\''+${poI.codigoPoI}+'\');'"><i class="fa fa-trash-alt"></i></a>			
 					</tr>
 				</table>
