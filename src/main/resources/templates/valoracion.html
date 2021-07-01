@@ -20,7 +20,7 @@
  <div class="carta">
 <div class="card">
   <div class="row g-2">
-  <div class=" group col-12 col-md-7">
+  <div class=" group col-12 col-md-6">
   <div id="carouselExample" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
       <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
@@ -49,7 +49,7 @@
 </div>
     </div>
     
-    <div class="group col-12 col-md-5">
+    <div class="group col-12 col-md-6">
       <div class="card-body">
         
         <h3 class="card-title" th:text="*{poI.nombrePoI}"></h3> 
@@ -59,7 +59,7 @@
         <p class="card-text" th:text="*{'Localidad: ' + poI.localidad}"></p>
         <p class="card-text" th:text="*{'Coordenadas: ' + poI.latitud + '° ' + poI.Longitud} + '° ' "></p>
         <p class="card-text" th:text="*{'Descripcion: ' + poI.descripcion}"></p>
-       <p>Sitio Web: <a class="card-text" th:text="*{poI.sitioWeb}" th:href="*{poI.sitioWeb}"></a></p>
+       <p>Sitio Web: <a class="card-text" th:text="*{poI.nombrePoI}" th:href="*{poI.sitioWeb}"></a></p>
         <p class="card-text" th:text="*{'Autor: ' + poI.turistaAutor.email}"></p>
       </div>
     </div>
