@@ -35,8 +35,7 @@
 						<td th:text="${v.fechaComentario}"></td>
 						
 						
-						<td><a href="#" th:href="@{'/valoracion/editar/'+${v.idTuristas_PoIs}}">
-									<i class="fa fa-edit"></i></a>		
+						<td>
 						<a href="#" th:onclick="'javascript:confirmarEliminar(\''+${v.idTuristas_PoIs}+'\');'">
 									<i class="fa fa-trash-alt"></i></a>			
 					</tr>
