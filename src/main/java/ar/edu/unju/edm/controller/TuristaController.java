@@ -153,6 +153,35 @@ public class TuristaController {
 		return "redirect:/cupones/mostrar";
 		 
 	 }
+	
+	/*
+	@GetMapping("/turista/recup/{email}")
+		public String recuperarContraseña(Model model, @PathVariable(name="email") String email) {
+		
+		Turista turistaEnc;
+		try {
+			turistaEnc = turistaService.buscarUnTurista(email);
+			if(turistaEnc!=null) {
+				model.addAttribute("unTurista", turistaEnc);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ("recuperarcontraseña");
+	 }
+	
+	@PostMapping("/turista/cambiar/{id}")
+	public String recuperar(Model model, @ModelAttribute("unTurista") Turista turistaEnc) {
+		
+		turistaService.guardarTurista(turistaEnc);
+		
+		return "redirect:/login";		
+	}
+	
+	*/
 
 	//metodos para usuario root
 
